@@ -1,12 +1,12 @@
 ---
-title: "Guia rapida"
+title: "Guía rápida"
 description: "Construye tu primer flujo end-to-end en 5 minutos."
 ---
 
 Esta guia te lleva de cero a tener un flujo funcionando: una Database con datos, una App que los muestra y un Workflow que reacciona cuando algo cambia.
 
 <Note>
-  Para seguir esta guia necesitas una cuenta activa en Puente OS y haber sido invitado a un workspace. Si todavia no tienes acceso, escribe a soporte@puente.app.
+  Para seguir esta guia necesitas una cuenta activa en Puente OS y haber sido invitado a un workspace. Si todavia no tienes acceso, escribe a [soporte@puente.app](mailto:soporte@puente.app).
 </Note>
 
 ## Paso 1 — Crear un Project
@@ -16,7 +16,7 @@ Esta guia te lleva de cero a tener un flujo funcionando: una Database con datos,
     Al iniciar sesion llegas a la vista **Home** del menu, donde se listan los Projects del Team.
   </Step>
   <Step title="Crea un Project nuevo">
-    Haz click en **+ Nuevo Project**, asignalo a un Team (ej. Operaciones), ponle un nombre claro como "Demo onboarding" y guarda.
+    Haz click en **\+ Nuevo Project**, asignalo a un Team (ej. Operaciones), ponle un nombre claro como "Demo onboarding" y guarda.
   </Step>
   <Step title="Entra al Project">
     Click en la tarjeta del Project. Veras dos pestañas: **Tasks** (Kanban) y **Componentes** (Apps, Databases, Workflows, Agents).
@@ -33,20 +33,20 @@ Esta guia te lleva de cero a tener un flujo funcionando: una Database con datos,
 
 <Steps>
   <Step title="Abre Tables">
-    En el panel de Componentes del Project haz click en **+ Nuevo** y elige **Database**. El editor visual se llama Tables.
+    En el panel de Componentes del Project haz click en **\+ Nuevo** y elige **Database**. El editor visual se llama Tables.
   </Step>
   <Step title="Define el schema">
     Ponle nombre (`pedidos`) y agrega 4 columnas:
 
     | Columna | Tipo |
-    |---|---|
+    | --- | --- |
     | `cliente` | Texto |
     | `monto` | Numero |
     | `estado` | Select (`pendiente`, `pagado`, `enviado`) |
     | `fecha` | Fecha |
   </Step>
   <Step title="Agrega filas">
-    Haz click en **+ Fila** y agrega 3-5 pedidos de prueba. Tambien puedes importar un CSV con el boton **Importar**.
+    Haz click en **\+ Fila** y agrega 3-5 pedidos de prueba. Tambien puedes importar un CSV con el boton **Importar**.
   </Step>
 </Steps>
 
@@ -60,7 +60,7 @@ Esta guia te lleva de cero a tener un flujo funcionando: una Database con datos,
 
 <Steps>
   <Step title="Abre App Builder">
-    En el panel de Componentes haz click en **+ Nuevo** y elige **App**.
+    En el panel de Componentes haz click en **\+ Nuevo** y elige **App**.
   </Step>
   <Step title="Describe tu app">
     En el textarea escribe:
@@ -83,7 +83,7 @@ Esta guia te lleva de cero a tener un flujo funcionando: una Database con datos,
 
 <Steps>
   <Step title="Abre Workflows">
-    Click en **+ Nuevo** > **Workflow** dentro del Project.
+    Click en **\+ Nuevo** \> **Workflow** dentro del Project.
   </Step>
   <Step title="Define el trigger">
     Elige el trigger **"Fila modificada en Database"** y selecciona la Database `pedidos`. Filtra por `estado = pagado`.
@@ -110,12 +110,15 @@ Ya construiste un flujo basico end-to-end. Algunas direcciones logicas para prof
   <Card title="Agregar un Agent" icon="robot" href="/componentes/agents">
     Embebe un chatbot que responda dudas de los clientes sobre sus pedidos.
   </Card>
+
   <Card title="Tasks del Project" icon="list-check" href="/componentes/menu">
     Crea Tasks en formato Kanban para coordinar al equipo dentro del mismo Project.
   </Card>
+
   <Card title="Conceptos basicos" icon="book" href="/essentials/conceptos">
     Si quieres entender el modelo mental detras de Puente OS antes de seguir.
   </Card>
+
   <Card title="Glosario" icon="book" href="/essentials/glosario">
     Diccionario de los terminos canonicos de Puente OS.
   </Card>

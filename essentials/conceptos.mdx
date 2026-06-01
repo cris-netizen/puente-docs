@@ -1,6 +1,6 @@
 ---
-title: "Conceptos basicos"
-description: "El modelo mental detras de Puente OS: workspace, teams, projects, tasks, builds y cycles."
+title: "Conceptos"
+description: "Puente OS: workspace, teams, projects, tasks, builds y cycles."
 ---
 
 Antes de profundizar en cada componente, conviene entender como esta organizado todo. Puente OS combina **dos capas integradas** en una sola plataforma:
@@ -9,6 +9,7 @@ Antes de profundizar en cada componente, conviene entender como esta organizado 
   <Card title="Capa de gestion" icon="list-check">
     Workspace, Teams, Projects, Tasks, Cycles e Initiatives.
   </Card>
+
   <Card title="Capa de construccion" icon="hammer">
     Apps, Databases, Workflows y Agents dentro de cada Project.
   </Card>
@@ -18,7 +19,7 @@ Mismo workspace, mismos equipos, sin cambio de herramienta entre planificar y co
 
 ## Jerarquia completa
 
-```
+```text
 WORKSPACE (la organizacion completa)
 ├── TEAMS (Ops, Finance, HR, RevOps — equipos del cliente)
 │   ├── PROJECTS (iniciativas operativas concretas)
@@ -76,7 +77,7 @@ Ejemplos:
 Dentro de un Project encuentras:
 
 | Item | Para que sirve |
-|---|---|
+| --- | --- |
 | **Tasks** | Unidades atomicas de trabajo operativo (Kanban o lista) |
 | **Docs** | Specs, decisiones, contexto |
 | **Builds** | Los 4 modulos de construccion (Apps, Databases, Workflows, Agents) |
@@ -91,12 +92,15 @@ Cada Project puede contener cualquier cantidad de **Builds**. Son los artefactos
   <Card title="Apps" icon="window" href="/componentes/app-builder">
     Interfaces web construidas con IA. La capa donde tus usuarios interactuan.
   </Card>
+
   <Card title="Databases" icon="table" href="/componentes/databases">
     Datos persistentes con schema, validacion e historial.
   </Card>
+
   <Card title="Workflows" icon="diagram-project" href="/componentes/workflows">
     Automatizaciones con triggers, condiciones, codigo Python y agentes.
   </Card>
+
   <Card title="Agents" icon="robot" href="/componentes/agents">
     Agentes IA conversacionales embebibles donde necesites.
   </Card>
@@ -179,6 +183,7 @@ Ahora que tienes el modelo mental:
   <Card title="Glosario" icon="book" href="/essentials/glosario">
     Diccionario rapido de todos los terminos.
   </Card>
+
   <Card title="Empieza por Menu" icon="bars" href="/componentes/menu">
     La navegacion central del workspace.
   </Card>
