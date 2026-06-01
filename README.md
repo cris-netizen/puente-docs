@@ -17,7 +17,7 @@ docs-puente/
 ├── componentes/
 │   ├── menu.mdx                # Panel central de navegacion
 │   ├── app-builder.mdx         # Constructor de apps con IA
-│   ├── tables.mdx              # Editor visual de Databases
+│   ├── databases.mdx           # Build type Database (UI: Tables)
 │   ├── workflows.mdx           # Constructor de automatizaciones
 │   └── agents.mdx              # Agents IA + widget embebible
 ├── studio/

@@ -1,16 +1,20 @@
 ---
-title: "Tables"
-description: "Editor de tablas dinamicas con asistente IA, tipos de columna avanzados e importacion CSV, integrado al workspace."
+title: "Databases"
+description: "Datos persistentes con schema, asistente IA, tipos de columna avanzados e importacion CSV. Editadas desde el modulo Tables del workspace."
 icon: "table"
 ---
 
-**Tables** es el modulo de datos persistentes de Puente OS. Crea tablas con columnas tipadas, importa datos desde CSV, filtra, ordena, y consulta a un asistente IA que razona sobre tus datos. Las tablas se conectan automaticamente a Apps y Workflows del workspace.
+**Databases** es el Build type para datos persistentes en Puente OS. Cada Database tiene un schema tipado (columnas con tipo), se conecta automaticamente a Apps y Workflows del workspace, y se edita visualmente desde el modulo **Tables**.
 
-## Crear una tabla
+<Note>
+  **Vocabulario:** "Database" es el Build type canonico (App / Agent / Workflow / Database). El editor visual donde la operas se llama **Tables** — son la misma cosa vista desde dos angulos: el artefacto y la interfaz.
+</Note>
+
+## Crear una Database
 
 <Steps>
-  <Step title="Abre Tables">
-    Desde el panel de Componentes de un proyecto → **+ Nuevo** → **Tabla**.
+  <Step title="Abre el editor Tables">
+    Desde el panel de Componentes de un Project → **+ Nuevo** → **Database**.
   </Step>
   <Step title="Define el schema">
     Click en el boton **`+`** del encabezado para agregar la primera columna. Dale nombre, elige el tipo y confirma. La tabla se crea en el backend con esa primera columna.
@@ -48,7 +52,7 @@ icon: "table"
 
 <Steps>
   <Step title="Click en Import CSV">
-    En la toolbar. Si la tabla esta vacia, tambien aparece **"Crear desde CSV"** en el estado vacio.
+    En la toolbar. Si la Database esta vacia, tambien aparece **"Crear desde CSV"** en el estado vacio.
   </Step>
   <Step title="Sube el archivo">
     Arrastra el CSV o haz click para seleccionar. Soporta delimitadores `,` y `;`.
@@ -57,7 +61,7 @@ icon: "table"
     El sistema detecta automaticamente el tipo de cada columna. Puedes corregir cualquier tipo antes de confirmar. Se muestra una preview con las primeras 5 filas.
   </Step>
   <Step title="Confirma">
-    Se crea la tabla y se cargan todas las filas en bulk.
+    Se crea la Database y se cargan todas las filas en bulk.
   </Step>
 </Steps>
 
@@ -168,7 +172,7 @@ Preguntale cosas como:
 ¿Cuantas filas tienen el precio mayor a 1000?
 ¿Que productos estan activos?
 Muestrame un resumen de los datos
-¿Que columnas tiene esta tabla y de que tipo son?
+¿Que columnas tiene esta Database y de que tipo son?
 ```
 
 ### Reset del chat
@@ -205,14 +209,14 @@ Click en **Export** en la toolbar. Se descarga un CSV con:
 
 ## Conectar con Apps y Workflows
 
-Las tablas son **first-class citizens** del workspace. Cualquier App o Workflow puede leer y escribir.
+Las Databases son **first-class citizens** del workspace. Cualquier App o Workflow puede leer y escribir.
 
 <CardGroup cols={2}>
-  <Card title="Conectar a una App" icon="window" href="/componentes/app-builder#conectar-tablas-dinamicas">
-    Desde el tab Datos del App Builder, selecciona tu tabla y mapea columnas. La app deja de usar datos mock.
+  <Card title="Conectar a una App" icon="window" href="/componentes/app-builder#conectar-databases">
+    Desde el tab Datos del App Builder, selecciona tu Database y mapea columnas. La App deja de usar datos mock.
   </Card>
   <Card title="Trigger de Workflow" icon="diagram-project" href="/componentes/workflows">
-    Configura un workflow para que se dispare cuando una fila cambie, se agregue o se elimine.
+    Configura un Workflow para que se dispare cuando una fila cambie, se agregue o se elimine.
   </Card>
 </CardGroup>
 
@@ -221,7 +225,7 @@ Las tablas son **first-class citizens** del workspace. Cualquier App o Workflow 
 ## Preguntas frecuentes
 
 <AccordionGroup>
-  <Accordion title="Hay limite de filas por tabla?">
+  <Accordion title="Hay limite de filas por Database?">
     No hay limite duro. La importacion CSV esta capada en 10,000 filas por archivo. Para datasets de millones de filas, escribe a soporte para discutir opciones.
   </Accordion>
   <Accordion title="Puedo restaurar una fila eliminada?">
@@ -230,7 +234,7 @@ Las tablas son **first-class citizens** del workspace. Cualquier App o Workflow 
   <Accordion title="Que pasa si cambio el tipo de una columna que ya tiene datos?">
     El sistema intenta convertir los valores existentes. Si un valor no se puede convertir, queda como `null` y se te notifica antes de confirmar.
   </Accordion>
-  <Accordion title="Las tablas tienen historial de cambios?">
-    No en el editor visual. Si necesitas auditoria, configura un workflow con trigger en `rowAdd`/`cellChange` que guarde el cambio en otra tabla de historial.
+  <Accordion title="Las Databases tienen historial de cambios?">
+    No en el editor visual. Si necesitas auditoria, configura un Workflow con trigger en `rowAdd`/`cellChange` que guarde el cambio en otra Database de historial.
   </Accordion>
 </AccordionGroup>

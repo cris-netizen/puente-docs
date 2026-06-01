@@ -33,7 +33,7 @@
             "pages": [
               "componentes/menu",
               "componentes/app-builder",
-              "componentes/tables",
+              "componentes/databases",
               "componentes/workflows",
               "componentes/agents"
             ]
