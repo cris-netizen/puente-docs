@@ -58,20 +58,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Sitio web",
-          "href": "https://www.puente.xyz",
-          "icon": "globe",
-          "color": {
-            "light": "#363090",
-            "dark": "#363090"
-          }
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/images/Asset5@3x.png",
