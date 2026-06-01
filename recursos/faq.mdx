@@ -1,0 +1,172 @@
+---
+title: "Preguntas frecuentes"
+description: "Respuestas a las dudas mas comunes sobre Puente OS."
+icon: "circle-question"
+---
+
+## Sobre el producto
+
+<AccordionGroup>
+  <Accordion title="Que es Puente OS exactamente?">
+    Puente OS es una plataforma que combina **gestion operativa** (estilo Linear: Workspace, Teams, Projects, Issues, Cycles) y **construccion de software** (estilo Replit: Apps, Tables, Workflows, Agents) en un mismo lugar.
+
+    En vez de pagar Linear + Airtable + Make + Lovable + Intercom por separado, todo vive en el mismo workspace.
+  </Accordion>
+
+  <Accordion title="Para que tipo de empresas esta hecho?">
+    Esta diseñado para empresas con operaciones complejas — tipicamente Retail, eCommerce y Logistica — que quieren escalar sin agregar headcount. Hoy lo usan equipos de Ops, Finanzas, RevOps y Soporte.
+  </Accordion>
+
+  <Accordion title="Necesito saber programar para usarlo?">
+    No. El App Builder, Tables y Workflows estan diseñados para usuarios no tecnicos. Si sabes Python o JavaScript, puedes profundizar con los nodos de codigo en Workflows o editando el codigo de las apps directamente.
+  </Accordion>
+
+  <Accordion title="Puente OS reemplaza mi ERP?">
+    No. Puente OS coexiste con tu ERP, CRM y otras herramientas. Tipicamente se usa para los **procesos operacionales** que viven en planillas, emails y herramientas dispersas — automatizandolos sin tener que migrar el sistema core.
+  </Accordion>
+
+  <Accordion title="Funciona en mobile?">
+    Las apps construidas con App Builder son responsive por default. El workspace (Menu) tiene una version mobile con funcionalidad reducida — el editor de Workflows requiere desktop.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Acceso y permisos
+
+<AccordionGroup>
+  <Accordion title="Como invito a alguien al workspace?">
+    Desde **Configuracion → Miembros → Invitar**. Ingresa el email del usuario, asignale un team y un rol (Admin, Member o Guest). Recibira un email para activar su cuenta.
+  </Accordion>
+
+  <Accordion title="Cuales son los roles disponibles?">
+    | Rol | Permisos |
+    |---|---|
+    | **Admin** | Acceso total al workspace, miembros, billing |
+    | **Member** | Acceso a sus teams, puede crear/editar Builds y tareas |
+    | **Guest** | Acceso solo a proyectos especificos que le asignen |
+  </Accordion>
+
+  <Accordion title="Puedo restringir el acceso a una tabla o app?">
+    Si. Cada Build tiene permisos a nivel de team y de usuario. Desde el menu ⋮ del componente → **Permisos**, defines quien puede ver, editar o ejecutar.
+  </Accordion>
+
+  <Accordion title="Que pasa si un miembro deja la empresa?">
+    Desde **Configuracion → Miembros**, click en el usuario → **Desactivar**. Su acceso se revoca inmediatamente. Los Builds que creo siguen funcionando — solo cambia el ownership al admin del workspace.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Datos y seguridad
+
+<AccordionGroup>
+  <Accordion title="Donde se guardan mis datos?">
+    Tus datos viven en infraestructura aislada por workspace en AWS (us-east-1 por default). Para clientes con requerimientos especificos de region, escribe a soporte para discutir opciones de hosting.
+  </Accordion>
+
+  <Accordion title="Estan mis datos encriptados?">
+    Si. En transito (TLS 1.3) y en reposo (AES-256). Las credenciales de integraciones se almacenan en un vault separado con encriptacion por workspace.
+  </Accordion>
+
+  <Accordion title="Puente OS es multi-tenant?">
+    Si, pero con aislamiento estricto. Los datos de un workspace nunca son legibles desde otro workspace. No hay queries cross-tenant.
+  </Accordion>
+
+  <Accordion title="Puedo exportar todos mis datos?">
+    Si. Desde **Configuracion → Exportar** puedes descargar:
+    - Todas las tablas en CSV
+    - Definiciones de workflows en JSON
+    - Codigo de apps como ZIP
+
+    Es tu data — siempre podes llevartela.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Pricing y planes
+
+<AccordionGroup>
+  <Accordion title="Cuanto cuesta Puente OS?">
+    Pricing por workspace y por usuario, con tier de **componentes activos** (Builds en uso). Detalles actualizados en [puente.app/pricing](https://puente.app/pricing).
+  </Accordion>
+
+  <Accordion title="Hay periodo de prueba?">
+    Si. 14 dias gratis con acceso completo. No requiere tarjeta de credito.
+  </Accordion>
+
+  <Accordion title="Que pasa si me paso del limite del plan?">
+    Te notificamos antes de bloquear nada. Tienes 7 dias para upgrade o reducir el uso. Nunca cortamos acceso sin aviso.
+  </Accordion>
+
+  <Accordion title="Tienen plan enterprise?">
+    Si. Incluye SSO, audit logs, regiones custom, SLA, y onboarding dedicado. Escribe a soporte@puente.app.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Integraciones
+
+<AccordionGroup>
+  <Accordion title="Que integraciones soporta Workflows?">
+    Las mas comunes ya estan integradas: HTTP, Email (SMTP/Resend), Slack, Google Sheets, Notion, Postgres/MySQL, Webhooks. La lista completa esta en el Node Picker del editor de Workflows.
+  </Accordion>
+
+  <Accordion title="Puedo conectarme a mi ERP/CRM?">
+    Si tu sistema tiene API REST o GraphQL, si — usa el nodo HTTP. Para sistemas mas exoticos (SAP, ORACLE, AS400) tenemos conectores custom — escribe a soporte.
+  </Accordion>
+
+  <Accordion title="Que pasa si una integracion falla?">
+    Por default el flujo se detiene. Puedes configurar `on_error: continue` en cada nodo para que el flujo siga, y reintentos automaticos con backoff exponencial.
+  </Accordion>
+
+  <Accordion title="Puedo crear mi propia integracion?">
+    Para casos custom puedes usar el nodo HTTP con la API del servicio externo. Si necesitas algo mas estructurado (oauth, paginacion compleja), escribenos para discutirlo.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Soporte
+
+<AccordionGroup>
+  <Accordion title="Como contacto a soporte?">
+    Email: **[soporte@puente.app](mailto:soporte@puente.app)**.
+
+    Tiempo de respuesta: < 24 horas habiles para todos los planes, < 4 horas habiles para enterprise.
+  </Accordion>
+
+  <Accordion title="Hay documentacion para developers?">
+    Si necesitas usar la API de Puente OS para integraciones custom, escribenos para acceso anticipado.
+  </Accordion>
+
+  <Accordion title="Hay un changelog publico?">
+    Si. Actualizamos cambios y nuevas features semanalmente en [puente.app/changelog](https://puente.app/changelog).
+  </Accordion>
+
+  <Accordion title="Donde reporto un bug?">
+    Email a [soporte@puente.app](mailto:soporte@puente.app) con:
+    - Que estabas haciendo
+    - Que esperabas que pasara
+    - Que paso en su lugar
+    - Screenshot si es posible
+    - URL de la pagina donde ocurrio
+
+    Te respondemos con un ticket y status en menos de 24h.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Te queda alguna duda?
+
+<CardGroup cols={2}>
+  <Card title="Escribenos" icon="envelope" href="mailto:soporte@puente.app">
+    soporte@puente.app — respuesta en < 24h habiles.
+  </Card>
+  <Card title="Estado del servicio" icon="signal-stream" href="https://status.puente.app">
+    Disponibilidad en tiempo real de la plataforma.
+  </Card>
+</CardGroup>

@@ -1,0 +1,188 @@
+---
+title: "Menu"
+description: "El panel central de navegacion del workspace: proyectos, tareas y componentes en un solo lugar."
+icon: "bars"
+---
+
+**Puente Menu** es el panel desde donde organizas y navegas todo el workspace. Cada componente que creas (Apps, Tablas, Workflows, Agents) vive dentro de un proyecto, y cada proyecto tiene sus propias tareas.
+
+## Vision general
+
+El menu opera en dos niveles:
+
+```
+HOME (lista de proyectos)
+  ↓ click en un proyecto
+DETALLE DEL PROYECTO
+  ├── Tareas (Kanban / Lista)
+  └── Componentes (Apps · Tables · Workflows · Agents)
+```
+
+---
+
+## Vista Home
+
+Al abrir el workspace llegas al Home con la lista de proyectos activos del equipo. Siempre aparece primero el proyecto especial **"Todos"** (ALL), que agrupa todos los componentes del workspace sin importar a que proyecto pertenecen.
+
+### Controles principales
+
+| Control | Que hace |
+|---|---|
+| **Buscador** | Filtra proyectos por nombre o descripcion en tiempo real |
+| **Vista Tabla / Tarjetas** | Alterna entre lista compacta y grid visual con estadisticas |
+| **Ordenar** | En vista tabla, haz click en las cabeceras para ordenar |
+| **Nuevo Proyecto** | Boton en la esquina superior derecha |
+
+### Que muestra cada tarjeta
+
+- Nombre y descripcion del proyecto
+- Fecha de creacion
+- Contadores por tipo de componente (Apps, Workflows, Tablas, Agents)
+- Menu `⋮` para editar o eliminar
+
+---
+
+## Gestion de proyectos
+
+### Crear un proyecto
+
+<Steps>
+  <Step title="Click en Nuevo Proyecto">
+    Boton en la esquina superior derecha del Home.
+  </Step>
+  <Step title="Completa nombre y descripcion">
+    El nombre es requerido. La descripcion es opcional pero recomendada.
+  </Step>
+  <Step title="Confirma">
+    El proyecto aparece inmediatamente en la lista.
+  </Step>
+</Steps>
+
+### Editar un proyecto
+
+Pasa el cursor sobre el proyecto, click en `⋮` y elige **Editar**. Modifica nombre o descripcion y confirma.
+
+<Note>
+  Solo se pueden editar proyectos reales. El proyecto **"Todos"** no es editable.
+</Note>
+
+### Eliminar un proyecto
+
+Menu `⋮` → **Eliminar** (en rojo) → confirma.
+
+<Warning>
+  Al eliminar un proyecto, los **componentes** asignados regresan automaticamente al proyecto "Todos". Pero las **tareas** se eliminan de forma permanente junto con el proyecto.
+</Warning>
+
+---
+
+## Detalle de proyecto
+
+Al hacer click en un proyecto entras a su vista de detalle, dividida en dos secciones:
+
+<CardGroup cols={2}>
+  <Card title="Tareas" icon="list-check">
+    Kanban o lista de issues asignados al proyecto.
+  </Card>
+  <Card title="Componentes" icon="cubes">
+    Tabla con todas las Apps, Workflows, Tablas y Agents del proyecto.
+  </Card>
+</CardGroup>
+
+---
+
+## Tareas
+
+Las tareas se gestionan dentro de cada proyecto.
+
+### Estados y vistas
+
+Los estados disponibles son: **Backlog**, **Todo**, **In Progress**, **Done**, **Cancelled**. Puedes ver las tareas como:
+
+- **Kanban** — tarjetas agrupadas por estado, arrastrables entre columnas
+- **Lista** — tabla con todas las columnas (titulo, asignado, prioridad, fecha)
+
+### Crear una tarea
+
+<Steps>
+  <Step title="Click en + Nueva tarea">
+    Disponible en cada columna del Kanban o en el header de la lista.
+  </Step>
+  <Step title="Define titulo y campos">
+    Titulo (requerido), descripcion, prioridad, asignado, fecha limite.
+  </Step>
+  <Step title="Confirma">
+    La tarea aparece inmediatamente en el estado seleccionado.
+  </Step>
+</Steps>
+
+<Tip>
+  Las tareas tambien pueden referenciar Builds (Apps, Workflows, etc.) para enlazar tarea de gestion con artefacto de software.
+</Tip>
+
+---
+
+## Componentes
+
+Dentro del detalle de un proyecto, la seccion de componentes lista todas las Apps, Workflows, Tablas y Agents asignados.
+
+### Filtros rapidos
+
+| Filtro | Que muestra |
+|---|---|
+| **Todos** | Todos los componentes del proyecto |
+| **Apps** | Solo interfaces visuales |
+| **Workflows** | Solo automatizaciones |
+| **Tablas** | Solo bases de datos |
+| **Agents** | Solo agentes IA |
+
+<Note>
+  Los filtros solo aparecen si el tipo tiene al menos 1 componente en el proyecto.
+</Note>
+
+### Acciones por componente
+
+Al hacer hover sobre una fila aparece el boton `⋮`:
+
+| Accion | Disponible en | Descripcion |
+|---|---|---|
+| **Editar** | Solo Apps | Abre el editor de la App |
+| **Mover** | Todos | Cambia el componente a otro proyecto |
+| **Eliminar** | Todos | Elimina permanentemente (irreversible) |
+
+### Abrir un componente
+
+Click en cualquier fila o en el boton **→** te lleva directo al editor del componente (App Builder, Workflow editor, Table editor o Agent editor).
+
+---
+
+## El proyecto "Todos"
+
+<Card title="Que es" icon="globe">
+  El proyecto **"Todos"** (ALL) es un proyecto virtual que existe en todos los workspaces. Agrupa todos los componentes del workspace independientemente de si tienen proyecto asignado.
+</Card>
+
+### Cuando es util
+
+- Encontrar un componente rapido sin saber en que proyecto esta
+- Mover componentes huerfanos a un proyecto real
+- Vista general del workspace completo
+
+### Limitaciones
+
+- No puedes crear tareas en "Todos"
+- No puedes editarlo ni eliminarlo
+- Componentes nuevos que se crean sin proyecto van automaticamente aqui
+
+---
+
+## Siguiente paso
+
+<CardGroup cols={2}>
+  <Card title="App Builder" icon="window" href="/componentes/app-builder">
+    Construye tu primera aplicacion web con IA.
+  </Card>
+  <Card title="Tables" icon="table" href="/componentes/tables">
+    Crea tablas y conectalas a tus apps.
+  </Card>
+</CardGroup>

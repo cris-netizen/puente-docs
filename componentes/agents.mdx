@@ -1,0 +1,273 @@
+---
+title: "Agents"
+description: "Crea agentes IA conversacionales con prompt personalizado y publicalos como widget embebible en cualquier sitio web."
+icon: "robot"
+---
+
+**Agents** te permite crear agentes de IA conversacionales con un prompt personalizado, probarlos en tiempo real y publicarlos como un widget de chat embebible en cualquier sitio web.
+
+## Interfaz
+
+La pantalla esta dividida en dos columnas redimensionables:
+
+```
+┌──────────────────────┬──────────────────────────────────────┐
+│                      │                                      │
+│   Chat de Prueba     │   Configuracion del Agente           │
+│   (columna izq.)     │   (columna der.)                     │
+│                      │                                      │
+└──────────────────────┴──────────────────────────────────────┘
+                       ↑ drag handle (redimensionable)
+```
+
+- **Izquierda** — Chat para probar el agente con la configuracion actual (no necesitas guardar primero).
+- **Derecha** — Donde defines identidad, instrucciones y modelo.
+
+<Tip>
+  Arrastra el divisor entre columnas para ajustar el espacio (minimo 200px, maximo 600px).
+</Tip>
+
+---
+
+## Crear un agente
+
+<Steps>
+  <Step title="Abre Agents">
+    Desde el panel de Componentes de un proyecto → **+ Nuevo** → **Agent**.
+  </Step>
+  <Step title="Nombra el agente">
+    En el campo de la parte superior. Es obligatorio para guardar.
+  </Step>
+  <Step title="Define las instrucciones">
+    Elige modo **Inteligente** o **Manual** (ver siguiente seccion).
+  </Step>
+  <Step title="Selecciona el modelo">
+    Default recomendado para la mayoria de casos.
+  </Step>
+  <Step title="Click en Crear agente">
+    El agente queda guardado y listo para publicar como widget.
+  </Step>
+</Steps>
+
+<Warning>
+  El nombre del agente es obligatorio. Si intentas guardar sin el, el campo se resaltara en rojo.
+</Warning>
+
+---
+
+## Instrucciones — Modo Inteligente
+
+Divide el prompt en **6 campos estructurados** para evitar prompts monoliticos dificiles de mantener:
+
+| Campo | Para que sirve | Ejemplo |
+|---|---|---|
+| **Rol del Agente** | Quien es el agente, perfil y estilo | "Eres un asistente de ventas experto en SaaS" |
+| **Tarea u Objetivo** | Que debe lograr en cada interaccion | "Tu tarea es calificar leads y agendar demos" |
+| **Contexto y Entorno** | Info de fondo: empresa, producto, audiencia | "Trabajas para Puente OS, plataforma de automatizacion" |
+| **Guias y Buenas Practicas** | Tono, estilo, estructura | "Se conciso. Usa listas cuando sea apropiado" |
+| **Restricciones y Prohibiciones** | Lo que NO debe hacer | "No inventes precios. No hagas promesas sin confirmar" |
+| **Formato de Salida** | Como estructurar respuestas | "Siempre termina con una pregunta de seguimiento" |
+
+### Editar un campo
+
+Click en el icono ✏️ a la derecha del campo. Se despliega un textarea. Click en ∧ para colapsar.
+
+<Note>
+  Cada campo muestra una preview truncada del contenido cuando esta colapsado.
+</Note>
+
+---
+
+## Instrucciones — Modo Manual
+
+Textarea libre donde escribes el prompt completo. Util cuando ya tienes un prompt afinado que quieres pegar directo.
+
+### Transiciones entre modos
+
+| Direccion | Que pasa |
+|---|---|
+| **Inteligente → Manual** | Los 6 campos se compilan en un prompt con etiquetas `[ROLE]`, `[TASK]`, etc. y se cargan en el textarea |
+| **Manual → Inteligente** | El sistema intenta parsear las etiquetas `[TAG]` y distribuirlas. Si no hay etiquetas, todo va al campo **Contexto** |
+
+<Tip>
+  Cambiar de modo no borra tu trabajo. Siempre hay una conversion automatica.
+</Tip>
+
+---
+
+## Chat de prueba
+
+La columna izquierda incluye un chat que envia mensajes al modelo con el prompt actual — **incluso si no guardaste**.
+
+### Como usarlo
+
+<Steps>
+  <Step title="Escribe tu mensaje">
+    En el campo de texto inferior.
+  </Step>
+  <Step title="Envia">
+    Presiona `Enter` o el boton →.
+  </Step>
+  <Step title="Itera">
+    Modifica el prompt en la columna derecha y prueba inmediatamente sin guardar.
+  </Step>
+</Steps>
+
+### Controles
+
+- **↺** en el header del chat: borra toda la conversacion y empieza de cero
+- El historial se incluye en cada peticion, manteniendo contexto
+
+---
+
+## Publicar como widget
+
+Una vez guardado el agente, puedes publicarlo como **widget de chat embebible** en cualquier sitio web (Webflow, Framer, WordPress, custom HTML, etc.).
+
+### Abrir la configuracion del widget
+
+Click en **Configurar Widget** (icono ⊞) en el footer de la columna de configuracion.
+
+Se abre un modal con dos paneles: **Configuracion** (izquierda) y **Preview** (derecha).
+
+---
+
+### Secciones de configuracion
+
+<AccordionGroup>
+  <Accordion title="Webhook">
+    URL del agente en el backend. Pre-llenada automaticamente. Formato: `https://backend.../chat/{public_id}`.
+  </Accordion>
+
+  <Accordion title="Marca">
+    Personaliza visualmente el widget:
+
+    - **Titulo** — texto en la cabecera del chat
+    - **URL del Logo** — imagen de tu marca
+    - **Ancho / Alto del Logo** — en CSS (`120px`, `35px`)
+    - **Texto de Bienvenida** — titulo de la pantalla inicial
+    - **Tiempo de Respuesta** — subtitulo (ej. "Respondemos siempre")
+    - **Placeholder del Input** — texto guia del campo de mensaje
+    - **Texto de botones** — Enviar, Cargando, Error, Nueva Conversacion
+  </Accordion>
+
+  <Accordion title="Mensajes">
+    - **Mensaje Inicial** — lo que el agente envia al abrir el chat por primera vez
+    - **Mensaje Proactivo** — burbuja flotante antes de abrir el chat, posicionable arriba o al lado del boton
+  </Accordion>
+
+  <Accordion title="Estilo">
+    - **Posicion del Widget** — derecha o izquierda
+    - **Distancia desde el fondo** — en CSS (ej. `20px`)
+    - **Colores** — primario, secundario, fondo, fuente (selector visual + hex)
+  </Accordion>
+
+  <Accordion title="Markdown">
+    Activa renderizado de Markdown en las respuestas del agente: **negrita**, listas, `codigo`, etc.
+  </Accordion>
+
+  <Accordion title="Botones del Menu">
+    Botones de acceso rapido en el chat. Cada uno puede ser:
+
+    - **URL** — abre un enlace externo
+    - **Chat** — envia un mensaje predefinido al agente
+
+    Agrega con **+ Agregar Boton**, elimina con **✕**.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+### Obtener el codigo
+
+<Steps>
+  <Step title="Ajusta la configuracion">
+    Hasta que la preview lateral se vea como quieres.
+  </Step>
+  <Step title="Copia el snippet">
+    Click en **Copiar Codigo**.
+  </Step>
+  <Step title="Pega antes del </body>">
+    En tu sitio web. El widget aparece como burbuja flotante.
+  </Step>
+</Steps>
+
+### Estructura del snippet
+
+```html
+<script>
+window.ChatWidgetConfig = {
+  "webhook": { "url": "https://backend.../chat/{public_id}", ... },
+  "branding": { "name": "Puente OS", ... },
+  "style": { "primaryColor": "#0d0d0d", ... },
+  "menu": { "buttons": [...] },
+  "markdown": { "enabled": true }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/octaviofv/chat_widget_puente/script_puente.js"></script>
+```
+
+<Tip>
+  Pega este codigo **antes del cierre del `</body>`** en tu sitio web.
+</Tip>
+
+---
+
+## Editar un agente existente
+
+Si el agente ya existe, abrirlo carga automaticamente la configuracion desde el backend. El boton de guardado cambia a **Guardar cambios**. Solo se actualizan los campos modificados.
+
+---
+
+## Estados del boton Guardar
+
+| Estado | Texto | Color |
+|---|---|---|
+| Normal | "Crear agente" / "Guardar cambios" | Negro |
+| Guardando | "Guardando…" | Gris oscuro |
+| Exito | "✓ Guardado" | Verde (2.5 seg) |
+
+Si ocurre un error, se muestra el mensaje en rojo junto al boton.
+
+---
+
+## Casos de uso comunes
+
+<CardGroup cols={2}>
+  <Card title="Soporte automatizado" icon="headset">
+    Embebe el widget en tu sitio para responder preguntas frecuentes 24/7.
+  </Card>
+  <Card title="Calificador de leads" icon="filter">
+    Configura el agente para hacer preguntas que califiquen leads antes de agendar.
+  </Card>
+  <Card title="Asistente interno" icon="building">
+    Publica el widget en herramientas internas para que el equipo consulte procesos.
+  </Card>
+  <Card title="Onboarding de usuarios" icon="graduation-cap">
+    Guia paso a paso a los usuarios nuevos en tu producto.
+  </Card>
+</CardGroup>
+
+---
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="Que modelos puedo usar?">
+    El selector incluye los modelos disponibles segun tu plan (Llama, GPT, Gemini). Escribe a soporte si necesitas un modelo especifico.
+  </Accordion>
+  <Accordion title="Puedo conectar el agente a una tabla del workspace?">
+    En esta version el agente responde solo con el contexto del prompt. Para que use datos en vivo, configura un workflow que llame al agente con el contexto correcto y embebe el chat conectado a ese workflow.
+  </Accordion>
+  <Accordion title="Cuanto tiempo se guarda el historial de chat?">
+    El historial se mantiene durante la sesion del navegador del usuario. No se persiste entre sesiones a menos que configures el storage manualmente.
+  </Accordion>
+  <Accordion title="Funciona el widget en mobile?">
+    Si. El widget es responsive por default. En pantallas pequeñas se abre en pantalla completa.
+  </Accordion>
+  <Accordion title="Puedo customizar mas el widget?">
+    Todos los textos, colores y mensajes son configurables desde el modal. Para customizaciones mas profundas (CSS custom, eventos JS), escribe a soporte.
+  </Accordion>
+</AccordionGroup>

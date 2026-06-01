@@ -1,0 +1,93 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Puente OS",
+  "colors": {
+    "primary": "#0EA5E9",
+    "light": "#38BDF8",
+    "dark": "#0284C7"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "anchors": [
+      {
+        "anchor": "Documentation",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Empezar",
+            "pages": [
+              "introduction",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Conceptos basicos",
+            "pages": [
+              "essentials/conceptos",
+              "essentials/glosario"
+            ]
+          },
+          {
+            "group": "Componentes",
+            "pages": [
+              "componentes/menu",
+              "componentes/app-builder",
+              "componentes/tables",
+              "componentes/workflows",
+              "componentes/agents"
+            ]
+          },
+          {
+            "group": "Recursos",
+            "pages": [
+              "recursos/atajos",
+              "recursos/faq"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Sitio web",
+          "href": "https://puente.app",
+          "icon": "globe"
+        },
+        {
+          "anchor": "Estado del servicio",
+          "href": "https://status.puente.app",
+          "icon": "signal-stream"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://puente.app"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Soporte",
+        "href": "mailto:soporte@puente.app"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Abrir Puente",
+      "href": "https://app.puente.app"
+    }
+  },
+  "search": {
+    "prompt": "Buscar en la documentacion..."
+  },
+  "footer": {
+    "socials": {
+      "linkedin": "https://www.linkedin.com/company/puente-os",
+      "x": "https://x.com/puenteos"
+    }
+  }
+}

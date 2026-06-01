@@ -1,0 +1,237 @@
+---
+title: "App Builder"
+description: "Construye aplicaciones web describiendolas en lenguaje natural. La IA genera el codigo, lo compila y muestra una preview funcional al instante."
+icon: "window"
+---
+
+**App Builder** es el constructor de aplicaciones web de Puente OS. Describes lo que quieres en lenguaje natural, el sistema genera React + TypeScript, lo compila en tu navegador y te muestra una preview funcional. Despues puedes iterar via chat, editar codigo directamente o usar el modo Inspect para editar elementos haciendo click.
+
+## Crear tu primera app
+
+<Steps>
+  <Step title="Abre App Builder">
+    Desde el panel de Componentes de un proyecto → **+ Nuevo** → **App**.
+  </Step>
+  <Step title="Describe lo que quieres">
+    Escribe en el textarea de la pantalla de inicio. Algunos ejemplos:
+
+    ```
+    Un CRM simple con lista de clientes, oportunidades y dashboard con metricas
+
+    App de gestion de inventario con tabla de productos, filtros y formulario
+
+    Tablero Kanban para gestionar tareas con columnas To Do, In Progress y Done
+    ```
+
+    <Tip>
+      Click en **✨ Mejorar** y la IA reformulara tu prompt agregandole detalle.
+    </Tip>
+  </Step>
+  <Step title="Envia y espera la preview">
+    Presiona **▲** o `Enter`. El sistema genera nombre, archivos de codigo, compila y muestra preview en 15-45 segundos.
+  </Step>
+</Steps>
+
+## Templates pre-construidos
+
+Si no quieres empezar desde cero, click en **Template** y elige uno:
+
+| Template | Para que sirve |
+|---|---|
+| **CRM** | Gestion de clientes, oportunidades, pipeline |
+| **Helpdesk** | Sistema de tickets de soporte con estados |
+| **App Base** | Estructura base lista para iterar |
+| **HTML Interactive** | Template HTML/CSS/JS puro (sin React) |
+| **Pomodoro** | Timer + lista de tareas |
+| **QA Components** | Showcase de todos los componentes disponibles |
+
+---
+
+## Iterar via Chat
+
+Una vez generada la app, el tab **Chat** es donde sigues iterando. Ejemplos de solicitudes:
+
+<CodeGroup>
+
+```text Modificar UI
+Agrega un grafico de barras en el dashboard con las ventas por mes
+Cambia el color primario a azul marino y agrega modo oscuro
+```
+
+```text Funcionalidad
+Agrega validacion de formularios en el modulo de clientes
+Crea una vista de Reportes con tabla exportable
+```
+
+```text Bug fixes
+El boton de guardar no esta funcionando, corrigelo
+La tabla de productos no se actualiza al agregar uno nuevo
+```
+
+</CodeGroup>
+
+<Tip>
+  Si el cambio afecta a un componente especifico, mencionalo por nombre: *"En `ClientesView`, agrega un campo de notas"*. Asi la IA hace cambios mas precisos.
+</Tip>
+
+---
+
+## Los 4 tabs del editor
+
+| Tab | Para que sirve |
+|---|---|
+| **Preview** | Tu app en pantalla completa |
+| **Chat** | Editor de chat + preview lateral |
+| **Code** | Explorador de archivos + editor + preview |
+| **Datos** | Conexion con tablas dinamicas |
+
+### Tab Code
+
+Editor estilo VSCode con:
+
+- Explorador de archivos a la izquierda
+- Editor con syntax highlighting al centro
+- Preview siempre visible a la derecha
+- 4 sub-pestañas segun el archivo: **Codigo**, **Datos** (si existe `data.ts`), **Theme** (si existe `theme.ts`), **Bugs** (si hay errores)
+
+<Note>
+  Puedes editar el codigo directamente y luego click en **Build** para compilar. O usar el chat para que la IA aplique tus cambios de forma mas inteligente.
+</Note>
+
+### Tab Datos
+
+Si tu app tiene `data.ts`, puedes editar los datos de forma visual sin tocar codigo:
+
+| Accion | Como |
+|---|---|
+| **Editar celda** | Click en la celda para editar inline |
+| **Agregar fila** | Boton "+ Fila" al final de la tabla |
+| **Eliminar fila** | Icono 🗑 en la fila |
+| **Agregar columna** | Boton "+ Columna" |
+
+Cada cambio regenera `data.ts` y recompila automaticamente.
+
+---
+
+## Editor de Theme
+
+Personaliza colores sin escribir codigo. Accede desde **Code → Theme** (requiere `theme.ts`).
+
+### Presets disponibles
+
+- **Default** — Neutros, profesional
+- **Dark** — Modo oscuro completo
+- **Purple** — Tonos morados elegantes
+- **Ocean** — Azules oceanicos
+- **Sunset** — Naranjas y rosas calidos
+- **Forest** — Verdes naturales
+
+### Ajuste fino
+
+Cada variable (background, primary, secondary, etc.) tiene sliders **Hue / Saturation / Lightness** para ajuste preciso.
+
+<Tip>
+  Tambien funciona via chat: *"Cambia el tema a verde oscuro con tipografia moderna"*.
+</Tip>
+
+---
+
+## Modo Inspect — editar con click
+
+Disponible cuando estas en el tab **Code**.
+
+<Steps>
+  <Step title="Activa el modo">
+    Click en **Edit** (esquina superior derecha del preview).
+  </Step>
+  <Step title="Selecciona un elemento">
+    El cursor cambia. Click sobre cualquier elemento del preview.
+  </Step>
+  <Step title="Edita las props">
+    Se identifica el componente React y se muestran sus props editables en el panel izquierdo.
+  </Step>
+  <Step title="Aplica los cambios">
+    Click en **Apply Changes** — el codigo se actualiza y el preview se recompila.
+  </Step>
+</Steps>
+
+---
+
+## Conectar tablas dinamicas
+
+App Builder puede leer y escribir Tablas del workspace en lugar de usar datos mock.
+
+<Steps>
+  <Step title="Ve al tab Datos">
+    En el menu superior del editor.
+  </Step>
+  <Step title="Selecciona una tabla">
+    Lista de las Tablas disponibles del workspace.
+  </Step>
+  <Step title="Mapea columnas">
+    El sistema sugiere el mapping entre las columnas de la tabla y los campos de tu app. Puedes ajustarlo.
+  </Step>
+  <Step title="Confirma">
+    La app deja de usar datos de ejemplo y empieza a leer/escribir directo a la tabla.
+  </Step>
+</Steps>
+
+<Card title="Mas detalle sobre Tables" icon="table" href="/componentes/tables">
+  Crea, importa y manten tus tablas para conectarlas a las apps.
+</Card>
+
+---
+
+## Compartir tu app
+
+<Steps>
+  <Step title="Click en Compartir">
+    Boton en la esquina superior derecha.
+  </Step>
+  <Step title="Configura el acceso">
+    Elige entre: workspace (solo miembros), publico (cualquiera con el link), o por dominio.
+  </Step>
+  <Step title="Copia el link">
+    La app queda accesible para los usuarios autorizados.
+  </Step>
+</Steps>
+
+---
+
+## Auto-fix de errores
+
+Si la compilacion falla, aparece la pestaña **Bugs** con los errores. Click en **Auto-fix** y la IA intenta corregirlos. Si no logra resolverlos, puedes:
+
+1. Abrir el archivo problematico y editar manualmente
+2. Pedir al chat: *"Corrige el error en el componente X"*
+3. Reescribir el componente desde cero via prompt
+
+---
+
+## Atajos utiles
+
+| Atajo | Accion |
+|---|---|
+| `Enter` (en chat) | Enviar prompt |
+| `Shift + Enter` | Salto de linea en chat |
+| `Cmd/Ctrl + S` (en code) | Guardar y recompilar |
+| `Cmd/Ctrl + B` | Build manual |
+
+---
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="Que stack genera el App Builder?">
+    React + TypeScript. Sin dependencias externas mas alla de las del proyecto base. Compila en el browser.
+  </Accordion>
+  <Accordion title="Puedo exportar el codigo?">
+    Si. En el tab **Code**, click en **Copiar JSON** para obtener todos los archivos. Tambien puedes descargar como ZIP.
+  </Accordion>
+  <Accordion title="Que pasa si modifico el codigo y luego uso el chat?">
+    La IA ve los cambios y los respeta. Pero si tu codigo tiene errores, intenta corregirlos al aplicar la siguiente modificacion.
+  </Accordion>
+  <Accordion title="Hay limite de iteraciones por app?">
+    No hay limite por app. El limite depende del plan de tu workspace — escribe a soporte@puente.app si tienes dudas.
+  </Accordion>
+</AccordionGroup>
