@@ -1,0 +1,303 @@
+---
+title: "Coding agents"
+description: "Como usar Puente Studio con Claude Code, Cursor, ChatGPT y otros coding agents."
+icon: "robot"
+---
+
+Puente Studio incluye un **skill** ([`skill_puente_studio.md`](https://github.com/octaviofv/puente_studio_repo/blob/main/skill_puente_studio.md)) — un markdown estructurado que enseña a cualquier coding agent **como crear y editar apps de Puente OS** via API REST.
+
+El flujo es siempre el mismo: cargas el skill como contexto, le das al agente tu `BASE_URL` y `STUDIO_KEY`, y le pides lo que quieras hacer. El agente arma las llamadas HTTP por ti.
+
+<Note>
+  Esto NO es Model Context Protocol (MCP). Es un patron mas simple: skill markdown + un agente que sabe leerlo. Funciona en cualquier agente que pueda hacer llamadas HTTP (la mayoria) sin instalar nada extra.
+</Note>
+
+---
+
+## Que puede hacer el agente
+
+Una vez cargado el skill, le puedes pedir cosas como:
+
+```
+Crea una app de inventario con tabla de productos y un dashboard de stock bajo
+
+Baja la app con id 545, agrega un boton para exportar a CSV, sube los cambios
+
+Crea una tabla de clientes con columnas nombre, email, plan (select: free/pro/enterprise)
+y conectala a la app 545 con permisos read+write
+
+Regenera la API key del artefacto 545 — me filtraron una credencial
+```
+
+El agente sigue las **reglas de comportamiento** del skill (preserva `app_content` completo en updates, confirma operaciones destructivas, guarda IDs y keys al crear, etc.).
+
+---
+
+## Setup por agente
+
+<Tabs>
+  <Tab title="Claude Code">
+    [Claude Code](https://claude.com/claude-code) es el CLI oficial de Anthropic. Funciona muy bien con Puente Studio porque tiene Bash, Read y Write nativos.
+
+    <Steps>
+      <Step title="Clona el repo">
+        ```bash
+        git clone https://github.com/octaviofv/puente_studio_repo.git
+        cd puente_studio_repo
+        cp .env.example .env
+        # Edita .env con tu STUDIO_KEY
+        ```
+      </Step>
+      <Step title="Abre Claude Code en el repo">
+        ```bash
+        claude
+        ```
+      </Step>
+      <Step title="Carga el skill">
+        En el primer mensaje de la sesion:
+
+        ```
+        Lee skill_puente_studio.md y se mi agente Puente Dev.
+        Voy a darte tareas para crear y editar apps en Puente OS.
+        ```
+
+        Claude Code lee el archivo y queda con todo el contexto cargado.
+      </Step>
+      <Step title="Da tu primera tarea">
+        ```
+        Lista mis artefactos actuales.
+        ```
+
+        Claude Code ejecuta el `curl` apropiado y te muestra el resultado.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Para sesiones recurrentes, guarda este prompt en un `.claude/commands/puente-dev.md` y lanza con `/puente-dev`.
+    </Tip>
+  </Tab>
+
+  <Tab title="Cursor">
+    [Cursor](https://cursor.com) es un fork de VSCode con AI nativa. El skill se carga via `.cursorrules` o como referencia desde el composer.
+
+    <Steps>
+      <Step title="Clona el repo y abrelo en Cursor">
+        ```bash
+        git clone https://github.com/octaviofv/puente_studio_repo.git
+        cursor puente_studio_repo
+        ```
+      </Step>
+      <Step title="Crea un .cursorrules">
+        En la raiz del repo crea `.cursorrules` con:
+
+        ```
+        Cuando trabajes con apps de Puente OS, sigue ESTRICTAMENTE las
+        instrucciones del archivo skill_puente_studio.md de este repo.
+
+        Lee el .env para obtener BASE_URL y STUDIO_KEY antes de cualquier
+        operacion. Nunca expongas la STUDIO_KEY en outputs ni codigo de app.
+        ```
+      </Step>
+      <Step title="Abre el composer (Cmd+I)">
+        Pidele algo como:
+
+        ```
+        Crea una app de tickets de soporte con vista Kanban.
+        Despues crea una tabla de tickets y conectala a la app.
+        ```
+
+        Cursor lee el skill, ejecuta los curls y te muestra IDs y URL final.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="ChatGPT (custom GPT)">
+    Puedes crear un Custom GPT en ChatGPT con el skill como **instructions** y los endpoints de Puente como **Actions** via OpenAPI.
+
+    <Steps>
+      <Step title="Crear un nuevo GPT">
+        En ChatGPT → Explore GPTs → **Create**.
+      </Step>
+      <Step title="Pegar el skill como Instructions">
+        Copia el contenido de [`skill_puente_studio.md`](https://github.com/octaviofv/puente_studio_repo/blob/main/skill_puente_studio.md) en el campo **Instructions**.
+
+        Reemplaza los placeholders `{BASE_URL}` y `{STUDIO_KEY}` con tus valores reales.
+
+        <Warning>
+          Si el GPT es publico, NO pegues tu `STUDIO_KEY` real ahi — cualquier usuario la veria. Para un GPT publico, deja un placeholder y haz que el usuario configure su propia key via Actions auth.
+        </Warning>
+      </Step>
+      <Step title="Configurar Actions (opcional)">
+        Para llamadas HTTP nativas, agrega un schema OpenAPI con los endpoints de `/studio/...`. ChatGPT puede invocarlos sin armar curls manuales.
+
+        Importa el OpenAPI desde la [referencia de API](/studio/api-reference) o desde el spec que provee Puente directamente.
+      </Step>
+      <Step title="Probar">
+        ```
+        Lista mis artefactos.
+        ```
+      </Step>
+    </Steps>
+
+    <Tip>
+      Para uso personal (no publicar), poner la `STUDIO_KEY` directo en las Instructions funciona — solo tu la ves.
+    </Tip>
+  </Tab>
+
+  <Tab title="Claude.ai (Projects)">
+    En la app web de Claude puedes crear un **Project** con el skill como knowledge base.
+
+    <Steps>
+      <Step title="Nuevo Project">
+        Claude.ai → New project → ponle nombre **Puente Dev**.
+      </Step>
+      <Step title="Agregar el skill al knowledge">
+        Sube `skill_puente_studio.md` como archivo del project. Claude lo lee en cada conversacion.
+      </Step>
+      <Step title="Custom instructions del project">
+        ```
+        Eres Puente Dev. Sigue las reglas del archivo skill_puente_studio.md.
+
+        Mi BASE_URL: https://puente-backend-721178029791.southamerica-west1.run.app/
+        Mi STUDIO_KEY: puente_studio_xxxxxxxxxxxxxxxxxxxx
+
+        Cuando necesites ejecutar requests, escribelos como curl
+        y yo los corro localmente, despues te paso el output.
+        ```
+      </Step>
+      <Step title="Conversar">
+        El project preserva el contexto entre sesiones. Cada conversacion arranca con el skill cargado.
+      </Step>
+    </Tabs>
+  </Tab>
+
+  <Tab title="Continue, Aider, otros">
+    Cualquier coding agent que pueda leer un markdown y ejecutar comandos sirve. El patron es siempre:
+
+    1. **Cargar `skill_puente_studio.md`** como contexto inicial o knowledge
+    2. **Hacer accesible `BASE_URL` + `STUDIO_KEY`** (via env vars o pegado en el prompt)
+    3. **Pedir tareas en lenguaje natural** — el agente arma los curls
+
+    Para [**Continue**](https://continue.dev): agrega el skill como `@File` reference.
+
+    Para [**Aider**](https://aider.chat): pasa el archivo con `aider skill_puente_studio.md`.
+  </Tab>
+</Tabs>
+
+---
+
+## Patron general (independiente del agente)
+
+Si tu agente preferido no esta en la lista, el patron sirve igual:
+
+<Steps>
+  <Step title="Carga el skill">
+    Como system prompt, knowledge file, contexto inicial — lo que tu agente acepte.
+  </Step>
+  <Step title="Comparte credenciales">
+    `BASE_URL` y `STUDIO_KEY` accesibles al agente. Si es un agente local, suele leer `.env`. Si es web, va en las instructions o el prompt.
+  </Step>
+  <Step title="Pide la tarea">
+    Lenguaje natural. El skill enseña al agente como armar cada request.
+  </Step>
+  <Step title="Revisa antes de ejecutar operaciones destructivas">
+    El skill instruye al agente a **pedirte confirmacion** antes de regenerar keys, hacer PUTs destructivos o crear tablas. Confirma o cancela.
+  </Step>
+</Steps>
+
+---
+
+## Ejemplo de sesion completa
+
+Conversacion real desde Claude Code:
+
+```
+[Tu]
+Crea una app de seguimiento de pedidos con:
+- Vista principal: tabla de pedidos con filtros por estado
+- Detalle: panel lateral al hacer click en un pedido
+- Tabla de pedidos con: cliente, monto, estado (pendiente/pagado/enviado), fecha
+
+[Agente]
+Propongo esta estructura:
+
+ARCHIVOS:
+- index.tsx
+- App.tsx (estado global + routing simple)
+- data.ts (interfaces TS)
+- theme.ts
+- components/PedidosList.tsx
+- components/PedidoDetail.tsx
+
+TABLA: pedidos
+- cliente (text, requerido)
+- monto (number, requerido)
+- estado (select: pendiente/pagado/enviado, requerido)
+- fecha (date, requerido)
+
+Confirma para crear el artefacto y la tabla.
+
+[Tu] Si, dale.
+
+[Agente]
+1. Creando artefacto...
+   → POST /studio/artefactos
+   → id: 547
+   → public_id: 9a8b7c6d-...
+   → api_key: puente_artifact_xxxxx (GUARDA ESTA - solo se muestra una vez)
+
+2. Creando tabla "pedidos"...
+   → POST /studio/tablas
+   → tabla_id: f733d7a9-7e1d-457c-...
+
+3. Concediendo acceso del artefacto a la tabla...
+   → POST /studio/artefactos/547/tablas-acceso
+   → permisos: ["read", "write"]
+
+4. App publica disponible en:
+   https://app.puente.xyz/public/9a8b7c6d-.../
+
+Que quieres ajustar?
+```
+
+---
+
+## Reglas que el agente sigue automaticamente
+
+El skill instruye al agente a:
+
+| Regla | Por que |
+|---|---|
+| **Verificar credenciales primero** | No ejecutar nada con placeholders literales |
+| **Preservar `app_content` completo en PUTs** | Evitar borrar archivos accidentalmente |
+| **Confirmar operaciones destructivas** | Regenerar key, hacer PUT con codigo nuevo, etc. |
+| **Reportar IDs y keys al crear** | La `api_key` solo se muestra una vez |
+| **No exponer STUDIO_KEY en codigo de app** | Es credencial privada de admin |
+| **Proponer estructura antes de codificar** | Evitar trabajo perdido |
+
+---
+
+## Limitaciones honestas
+
+<AccordionGroup>
+  <Accordion title="No es MCP nativo">
+    El skill se carga como contexto/system prompt. El agente arma curls — no tiene tools nativos `puente.create_app(...)`. Funciona bien pero requiere que el agente sepa hacer HTTP requests. Casi todos los agentes modernos saben.
+  </Accordion>
+  <Accordion title="No hay autocompletado de IDs">
+    El agente tiene que listar primero (`GET /studio/artefactos`) para encontrar IDs. No hay un "Files panel" tipo VSCode mostrando todos tus artefactos.
+  </Accordion>
+  <Accordion title="Sin live preview">
+    Los cambios se ven publicando — abriendo `https://app.puente.xyz/public/{public_id}/`. Para iterar con preview en vivo, usa [App Builder](/componentes/app-builder) en el workspace.
+  </Accordion>
+  <Accordion title="Sin diff/undo automatico">
+    Es responsabilidad tuya (o de Git) versionar los cambios. Recomendamos commitear el contenido de `APP/files/` despues de cada cambio.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Siguiente paso
+
+<Card title="Referencia completa de API" icon="code" href="/studio/api-reference">
+  Todos los endpoints REST con request, response y permisos requeridos.
+</Card>

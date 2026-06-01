@@ -1,0 +1,520 @@
+---
+title: "API Reference"
+description: "Referencia completa de los endpoints REST de Puente Studio."
+icon: "code"
+---
+
+Toda la API esta en `{BASE_URL}/studio/...` (privada, requiere `STUDIO_KEY`) o `{BASE_URL}/public/artefacto/{id}/...` (publica, requiere `api_key` del artefacto).
+
+## Convenciones
+
+| Concepto | Valor |
+|---|---|
+| **BASE_URL** | `https://puente-backend-721178029791.southamerica-west1.run.app/` |
+| **Auth privada** | `X-API-Key: puente_studio_xxxxxxxxxxxx` |
+| **Auth publica** | `X-API-Key: puente_artifact_xxxxxxxxxxxx` |
+| **Content-Type** | `application/json` en POST/PUT |
+
+---
+
+## Endpoints privados — Artefactos
+
+Requieren `X-API-Key: {STUDIO_KEY}`.
+
+### Listar artefactos
+
+```http
+GET {BASE_URL}/studio/artefactos
+```
+
+Retorna los artefactos del equipo asociado a tu `STUDIO_KEY`.
+
+### Obtener un artefacto
+
+```http
+GET {BASE_URL}/studio/artefactos/{id}
+```
+
+Retorna el codigo fuente completo en formato JSON (o HTML si es legacy).
+
+### Crear artefacto
+
+```http
+POST {BASE_URL}/studio/artefactos
+Content-Type: application/json
+
+{
+  "titulo": "Nombre de la app",
+  "descripcion": "Descripcion opcional",
+  "equipo_id": null,
+  "app_content": {
+    "index.tsx": { "content": "// codigo aqui", "type": "tsx" }
+  }
+}
+```
+
+<Note>
+  Si `equipo_id` es `null`, se asigna automaticamente el equipo de la `STUDIO_KEY`.
+</Note>
+
+**Respuesta:**
+
+```json
+{
+  "message": "Artefacto insertado correctamente",
+  "request_id": "330482e2-...",
+  "empresa_id": 1,
+  "artefacto_insertado": {
+    "id": 545,
+    "titulo": "Mi Primera App",
+    "equipo_id": 2,
+    "fecha_creacion": "2026-04-30T20:21:51.588362+00:00"
+  },
+  "api_key": "puente_artifact_xxxxx"
+}
+```
+
+<Warning>
+  Guarda `id`, `public_id` (obtenelo con `/meta`) y `api_key` inmediatamente. La `api_key` **solo se muestra una vez**.
+</Warning>
+
+### Actualizar artefacto
+
+```http
+PUT {BASE_URL}/studio/artefactos/{id}
+Content-Type: application/json
+
+{
+  "titulo": "Nuevo nombre",
+  "descripcion": "Nueva descripcion",
+  "app_content": { ... TODOS los archivos ... }
+}
+```
+
+<Warning>
+  **El PUT reemplaza todo el `app_content`.** Si envias solo los archivos modificados, los demas **se eliminan permanentemente**.
+
+  Flujo seguro: `GET → modificar en memoria → PUT con todo el contenido`.
+</Warning>
+
+### Obtener metadatos (incluye public_id)
+
+```http
+GET {BASE_URL}/studio/artefactos/{id}/meta
+```
+
+**Respuesta:**
+
+```json
+{
+  "request_id": "8789ad9e-...",
+  "artefacto": {
+    "id": 541,
+    "titulo": "App Base",
+    "public_id": "788517f2-a8e1-44dc-9667-d3a48eff6972",
+    "equipo_id": 2,
+    "empresa_id": 1,
+    "fecha_creacion": "2026-04-30T17:59:02.631483+00:00"
+  }
+}
+```
+
+La URL publica final de la app es `https://app.puente.xyz/public/{public_id}/`.
+
+---
+
+## Endpoints privados — Tablas
+
+### Listar tablas
+
+```http
+GET {BASE_URL}/studio/tablas
+```
+
+### Crear tabla
+
+```http
+POST {BASE_URL}/studio/tablas
+Content-Type: application/json
+
+{
+  "nombre": "pedidos",
+  "descripcion": "Pedidos del CRM",
+  "equipo_id": null,
+  "columnas": [
+    { "key": "cliente",  "label": "Cliente",  "tipo": "text",    "requerido": true },
+    { "key": "monto",    "label": "Monto",    "tipo": "number",  "requerido": true },
+    { "key": "fecha",    "label": "Fecha",    "tipo": "date",    "requerido": false },
+    { "key": "activo",   "label": "Activo",   "tipo": "boolean", "requerido": false },
+    { "key": "estado",   "label": "Estado",   "tipo": "select",  "requerido": true,
+      "opciones": ["pendiente", "pagado", "enviado"] }
+  ]
+}
+```
+
+**Tipos de columna:**
+
+| Tipo | Formato |
+|---|---|
+| `text` | string |
+| `number` | number (decimal soportado) |
+| `date` | `"YYYY-MM-DD"` |
+| `boolean` | `true` / `false` (no strings) |
+| `select` | string de las `opciones` |
+
+### Actualizar tabla
+
+```http
+PUT {BASE_URL}/studio/tablas/{tabla_id}
+Content-Type: application/json
+
+{ "nombre": "nuevo_nombre", "descripcion": "nueva descripcion" }
+```
+
+### Leer filas
+
+```http
+GET {BASE_URL}/studio/tablas/{tabla_id}/datos?limit=500&offset=0
+```
+
+Maximo `limit=5000`. Para datasets grandes, pagina con `offset`.
+
+### Insertar fila
+
+```http
+POST {BASE_URL}/studio/tablas/{tabla_id}/datos
+Content-Type: application/json
+
+{
+  "datos": {
+    "cliente": "Ana",
+    "monto": 1000,
+    "fecha": "2026-04-29",
+    "estado": "pendiente"
+  }
+}
+```
+
+### Insertar en masa (bulk)
+
+```http
+POST {BASE_URL}/studio/tablas/{tabla_id}/datos/bulk
+Content-Type: application/json
+
+{
+  "filas": [
+    { "cliente": "Ana", "monto": 1000 },
+    { "cliente": "Luis", "monto": 2500 }
+  ]
+}
+```
+
+Maximo **10,000 filas por request**. Atomico: si una fila falla, **ninguna** se inserta.
+
+---
+
+## API Keys de artefactos
+
+Cada artefacto tiene su propia `api_key` (`puente_artifact_xxx`) que le permite conectarse a tablas desde el frontend sin JWT.
+
+### Obtener configuracion (sin la key en texto plano)
+
+```http
+GET {BASE_URL}/studio/artefactos/{id}/api-key
+```
+
+**Respuesta:**
+
+```json
+{
+  "id": 456,
+  "artefacto_id": 123,
+  "tipo": "artifact",
+  "rate_limit_config": {
+    "requests_per_minute": 60,
+    "requests_per_hour": 1000,
+    "requests_per_day": 10000
+  },
+  "revoked": false,
+  "uso_count": 12543,
+  "last_used_at": "2026-04-29T14:23:45Z"
+}
+```
+
+### Actualizar rate limit
+
+```http
+PUT {BASE_URL}/studio/artefactos/{id}/api-key
+Content-Type: application/json
+
+{
+  "rate_limit_config": {
+    "requests_per_minute": 120,
+    "requests_per_hour": 5000,
+    "requests_per_day": 50000
+  }
+}
+```
+
+### Regenerar API Key
+
+<Warning>
+  **OPERACION DESTRUCTIVA.** La key anterior queda invalidada inmediatamente. Cualquier app que la use deja de funcionar hasta actualizar el codigo.
+</Warning>
+
+```http
+POST {BASE_URL}/studio/artefactos/{id}/api-key/regenerate
+```
+
+**Respuesta:**
+
+```json
+{
+  "api_key": "puente_artifact_NEW_KEY_HERE",
+  "message": "API key regenerada exitosamente. Guardala de forma segura, no se podra recuperar."
+}
+```
+
+---
+
+## Acceso de artefactos a tablas
+
+Un artefacto **no puede leer/escribir** una tabla por default. Hay que conceder acceso explicito.
+
+### Listar tablas accesibles
+
+```http
+GET {BASE_URL}/studio/artefactos/{id}/tablas-acceso
+```
+
+### Conceder acceso
+
+```http
+POST {BASE_URL}/studio/artefactos/{id}/tablas-acceso
+Content-Type: application/json
+
+{ "tabla_id": "uuid-tabla", "permisos": ["read", "write"] }
+```
+
+**Permisos disponibles:**
+
+```json
+["read"]                     // Solo lectura
+["read", "write"]            // Lectura + insertar/actualizar
+["read", "write", "delete"]  // Control total
+```
+
+<Tip>
+  Aplica **principio de minimo privilegio**: un dashboard de consulta solo necesita `["read"]`.
+</Tip>
+
+### Actualizar permisos
+
+```http
+PUT {BASE_URL}/studio/artefactos/{id}/tablas-acceso/{tabla_id}
+Content-Type: application/json
+
+{ "permisos": ["read"] }
+```
+
+### Revocar acceso
+
+```http
+DELETE {BASE_URL}/studio/artefactos/{id}/tablas-acceso/{tabla_id}
+```
+
+<Note>
+  La tabla debe pertenecer al **mismo equipo** que el artefacto.
+</Note>
+
+---
+
+## Endpoints publicos — Datos del artefacto
+
+Los usa la **app publicada** desde el frontend. Se autentican con la `api_key` del artefacto.
+
+**Base URL:** `{BASE_URL}/public/artefacto/{artefacto_id}`
+
+**Auth:** `X-API-Key: puente_artifact_xxxxxxxxxxxx`
+
+### Obtener metadatos de tabla
+
+```http
+GET /public/artefacto/{artefacto_id}/tablas/{tabla_id}
+```
+
+Permiso requerido: `read`.
+
+### Listar filas (con filtros)
+
+```http
+GET /public/artefacto/{artefacto_id}/tablas/{tabla_id}/datos?limit=50&offset=0
+```
+
+Permiso requerido: `read`.
+
+#### Filtros con `where`
+
+```
+?where=(campo,operador,valor)~and(campo2,operador2,valor2)
+```
+
+**Operadores:**
+
+| Operador | Descripcion |
+|---|---|
+| `eq` / `neq` | Igual / no igual |
+| `gt` / `gte` / `lt` / `lte` | Comparaciones numericas |
+| `like` / `nlike` | Contiene / no contiene (case-insensitive) |
+| `starts` / `ends` | Empieza / termina con |
+| `is` / `isnot` | Es `null`, `notnull`, `true`, `false` |
+| `in` / `notin` | En lista / no en lista |
+| `empty` / `notempty` | Nulo o vacio / no |
+
+**Operadores logicos:** `~and`, `~or`.
+
+**Ejemplos:**
+
+```
+?where=(plan,eq,Pro)~and(activo,is,true)
+?where=(monto,gte,1000)~and(monto,lte,5000)
+?where=(activo,is,true)&limit=20&offset=40
+```
+
+<Warning>
+  Si el valor contiene espacios o caracteres especiales, URL-encodea el parametro completo.
+</Warning>
+
+**Respuesta:**
+
+```json
+[
+  {
+    "id": "uuid-fila",
+    "tabla_id": "uuid-tabla",
+    "fila_data": {
+      "fecha": "2026-04-29",
+      "sucursal": "Santiago",
+      "monto": 1250000
+    },
+    "created_at": "2026-04-29T12:00:00Z"
+  }
+]
+```
+
+<Note>
+  El campo de datos se llama **`fila_data`**, no `datos`. Es un gotcha frecuente.
+</Note>
+
+#### Headers de rate limit en respuesta
+
+```http
+X-RateLimit-Limit-Minute: 60
+X-RateLimit-Remaining: 58
+X-RateLimit-Reset: 1709988123
+```
+
+### Insertar fila
+
+```http
+POST /public/artefacto/{artefacto_id}/tablas/{tabla_id}/dato
+Content-Type: application/json
+
+{ "datos": { "campo": "valor", "monto": 1000 } }
+```
+
+Permiso requerido: `write`.
+
+### Actualizar fila
+
+```http
+PUT /public/artefacto/{artefacto_id}/tablas/{tabla_id}/dato/{fila_id}
+Content-Type: application/json
+
+{ "datos": { "monto": 2000 } }
+```
+
+Permiso requerido: `write`.
+
+### Eliminar fila
+
+```http
+DELETE /public/artefacto/{artefacto_id}/tablas/{tabla_id}/dato/{fila_id}
+```
+
+Permiso requerido: `delete`.
+
+---
+
+## Limites del sistema
+
+| Concepto | Limite |
+|---|---|
+| API keys activas por artefacto | 1 |
+| Tablas accesibles por artefacto | Ilimitado |
+| Filas retornadas por request (publica) | 500 max |
+| Filas retornadas por request (privada) | 5,000 max |
+| Bulk insert | 10,000 filas por request |
+| Rate limit default / minuto | 60 requests |
+| Rate limit default / hora | 1,000 requests |
+| Rate limit default / dia | 10,000 requests |
+
+---
+
+## Codigos de error
+
+### Con STUDIO_KEY (gestion)
+
+| Codigo | Significado | Que hacer |
+|---|---|---|
+| `401` | STUDIO_KEY invalida o revocada | Generar nueva en app.puente.xyz → Configuracion |
+| `403` | Sin creditos | Contactar admin de la cuenta |
+| `404` | Recurso no existe en tu equipo | Verificar ID con endpoint de listado |
+| `422` | Campo con formato incorrecto | Leer mensaje — indica que campo fallo |
+
+### Con API Key de artefacto (publicos)
+
+| Codigo | Causa | Solucion |
+|---|---|---|
+| `400` Datos invalidos | Tipos incorrectos o requerido faltante | Revisar schema de columnas |
+| `401` API Key requerida | Falta header | Incluir `X-API-Key: puente_artifact_xxx` |
+| `401` API Key invalida | Key incorrecta, revocada o tipo incorrecto | Verificar o regenerar |
+| `401` API Key no autorizada | Key pertenece a otro artefacto | Usar la key correcta |
+| `403` Acceso no configurado | El artefacto no tiene acceso a esa tabla | `POST .../tablas-acceso` |
+| `403` Permiso insuficiente | Permisos no incluyen la accion | `PUT .../tablas-acceso/{tabla_id}` |
+| `429` Rate limit excedido | Demasiados requests | Esperar `Retry-After` segundos |
+
+---
+
+## Ejemplo en JavaScript (dentro de una app publicada)
+
+```javascript
+const API_KEY      = 'puente_artifact_xxxxxxxxxxxx';
+const ARTEFACTO_ID = 123;
+const TABLA_ID     = 'uuid-de-la-tabla';
+const BASE         = `https://puente-backend-721178029791.southamerica-west1.run.app/public/artefacto/${ARTEFACTO_ID}`;
+
+// Leer datos con filtro
+const res = await fetch(
+  `${BASE}/tablas/${TABLA_ID}/datos?where=(activo,is,true)&limit=50`,
+  { headers: { 'X-API-Key': API_KEY } }
+);
+const filas = await res.json();
+
+// Insertar fila
+await fetch(`${BASE}/tablas/${TABLA_ID}/dato`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+  body: JSON.stringify({ datos: { nombre: 'Ana', monto: 100, fecha: '2026-04-29' } })
+});
+
+// Manejar rate limit
+if (res.status === 429) {
+  const retryAfter = res.headers.get('Retry-After') || 60;
+  console.warn(`Rate limit excedido. Reintentar en ${retryAfter}s`);
+}
+```
+
+<Warning>
+  La `api_key` del artefacto es **visible en el codigo fuente** de la app publicada (el bundle se sirve al browser del usuario). Usa siempre el minimo privilegio (`["read"]` si solo lees) para limitar el riesgo si la key se filtra.
+</Warning>

@@ -20,12 +20,17 @@ docs-puente/
 │   ├── tables.mdx              # Editor de tablas dinamicas
 │   ├── workflows.mdx           # Constructor de automatizaciones
 │   └── agents.mdx              # Agentes IA + widget embebible
+├── studio/
+│   ├── overview.mdx            # Que es Puente Studio
+│   ├── setup.mdx               # Setup local del CLI
+│   ├── coding-agents.mdx       # Uso con Claude Code, Cursor, ChatGPT
+│   └── api-reference.mdx       # Referencia completa de endpoints REST
 └── recursos/
     ├── atajos.mdx              # Atajos de teclado por componente
     └── faq.mdx                 # Preguntas frecuentes
 ```
 
-11 paginas en total + config.
+15 paginas en total + config.
 
 ## Como deployar (Mintlify)
 

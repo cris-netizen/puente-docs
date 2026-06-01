@@ -1,0 +1,211 @@
+---
+title: "Setup local"
+description: "Instala los scripts de Puente Studio en tu maquina y configura tu credencial."
+icon: "download"
+---
+
+## Requisitos
+
+- **Node.js 14+** (sin dependencias externas)
+- Cuenta activa en [app.puente.xyz](https://app.puente.xyz)
+- Una **Platform API Key** (`puente_studio_xxx`) generada desde Configuracion
+
+---
+
+## 1. Generar tu STUDIO_KEY
+
+<Steps>
+  <Step title="Entra a app.puente.xyz">
+    Inicia sesion con tu cuenta del workspace.
+  </Step>
+  <Step title="Configuracion → API Keys">
+    En el menu lateral o desde tu avatar → Configuracion.
+  </Step>
+  <Step title="Generar Platform API Key">
+    Click en **Nueva API Key** → tipo **Platform** (no Artifact).
+
+    El formato es `puente_studio_xxxxxxxxxxxxxxxxxxxx`.
+  </Step>
+  <Step title="Copiala y guardala segura">
+    Esta es tu credencial maestra. **No la commitees** en ningun repo. La key solo se muestra una vez.
+  </Step>
+</Steps>
+
+<Warning>
+  La `STUDIO_KEY` da acceso completo a todos los artefactos y tablas de tu equipo. Trata esta key como tratarias una password de admin.
+</Warning>
+
+---
+
+## 2. Clonar el repo
+
+```bash
+git clone https://github.com/octaviofv/puente_studio_repo.git
+cd puente_studio_repo
+```
+
+### Estructura
+
+```
+puente_studio_repo/
+├── .env.example              Plantilla de variables de entorno
+├── .env                      Tu config local (NO commitear)
+├── README.md
+├── skill_puente_studio.md    Documentacion del agente
+└── APP/
+    ├── files/                Archivos fuente de la app (editar aqui)
+    ├── json_result/          JSONs de salida (generados)
+    ├── output.json           JSON listo para subir a la API
+    ├── pull_artefacto.js     ⬇  API → archivos locales
+    └── files_to_json.js      ⬆  Archivos locales → JSON de la API
+```
+
+---
+
+## 3. Configurar tu .env
+
+```bash
+cp .env.example .env
+```
+
+Edita `.env` con tu key:
+
+```bash .env
+BASE_URL=https://puente-backend-721178029791.southamerica-west1.run.app/
+STUDIO_KEY=puente_studio_xxxxxxxxxxxxxxxxxxxx
+```
+
+<Tip>
+  El `BASE_URL` del ejemplo es el correcto. No lo cambies salvo que estes en un environment privado.
+</Tip>
+
+---
+
+## 4. Verificar que funciona
+
+Lista tus artefactos:
+
+```bash
+curl -H "X-API-Key: $(grep STUDIO_KEY .env | cut -d= -f2)" \
+  "$(grep BASE_URL .env | cut -d= -f2)studio/artefactos"
+```
+
+<Check>
+  Si recibes un JSON con un array de artefactos (puede estar vacio si todavia no creaste ninguno), todo esta correcto.
+</Check>
+
+Si recibes `401`, la `STUDIO_KEY` es invalida o esta revocada — genera una nueva.
+
+---
+
+## Editar una app existente
+
+<Steps>
+  <Step title="Bajar el artefacto a tu disco">
+    ```bash
+    node APP/pull_artefacto.js <id>
+    ```
+
+    Esto descarga el `app_content` a `APP/files/`.
+  </Step>
+  <Step title="Editar los archivos">
+    Modifica los archivos en `APP/files/` con tu editor (VSCode, vim, Cursor, etc.).
+  </Step>
+  <Step title="Empaquetar el resultado">
+    ```bash
+    node APP/files_to_json.js
+    ```
+
+    Genera `APP/output.json` listo para subir.
+  </Step>
+  <Step title="Subir los cambios">
+    ```bash
+    curl -X PUT "$BASE_URL/studio/artefactos/<id>" \
+      -H "X-API-Key: $STUDIO_KEY" \
+      -H "Content-Type: application/json" \
+      -d @APP/output.json
+    ```
+  </Step>
+</Steps>
+
+<Warning>
+  El `PUT` **reemplaza todo el `app_content`**. Siempre usa el flujo completo: `GET → editar → PUT con todo`. Nunca subas solo los archivos modificados — los que falten se eliminan.
+</Warning>
+
+---
+
+## Crear una app nueva
+
+```bash
+curl -X POST "$BASE_URL/studio/artefactos" \
+  -H "X-API-Key: $STUDIO_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "titulo": "Mi nueva app",
+    "descripcion": "Demo",
+    "app_content": {
+      "index.tsx": {
+        "content": "import React from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport App from \"./App\";\n\ncreateRoot(document.getElementById(\"root\")!).render(<App />);",
+        "type": "tsx"
+      },
+      "App.tsx": {
+        "content": "export default function App() { return <h1>Hola</h1>; }",
+        "type": "tsx"
+      }
+    }
+  }'
+```
+
+La respuesta incluye `id`, `public_id` y `api_key`. **Guardalas inmediatamente** — la `api_key` no se vuelve a mostrar.
+
+---
+
+## Configurar git para no commitear el .env
+
+El `.env` esta en `.gitignore` del repo. Igual verifica:
+
+```bash
+grep .env .gitignore
+```
+
+Si no aparece, agregalo:
+
+```bash
+echo ".env" >> .gitignore
+```
+
+---
+
+## Errores comunes
+
+<AccordionGroup>
+  <Accordion title="`STUDIO_KEY` placeholder en `.env`">
+    Si el archivo todavia tiene `{STUDIO_KEY}` literal en vez de tu key real, ningun script va a funcionar. Pega tu key real sin las llaves.
+  </Accordion>
+  <Accordion title="`401 Unauthorized` al listar artefactos">
+    Tres causas comunes:
+
+    1. La key esta revocada → regenera una nueva en Configuracion
+    2. Estas usando una `api_key` de artefacto (`puente_artifact_xxx`) en endpoints privados → usa la `STUDIO_KEY`
+    3. La key pertenece a otro environment → verifica el `BASE_URL`
+  </Accordion>
+  <Accordion title="`404 Not Found` al actualizar un artefacto">
+    El ID no existe en tu equipo, o pertenece a otro equipo. Verifica con `GET /studio/artefactos` (lista solo los del equipo asociado a tu key).
+  </Accordion>
+  <Accordion title="Mi app perdio archivos despues de un PUT">
+    Hiciste un `PUT` con `app_content` parcial. El endpoint reemplaza el objeto completo. Si tienes copia local, vuelve a empaquetar todos los archivos y haz otro `PUT`. Si no, baja el artefacto a tu disco antes de futuros cambios.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Siguiente paso
+
+<CardGroup cols={2}>
+  <Card title="Usar con coding agents" icon="robot" href="/studio/coding-agents">
+    Pegar el skill en Claude Code o Cursor para automatizar todo el flujo.
+  </Card>
+  <Card title="Referencia de API" icon="code" href="/studio/api-reference">
+    Todos los endpoints con request y response.
+  </Card>
+</CardGroup>

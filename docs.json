@@ -39,6 +39,15 @@
             ]
           },
           {
+            "group": "Puente Studio (dev)",
+            "pages": [
+              "studio/overview",
+              "studio/setup",
+              "studio/coding-agents",
+              "studio/api-reference"
+            ]
+          },
+          {
             "group": "Recursos",
             "pages": [
               "recursos/atajos",

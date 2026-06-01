@@ -1,0 +1,156 @@
+---
+title: "Que es Puente Studio"
+description: "Dev kit para crear y gestionar apps de Puente OS desde tu maquina local o con coding agents."
+icon: "terminal"
+---
+
+**Puente Studio** es el **dev kit** que te permite operar Puente OS **fuera del editor visual** — desde tu terminal local, desde un coding agent (Cursor, Claude Code, Continue, etc.) o desde cualquier cliente HTTP.
+
+Te da control completo sobre los **artefactos** (apps web React/TypeScript hosteadas en Puente) y las **tablas de datos** que esas apps consumen.
+
+## Cuando usar Studio vs. App Builder
+
+<CardGroup cols={2}>
+  <Card title="Usa App Builder cuando..." icon="window">
+    - Quieres iterar rapido con un prompt en lenguaje natural
+    - Estas explorando ideas o haciendo un MVP rapido
+    - No necesitas integrar con tu workflow de dev local
+  </Card>
+  <Card title="Usa Puente Studio cuando..." icon="terminal">
+    - Quieres versionar el codigo en Git de tu equipo
+    - Editas la app desde tu IDE con LSP, linter, etc.
+    - Operas con un coding agent (Cursor, Claude Code)
+    - Necesitas crear apps programaticamente (CI/CD, scripts)
+  </Card>
+</CardGroup>
+
+<Note>
+  Las apps creadas via Studio y via App Builder son **el mismo tipo de artefacto**. Puedes crear una app en App Builder y seguir editandola desde Studio (o al reves).
+</Note>
+
+---
+
+## Que incluye Studio
+
+| Pieza | Para que sirve |
+|---|---|
+| **CLI scripts (Node.js)** | Bajar y subir artefactos entre tu disco local y Puente |
+| **API REST `/studio/...`** | Endpoints privados para crear/leer/actualizar artefactos y tablas |
+| **API REST `/public/...`** | Endpoints publicos que usa cada app publicada para hablar con sus tablas |
+| **Skill markdown** | Documentacion estructurada que cargas como system prompt en coding agents |
+
+---
+
+## Vocabulario
+
+<AccordionGroup>
+  <Accordion title="Artefacto">
+    Es una app web hosteada en Puente OS. Puede ser una app React/TypeScript multi-archivo (recomendado) o un HTML simple (legacy).
+
+    Cada artefacto tiene:
+    - Un **`id`** numerico para operar via API privada
+    - Un **`public_id`** (UUID) para acceso publico
+    - Una **`api_key`** propia (`puente_artifact_xxx`) generada al crearlo
+  </Accordion>
+
+  <Accordion title="STUDIO_KEY">
+    Tu credencial maestra de tipo `Platform API Key`. Empieza con `puente_studio_xxx`. Se genera desde **app.puente.xyz → Configuracion**.
+
+    Da acceso a todos los artefactos y tablas del equipo asociado. Solo se usa en **endpoints privados** (`/studio/...`).
+
+    <Warning>
+      Nunca embebas la `STUDIO_KEY` en el codigo de una app publicada. Es credencial de administracion.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="API Key de artefacto">
+    Credencial **por artefacto** (`puente_artifact_xxx`) que se genera automaticamente al crearlo. La app publicada la usa para hablar con sus tablas desde el frontend.
+
+    Es la unica credencial que es seguro embeber en el bundle de la app publicada.
+  </Accordion>
+
+  <Accordion title="Tabla / Columnas">
+    Estructura de datos persistente. Cada tabla tiene un `uuid` y una lista de columnas tipadas (`text`, `number`, `date`, `boolean`, `select`).
+
+    Para que un artefacto pueda leer/escribir una tabla, debe tener **acceso explicito** con permisos (`read`, `write`, `delete`).
+  </Accordion>
+
+  <Accordion title="public_id">
+    UUID que identifica un artefacto de forma publica. La URL final de la app es `https://app.puente.xyz/public/{public_id}/`.
+
+    Lo obtienes con `GET /studio/artefactos/{id}/meta`.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Dos mundos: privado vs publico
+
+Hay dos conjuntos de endpoints, separados por que tipo de credencial usan:
+
+| Contexto | Endpoints | Autenticacion |
+|---|---|---|
+| **Gestion** (tu o tu coding agent) | `/studio/...` | `X-API-Key: {STUDIO_KEY}` |
+| **App publicada** (frontend del usuario) | `/public/artefacto/{id}/...` | `X-API-Key: puente_artifact_xxx` |
+
+<Tip>
+  Regla simple: si esta corriendo en el browser del usuario, usa `puente_artifact_xxx`. Si esta corriendo en tu terminal o en un script CI, usa `puente_studio_xxx`.
+</Tip>
+
+---
+
+## Flujo tipico
+
+<Steps>
+  <Step title="Generar tu STUDIO_KEY">
+    Desde app.puente.xyz → Configuracion → API Keys.
+  </Step>
+  <Step title="Setup local">
+    Clona [puente_studio_repo](https://github.com/octaviofv/puente_studio_repo) y crea tu `.env`. Ver [Setup](/studio/setup).
+  </Step>
+  <Step title="Editar desde tu editor o coding agent">
+    Baja un artefacto, lo editas con LSP, lo subes. O dejas que un coding agent haga todo el flujo.
+    Ver [Coding agents](/studio/coding-agents).
+  </Step>
+  <Step title="(Opcional) Conectar tablas">
+    Crea tablas, concede acceso al artefacto y consume los datos desde el frontend.
+  </Step>
+</Steps>
+
+---
+
+## Stack del artefacto
+
+Las apps de Puente OS son **React + TypeScript multi-archivo**, sin dependencias externas mas alla de lo que el runtime de Puente provee.
+
+```
+index.tsx                    Punto de entrada
+App.tsx                      Componente raiz
+data.ts                      Tipos + datos
+theme.ts                     Tokens de diseño
+components/
+  Dashboard.tsx
+  VistaA.tsx
+```
+
+<Warning>
+  - **No importes archivos CSS** desde `index.tsx`. El bundler inyecta estilos automaticamente.
+  - **No uses modulos de Node** (`os`, `fs`, `path`, `crypto`, etc.). El runtime es browser.
+  - **Estilos:** usa exclusivamente clases Tailwind y variables CSS del tema.
+</Warning>
+
+---
+
+## Siguiente paso
+
+<CardGroup cols={2}>
+  <Card title="Setup local" icon="download" href="/studio/setup">
+    Clonar el repo, configurar tu `.env` y correr los scripts.
+  </Card>
+  <Card title="Coding agents" icon="robot" href="/studio/coding-agents">
+    Usar el skill con Claude Code, Cursor y otros agentes.
+  </Card>
+  <Card title="API Reference" icon="code" href="/studio/api-reference">
+    Referencia completa de endpoints REST.
+  </Card>
+</CardGroup>
