@@ -1,13 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Puente OS",
+  "theme": "luma",
+  "name": "puente OS",
   "colors": {
-    "primary": "#0EA5E9",
-    "light": "#38BDF8",
-    "dark": "#0284C7"
+    "primary": "#363090",
+    "light": "#9f8ec3",
+    "dark": "#363090"
   },
-  "favicon": "/favicon.svg",
+  "favicon": {
+    "light": "/images/Asset7@3x.png",
+    "dark": "/images/Asset6@3x.png"
+  },
   "navigation": {
     "anchors": [
       {
@@ -72,15 +75,15 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
-    "href": "https://puente.app"
+    "light": "/images/Asset5@3x.png",
+    "dark": "/images/Asset4@3x.png",
+    "href": "https://www.puente.xyz"
   },
   "navbar": {
     "links": [
       {
         "label": "Soporte",
-        "href": "mailto:soporte@puente.app"
+        "href": "mailto:octavio@puente.xyz"
       }
     ],
     "primary": {
@@ -97,5 +100,8 @@
       "linkedin": "https://www.linkedin.com/company/puente-os",
       "x": "https://x.com/puenteos"
     }
+  },
+  "icons": {
+    "library": "lucide"
   }
 }
