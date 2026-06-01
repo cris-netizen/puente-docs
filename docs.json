@@ -63,13 +63,12 @@
       "anchors": [
         {
           "anchor": "Sitio web",
-          "href": "https://puente.app",
-          "icon": "globe"
-        },
-        {
-          "anchor": "Estado del servicio",
-          "href": "https://status.puente.app",
-          "icon": "signal-stream"
+          "href": "https://www.puente.xyz",
+          "icon": "globe",
+          "color": {
+            "light": "#363090",
+            "dark": "#363090"
+          }
         }
       ]
     }
