@@ -11,13 +11,13 @@ icon: "robot"
 La pantalla esta dividida en dos columnas redimensionables:
 
 ```
-┌──────────────────────┬──────────────────────────────────────┐
-│                      │                                      │
-│   Chat de Prueba     │   Configuracion del Agente           │
-│   (columna izq.)     │   (columna der.)                     │
-│                      │                                      │
-└──────────────────────┴──────────────────────────────────────┘
-                       ↑ drag handle (redimensionable)
++----------------------+--------------------------------------+
+|                      |                                      |
+|   Chat de Prueba     |   Configuracion del Agente           |
+|   (columna izq.)     |   (columna der.)                     |
+|                      |                                      |
++----------------------+--------------------------------------+
+                       drag handle (redimensionable)
 ```
 
 - **Izquierda** — Chat para probar el agente con la configuracion actual (no necesitas guardar primero).
@@ -70,7 +70,7 @@ Divide el prompt en **6 campos estructurados** para evitar prompts monoliticos d
 
 ### Editar un campo
 
-Click en el icono ✏️ a la derecha del campo. Se despliega un textarea. Click en ∧ para colapsar.
+Click en el icono de lapiz a la derecha del campo. Se despliega un textarea. Click en el icono de colapsar para cerrarlo.
 
 <Note>
   Cada campo muestra una preview truncada del contenido cuando esta colapsado.
@@ -106,7 +106,7 @@ La columna izquierda incluye un chat que envia mensajes al modelo con el prompt 
     En el campo de texto inferior.
   </Step>
   <Step title="Envia">
-    Presiona `Enter` o el boton →.
+    Presiona `Enter` o el boton de enviar.
   </Step>
   <Step title="Itera">
     Modifica el prompt en la columna derecha y prueba inmediatamente sin guardar.
@@ -115,7 +115,7 @@ La columna izquierda incluye un chat que envia mensajes al modelo con el prompt 
 
 ### Controles
 
-- **↺** en el header del chat: borra toda la conversacion y empieza de cero
+- **Boton de reiniciar** en el header del chat: borra toda la conversacion y empieza de cero
 - El historial se incluye en cada peticion, manteniendo contexto
 
 ---
@@ -126,7 +126,7 @@ Una vez guardado el agente, puedes publicarlo como **widget de chat embebible** 
 
 ### Abrir la configuracion del widget
 
-Click en **Configurar Widget** (icono ⊞) en el footer de la columna de configuracion.
+Click en **Configurar Widget** en el footer de la columna de configuracion.
 
 Se abre un modal con dos paneles: **Configuracion** (izquierda) y **Preview** (derecha).
 
@@ -172,7 +172,7 @@ Se abre un modal con dos paneles: **Configuracion** (izquierda) y **Preview** (d
     - **URL** — abre un enlace externo
     - **Chat** — envia un mensaje predefinido al agente
 
-    Agrega con **+ Agregar Boton**, elimina con **✕**.
+    Agrega con **+ Agregar Boton**, elimina con el boton de eliminar.
   </Accordion>
 </AccordionGroup>
 
@@ -227,7 +227,7 @@ Si el agente ya existe, abrirlo carga automaticamente la configuracion desde el 
 |---|---|---|
 | Normal | "Crear agente" / "Guardar cambios" | Negro |
 | Guardando | "Guardando…" | Gris oscuro |
-| Exito | "✓ Guardado" | Verde (2.5 seg) |
+| Exito | "Guardado" | Verde (2.5 seg) |
 
 Si ocurre un error, se muestra el mensaje en rojo junto al boton.
 
@@ -258,7 +258,7 @@ Si ocurre un error, se muestra el mensaje en rojo junto al boton.
   <Accordion title="Que modelos puedo usar?">
     El selector incluye los modelos disponibles segun tu plan (Llama, GPT, Gemini). Escribe a soporte si necesitas un modelo especifico.
   </Accordion>
-  <Accordion title="Puedo conectar el agente a una tabla del workspace?">
+  <Accordion title="Puedo conectar el agente a una Database del workspace?">
     En esta version el agente responde solo con el contexto del prompt. Para que use datos en vivo, configura un workflow que llame al agente con el contexto correcto y embebe el chat conectado a ese workflow.
   </Accordion>
   <Accordion title="Cuanto tiempo se guarda el historial de chat?">

@@ -48,10 +48,9 @@
             ]
           },
           {
-            "group": "Recursos",
+            "group": "Preguntas frecuentes",
             "pages": [
-              "recursos/atajos",
-              "recursos/faq"
+              "faq"
             ]
           }
         ]

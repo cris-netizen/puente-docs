@@ -17,20 +17,26 @@ docs-puente/
 ├── componentes/
 │   ├── menu.mdx                # Panel central de navegacion
 │   ├── app-builder.mdx         # Constructor de apps con IA
-│   ├── tables.mdx              # Editor de tablas dinamicas
+│   ├── tables.mdx              # Editor visual de Databases
 │   ├── workflows.mdx           # Constructor de automatizaciones
-│   └── agents.mdx              # Agentes IA + widget embebible
+│   └── agents.mdx              # Agents IA + widget embebible
 ├── studio/
 │   ├── overview.mdx            # Que es Puente Studio
 │   ├── setup.mdx               # Setup local del CLI
 │   ├── coding-agents.mdx       # Uso con Claude Code, Cursor, ChatGPT
 │   └── api-reference.mdx       # Referencia completa de endpoints REST
-└── recursos/
-    ├── atajos.mdx              # Atajos de teclado por componente
-    └── faq.mdx                 # Preguntas frecuentes
+└── faq.mdx                     # Preguntas frecuentes (sincronizadas con sitio web)
 ```
 
-15 paginas en total + config.
+13 paginas en total + config.
+
+## Nomenclatura canonica (Puente OS Blueprint)
+
+Toda la doc respeta el glosario del Blueprint:
+
+- **Capa de gestion:** Workspace, Team, Project, **Task** (no "Issue"), Cycle, Initiative, View
+- **Capa de construccion (Builds):** **App**, **Agent**, **Workflow**, **Database** (no "Table" como Build type)
+- El modulo visual donde el operador edita una Database se llama "Tables" (`puente-table` en codigo) — convive con el Build type "Database" sin contradiccion.
 
 ## Como deployar (Mintlify)
 

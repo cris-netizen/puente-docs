@@ -10,7 +10,7 @@ icon: "window"
 
 <Steps>
   <Step title="Abre App Builder">
-    Desde el panel de Componentes de un proyecto → **+ Nuevo** → **App**.
+    Desde el panel de Componentes de un proyecto, click en **+ Nuevo** y luego en **App**.
   </Step>
   <Step title="Describe lo que quieres">
     Escribe en el textarea de la pantalla de inicio. Algunos ejemplos:
@@ -20,15 +20,15 @@ icon: "window"
 
     App de gestion de inventario con tabla de productos, filtros y formulario
 
-    Tablero Kanban para gestionar tareas con columnas To Do, In Progress y Done
+    Tablero Kanban para gestionar tasks con columnas To Do, In Progress y Done
     ```
 
     <Tip>
-      Click en **✨ Mejorar** y la IA reformulara tu prompt agregandole detalle.
+      Click en **Mejorar** y la IA reformulara tu prompt agregandole detalle.
     </Tip>
   </Step>
   <Step title="Envia y espera la preview">
-    Presiona **▲** o `Enter`. El sistema genera nombre, archivos de codigo, compila y muestra preview en 15-45 segundos.
+    Presiona el boton de enviar o `Enter`. El sistema genera nombre, archivos de codigo, compila y muestra preview en 15-45 segundos.
   </Step>
 </Steps>
 
@@ -42,7 +42,7 @@ Si no quieres empezar desde cero, click en **Template** y elige uno:
 | **Helpdesk** | Sistema de tickets de soporte con estados |
 | **App Base** | Estructura base lista para iterar |
 | **HTML Interactive** | Template HTML/CSS/JS puro (sin React) |
-| **Pomodoro** | Timer + lista de tareas |
+| **Pomodoro** | Timer + lista de tasks |
 | **QA Components** | Showcase de todos los componentes disponibles |
 
 ---
@@ -83,11 +83,11 @@ La tabla de productos no se actualiza al agregar uno nuevo
 | **Preview** | Tu app en pantalla completa |
 | **Chat** | Editor de chat + preview lateral |
 | **Code** | Explorador de archivos + editor + preview |
-| **Datos** | Conexion con tablas dinamicas |
+| **Datos** | Conexion con Databases dinamicas |
 
 ### Tab Code
 
-Editor estilo VSCode con:
+Editor de codigo con:
 
 - Explorador de archivos a la izquierda
 - Editor con syntax highlighting al centro
@@ -106,7 +106,7 @@ Si tu app tiene `data.ts`, puedes editar los datos de forma visual sin tocar cod
 |---|---|
 | **Editar celda** | Click en la celda para editar inline |
 | **Agregar fila** | Boton "+ Fila" al final de la tabla |
-| **Eliminar fila** | Icono 🗑 en la fila |
+| **Eliminar fila** | Icono de papelera en la fila |
 | **Agregar columna** | Boton "+ Columna" |
 
 Cada cambio regenera `data.ts` y recompila automaticamente.
@@ -115,7 +115,7 @@ Cada cambio regenera `data.ts` y recompila automaticamente.
 
 ## Editor de Theme
 
-Personaliza colores sin escribir codigo. Accede desde **Code → Theme** (requiere `theme.ts`).
+Personaliza colores sin escribir codigo. Accede desde **Code** y luego **Theme** (requiere `theme.ts`).
 
 ### Presets disponibles
 
@@ -157,27 +157,27 @@ Disponible cuando estas en el tab **Code**.
 
 ---
 
-## Conectar tablas dinamicas
+## Conectar Databases
 
-App Builder puede leer y escribir Tablas del workspace en lugar de usar datos mock.
+App Builder puede leer y escribir Databases del workspace en lugar de usar datos mock.
 
 <Steps>
   <Step title="Ve al tab Datos">
     En el menu superior del editor.
   </Step>
-  <Step title="Selecciona una tabla">
-    Lista de las Tablas disponibles del workspace.
+  <Step title="Selecciona una Database">
+    Lista de las Databases disponibles del workspace.
   </Step>
   <Step title="Mapea columnas">
-    El sistema sugiere el mapping entre las columnas de la tabla y los campos de tu app. Puedes ajustarlo.
+    El sistema sugiere el mapping entre las columnas de la Database y los campos de tu app. Puedes ajustarlo.
   </Step>
   <Step title="Confirma">
-    La app deja de usar datos de ejemplo y empieza a leer/escribir directo a la tabla.
+    La app deja de usar datos de ejemplo y empieza a leer/escribir directo a la Database.
   </Step>
 </Steps>
 
 <Card title="Mas detalle sobre Tables" icon="table" href="/componentes/tables">
-  Crea, importa y manten tus tablas para conectarlas a las apps.
+  Crea, importa y manten tus Databases para conectarlas a las apps.
 </Card>
 
 ---

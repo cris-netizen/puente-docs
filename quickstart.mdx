@@ -3,37 +3,37 @@ title: "Guia rapida"
 description: "Construye tu primer flujo end-to-end en 5 minutos."
 ---
 
-Esta guia te lleva de cero a tener un flujo funcionando: una tabla con datos, una app que los muestra y un workflow que reacciona cuando algo cambia.
+Esta guia te lleva de cero a tener un flujo funcionando: una Database con datos, una App que los muestra y un Workflow que reacciona cuando algo cambia.
 
 <Note>
   Para seguir esta guia necesitas una cuenta activa en Puente OS y haber sido invitado a un workspace. Si todavia no tienes acceso, escribe a soporte@puente.app.
 </Note>
 
-## Paso 1 — Crear un proyecto
+## Paso 1 — Crear un Project
 
 <Steps>
   <Step title="Abre Puente Menu">
-    Al iniciar sesion llegas a la vista **Home** del menu, donde se listan los proyectos del equipo.
+    Al iniciar sesion llegas a la vista **Home** del menu, donde se listan los Projects del Team.
   </Step>
-  <Step title="Crea un proyecto nuevo">
-    Haz click en **+ Nuevo proyecto**, asignalo a un equipo (ej. Operaciones), ponle un nombre claro como "Demo onboarding" y guarda.
+  <Step title="Crea un Project nuevo">
+    Haz click en **+ Nuevo Project**, asignalo a un Team (ej. Operaciones), ponle un nombre claro como "Demo onboarding" y guarda.
   </Step>
-  <Step title="Entra al proyecto">
-    Click en la tarjeta del proyecto. Veras dos pestañas: **Tareas** (Kanban) y **Componentes** (Apps, Tablas, Workflows, Agentes).
+  <Step title="Entra al Project">
+    Click en la tarjeta del Project. Veras dos pestañas: **Tasks** (Kanban) y **Componentes** (Apps, Databases, Workflows, Agents).
   </Step>
 </Steps>
 
 <Tip>
-  Cualquier componente que crees dentro de este proyecto va a quedar agrupado aqui. Puedes verlos despues filtrando por proyecto desde el panel de Componentes.
+  Cualquier Build que crees dentro de este Project va a quedar agrupado aqui. Puedes verlos despues filtrando por Project desde el panel de Componentes.
 </Tip>
 
 ---
 
-## Paso 2 — Crear tu primera tabla
+## Paso 2 — Crear tu primera Database
 
 <Steps>
   <Step title="Abre Tables">
-    En el panel de Componentes del proyecto haz click en **+ Nuevo** y elige **Tabla**.
+    En el panel de Componentes del Project haz click en **+ Nuevo** y elige **Database**. El editor visual se llama Tables.
   </Step>
   <Step title="Define el schema">
     Ponle nombre (`pedidos`) y agrega 4 columnas:
@@ -56,7 +56,7 @@ Esta guia te lleva de cero a tener un flujo funcionando: una tabla con datos, un
 
 ---
 
-## Paso 3 — Construir una app conectada
+## Paso 3 — Construir una App conectada
 
 <Steps>
   <Step title="Abre App Builder">
@@ -67,10 +67,10 @@ Esta guia te lleva de cero a tener un flujo funcionando: una tabla con datos, un
 
     > "Una vista de pedidos con tabla principal, filtros por estado y un panel lateral que muestre el detalle al hacer click en una fila."
 
-    Click en el boton de enviar (▲) o presiona `Enter`.
+    Click en el boton de enviar o presiona `Enter`.
   </Step>
-  <Step title="Conecta la tabla">
-    En el panel **Datos**, selecciona la tabla `pedidos` que creaste en el paso 2. La preview se actualiza con tus datos reales.
+  <Step title="Conecta la Database">
+    En el panel **Datos**, selecciona la Database `pedidos` que creaste en el paso 2. La preview se actualiza con tus datos reales.
   </Step>
   <Step title="Publica">
     Click en **Compartir** y copia el link. Cualquiera con acceso al workspace ya puede usar la app.
@@ -79,24 +79,24 @@ Esta guia te lleva de cero a tener un flujo funcionando: una tabla con datos, un
 
 ---
 
-## Paso 4 — Automatizar con un workflow
+## Paso 4 — Automatizar con un Workflow
 
 <Steps>
   <Step title="Abre Workflows">
-    Click en **+ Nuevo** > **Workflow** dentro del proyecto.
+    Click en **+ Nuevo** > **Workflow** dentro del Project.
   </Step>
   <Step title="Define el trigger">
-    Elige el trigger **"Fila modificada en tabla"** y selecciona la tabla `pedidos`. Filtra por `estado = pagado`.
+    Elige el trigger **"Fila modificada en Database"** y selecciona la Database `pedidos`. Filtra por `estado = pagado`.
   </Step>
   <Step title="Agrega un nodo de accion">
     Conecta un nodo **Email** que envie una confirmacion al cliente cuando el estado cambie a `pagado`. Usa variables como `{{ trigger.cliente }}` y `{{ trigger.monto }}` en el cuerpo.
   </Step>
   <Step title="Guarda y activa">
-    Click en **Guardar** y luego en **Activar**. Cambia el estado de un pedido en la tabla y revisa que llegue el email.
+    Click en **Guardar** y luego en **Activar**. Cambia el estado de un pedido en la Database y revisa que llegue el email.
   </Step>
 </Steps>
 
-<Card title="Sintaxis de variables" icon="code" href="/componentes/workflows#variables">
+<Card title="Sintaxis de variables" icon="code" href="/componentes/workflows#sistema-de-variables">
   Todo lo que necesitas saber sobre el sistema `{{ }}` para pasar datos entre nodos.
 </Card>
 
@@ -107,16 +107,16 @@ Esta guia te lleva de cero a tener un flujo funcionando: una tabla con datos, un
 Ya construiste un flujo basico end-to-end. Algunas direcciones logicas para profundizar:
 
 <CardGroup cols={2}>
-  <Card title="Agregar un agente IA" icon="robot" href="/componentes/agents">
+  <Card title="Agregar un Agent" icon="robot" href="/componentes/agents">
     Embebe un chatbot que responda dudas de los clientes sobre sus pedidos.
   </Card>
-  <Card title="Tareas del proyecto" icon="list-check" href="/componentes/menu#tareas">
-    Crea tareas en formato Kanban para coordinar al equipo dentro del mismo proyecto.
+  <Card title="Tasks del Project" icon="list-check" href="/componentes/menu">
+    Crea Tasks en formato Kanban para coordinar al equipo dentro del mismo Project.
   </Card>
   <Card title="Conceptos basicos" icon="book" href="/essentials/conceptos">
     Si quieres entender el modelo mental detras de Puente OS antes de seguir.
   </Card>
-  <Card title="Atajos de teclado" icon="keyboard" href="/recursos/atajos">
-    Para moverte mas rapido por el workspace.
+  <Card title="Glosario" icon="book" href="/essentials/glosario">
+    Diccionario de los terminos canonicos de Puente OS.
   </Card>
 </CardGroup>

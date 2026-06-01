@@ -1,16 +1,16 @@
 ---
 title: "Conceptos basicos"
-description: "El modelo mental detras de Puente OS: workspace, teams, projects, issues, builds y cycles."
+description: "El modelo mental detras de Puente OS: workspace, teams, projects, tasks, builds y cycles."
 ---
 
 Antes de profundizar en cada componente, conviene entender como esta organizado todo. Puente OS combina **dos capas integradas** en una sola plataforma:
 
 <CardGroup cols={2}>
   <Card title="Capa de gestion" icon="list-check">
-    Workspace, Teams, Projects, Issues, Cycles e Initiatives. Estilo Linear.
+    Workspace, Teams, Projects, Tasks, Cycles e Initiatives.
   </Card>
   <Card title="Capa de construccion" icon="hammer">
-    Apps, Tables, Workflows y Agents dentro de cada Project. Estilo Replit.
+    Apps, Databases, Workflows y Agents dentro de cada Project.
   </Card>
 </CardGroup>
 
@@ -22,14 +22,14 @@ Mismo workspace, mismos equipos, sin cambio de herramienta entre planificar y co
 WORKSPACE (la organizacion completa)
 ├── TEAMS (Ops, Finance, HR, RevOps — equipos del cliente)
 │   ├── PROJECTS (iniciativas operativas concretas)
-│   │   ├── ISSUES (tareas de gestion, Kanban)
-│   │   │   └── SUB-ISSUES
+│   │   ├── TASKS (gestion operativa, Kanban)
+│   │   │   └── SUB-TASKS
 │   │   ├── DOCS (specs, contexto, decisiones)
 │   │   └── BUILDS (los 4 modulos):
 │   │       ├── APPS         (interfaces)
 │   │       ├── AGENTS       (agentes IA)
 │   │       ├── WORKFLOWS    (automatizaciones)
-│   │       └── TABLES       (datos persistentes)
+│   │       └── DATABASES    (datos persistentes)
 │   ├── CYCLES (cadencia ritmica de trabajo)
 │   └── VIEWS (lentes dinamicas)
 └── INITIATIVES (objetivos estrategicos cross-team)
@@ -65,7 +65,7 @@ Cada Team tiene:
 
 ## Projects
 
-Un **Project** es una iniciativa operativa concreta — el contenedor donde **planificacion** (tareas) y **construccion** (apps, tablas, workflows, agentes) conviven.
+Un **Project** es una iniciativa operativa concreta — el contenedor donde **gestion** (tasks) y **construccion** (apps, databases, workflows, agents) conviven.
 
 Ejemplos:
 
@@ -77,9 +77,9 @@ Dentro de un Project encuentras:
 
 | Item | Para que sirve |
 |---|---|
-| **Issues** | Tareas concretas (Kanban) |
+| **Tasks** | Unidades atomicas de trabajo operativo (Kanban o lista) |
 | **Docs** | Specs, decisiones, contexto |
-| **Builds** | Los 4 modulos de construccion (Apps, Tables, Workflows, Agents) |
+| **Builds** | Los 4 modulos de construccion (Apps, Databases, Workflows, Agents) |
 
 ---
 
@@ -91,7 +91,7 @@ Cada Project puede contener cualquier cantidad de **Builds**. Son los artefactos
   <Card title="Apps" icon="window" href="/componentes/app-builder">
     Interfaces web construidas con IA. La capa donde tus usuarios interactuan.
   </Card>
-  <Card title="Tables" icon="table" href="/componentes/tables">
+  <Card title="Databases" icon="table" href="/componentes/tables">
     Datos persistentes con schema, validacion e historial.
   </Card>
   <Card title="Workflows" icon="diagram-project" href="/componentes/workflows">
@@ -103,21 +103,25 @@ Cada Project puede contener cualquier cantidad de **Builds**. Son los artefactos
 </CardGroup>
 
 <Tip>
-  Los 4 modulos se conectan entre si. Una **App** puede leer y escribir una **Table**. Un **Workflow** puede dispararse cuando cambia una fila. Un **Agent** puede usar Tables como contexto y Workflows como herramientas.
+  Los 4 modulos se conectan entre si. Una **App** puede leer y escribir una **Database**. Un **Workflow** puede dispararse cuando cambia una fila. Un **Agent** puede usar Databases como contexto y Workflows como herramientas.
 </Tip>
 
 ---
 
-## Issues
+## Tasks
 
-Los **Issues** son tareas de gestion estilo Linear. Cada Issue tiene:
+Las **Tasks** son unidades atomicas de trabajo operativo. Cada Task tiene:
 
 - **Estado** (Backlog, Todo, In Progress, Done, Cancelled)
 - **Prioridad** (Urgent, High, Medium, Low)
 - **Asignado** y **Fecha limite**
-- Comentarios, subtareas y referencias a Builds
+- Comentarios, sub-tasks y referencias a Builds
 
-Los Issues viven dentro de un Project. Se visualizan en **Kanban** (tarjetas) o **Lista** (tabla).
+Las Tasks viven dentro de un Project. Se visualizan en **Kanban** (tarjetas) o **Lista** (tabla).
+
+<Note>
+  El vocabulario es **Task** y no "Issue": en Puente OS el lente es el del operador, no el del bug tracker. La mecanica es la misma, el nombre encarna la opinion.
+</Note>
 
 ---
 
@@ -127,9 +131,9 @@ Un **Cycle** es un periodo de tiempo recurrente (1-8 semanas) donde el equipo en
 
 Cada Cycle se mide por:
 
-- **Issues completados** vs planificados
+- **Tasks completadas** vs planificadas
 - **Carry-over** (lo que no alcanzo)
-- **Velocity** (issues/cycle)
+- **Velocity** (tasks/cycle)
 
 <Note>
   Los Cycles son por Team. Distintos teams pueden tener distintas cadencias.
@@ -154,14 +158,14 @@ Ejemplo: "Subir NPS de 40 a 65" puede involucrar Projects de Ops, Producto y Sop
   <Step title="Equipos">
     Cada **Team** crea **Projects** que aportan a una o mas Initiatives.
   </Step>
-  <Step title="Tareas">
-    Dentro de cada Project, los miembros crean **Issues** y los mueven por estados.
+  <Step title="Trabajo operativo">
+    Dentro de cada Project, los miembros crean **Tasks** y las mueven por estados.
   </Step>
   <Step title="Construccion">
-    Cuando un Issue requiere software, se construye un **Build** (App, Table, Workflow o Agent) en el mismo Project.
+    Cuando una Task requiere software, se construye un **Build** (App, Database, Workflow o Agent) en el mismo Project.
   </Step>
   <Step title="Ritmo">
-    Si el Team usa **Cycles**, los Issues se planifican por ciclo y se mide velocidad.
+    Si el Team usa **Cycles**, las Tasks se planifican por ciclo y se mide velocidad.
   </Step>
 </Steps>
 

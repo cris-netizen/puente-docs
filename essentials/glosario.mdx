@@ -8,31 +8,36 @@ description: "Diccionario rapido de los terminos que usamos en Puente OS."
 | **Workspace** | Contenedor principal de tu organizacion. Una empresa = un workspace. |
 | **Team** | Sub-grupo dentro del workspace, tipicamente un departamento o squad. |
 | **Member** | Persona con acceso al workspace. Puede pertenecer a uno o varios teams. |
-| **Project** | Iniciativa operativa concreta. Contenedor donde conviven tareas y construccion. |
+| **Project** | Iniciativa operativa concreta. Contenedor donde conviven tasks y construccion. |
 | **Initiative** | Objetivo estrategico que cruza varios teams y projects. |
-| **Issue** | Tarea de gestion. Tiene estado, prioridad, asignado y fecha limite. |
-| **Sub-issue** | Tarea hija de un Issue. Para descomponer trabajo. |
+| **Task** | Unidad atomica de trabajo operativo. Tiene estado, prioridad, asignado y fecha limite. Es el termino canonico de Puente OS — el lente del operador, no del bug tracker. |
+| **Sub-task** | Task hija de otra Task. Para descomponer trabajo. |
 | **Cycle** | Periodo recurrente (1-8 semanas) donde el team enfoca su trabajo. |
-| **View** | Lente dinamica para filtrar y ordenar Issues o Builds segun criterios. |
-| **Build** | Artefacto de software construido en un Project. Hay 4 tipos: App, Table, Workflow, Agent. |
+| **View** | Lente dinamica para filtrar y ordenar Tasks o Builds segun criterios. |
+| **Strategic Map** | Norte + metricas que define el cliente al inicio del Onboarding. |
+| **Strategic Discovery** | Entry point pago (~1 semana) que produce el Strategic Map. |
+| **Onboarding** | Las 4 fases bundled (Strategic Discovery → Initiatives Definition → Projects Mapping → Builds Scoping). 4-6 semanas. |
+| **Build Cycle** | Unidad ritmica continua post-Onboarding (mensual default). Cada Build Cycle entrega N Builds promovidos a Live. |
+| **Build** | Artefacto de software construido en un Project. Hay 4 tipos: App, Agent, Workflow, Database. |
 | **App** | Interfaz web construida con App Builder. La capa visual con la que interactua el usuario. |
-| **Table** | Datos persistentes con schema. Equivalente a una base de datos sin escribir SQL. |
-| **Workflow** | Automatizacion visual con triggers, condiciones, codigo Python y agentes. |
-| **Agent** | Agente IA conversacional. Puede ser embebido como widget. |
+| **Database** | Almacenamiento estructurado del cliente con schema, permisos y vistas. El termino canonico — el modulo en la UI se llama Tables. |
+| **Workflow** | Automatizacion declarativa con triggers, condiciones, codigo Python y agentes. |
+| **Agent** | Entidad agentica con proposito especifico. Puede ser embebida como widget conversacional. |
 | **Trigger** | Evento que dispara un workflow (ej. cambio en una fila, llegada de un email). |
 | **Node** | Cada paso dentro de un workflow. Puede ser de tipo accion, codigo, agente o trigger. |
 | **Scenario** | Otra forma de llamar a un workflow. Tienen el mismo significado en la interfaz. |
-| **Schema** | Estructura de columnas (nombre + tipo) de una tabla. |
-| **Prompt** | Texto que le das al agente o al App Builder para que genere algo. |
-| **Modo Inteligente** | Modo de configuracion del agente donde IA genera el prompt por ti. |
+| **Schema** | Estructura de columnas (nombre + tipo) de una Database. |
+| **Prompt** | Texto que le das al Agent o al App Builder para que genere algo. |
+| **Agent Guidance** | Convenciones, integraciones autorizadas y reglas con las que opera un Agent. |
+| **Modo Inteligente** | Modo de configuracion del Agent donde IA genera el prompt por ti. |
 | **Modo Manual** | Modo de configuracion donde escribes el prompt directamente. |
 | **Modo Inspect** | En App Builder, modo donde puedes editar la app haciendo click en cualquier elemento. |
 | **Preview** | Vista de la app generada en tiempo real, antes de publicar. |
 | **Theme** | Paleta de colores, tipografias y bordes que aplica a las apps. |
-| **Widget** | Componente embebible (tipicamente el chatbot del agente) en cualquier sitio externo. |
+| **Widget** | Componente embebible (tipicamente el chatbot del Agent) en cualquier sitio externo. |
 | **Variable `{{ }}`** | Sintaxis para pasar datos entre nodos en un workflow. |
 | **Bookmark** | Nodo o configuracion guardada para reutilizar en otros workflows. |
-| **Triage** | Inbox donde llegan issues sin asignar para revisar y rutear. |
+| **Triage** | Inbox donde llegan tasks sin asignar para revisar y rutear. |
 
 <Tip>
   Si encuentras un termino en la documentacion que no este aqui, escribenos a [soporte@puente.app](mailto:soporte@puente.app) para agregarlo.

@@ -1,6 +1,6 @@
 ---
 title: "Workflows"
-description: "Constructor visual de automatizaciones con triggers, codigo Python, agentes IA y peticiones HTTP. Similar a Make o Zapier, integrado al workspace."
+description: "Constructor visual de automatizaciones con triggers, codigo Python, agentes IA y peticiones HTTP integrado al workspace."
 icon: "diagram-project"
 ---
 
@@ -10,23 +10,23 @@ icon: "diagram-project"
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  ← Volver   📄 Nombre del escenario          [Activo ●]    │
+│  Volver   Nombre del escenario              [Activo]        │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │   ┌──────────────┐                                          │
-│   │  ⚡ Trigger  │  ← Nodo de inicio (siempre arriba)       │
+│   │   Trigger    │   Nodo de inicio (siempre arriba)        │
 │   └──────┬───────┘                                          │
 │          │                                                  │
-│   ┌──────▼───────┐                                          │
-│   │  🔗 Accion   │                                          │
+│   ┌──────┴───────┐                                          │
+│   │    Accion    │                                          │
 │   └──────┬───────┘                                          │
 │          │                                                  │
-│   ┌──────▼───────┐                                          │
+│   ┌──────┴───────┐                                          │
 │   │  </> Codigo  │                                          │
 │   └──────────────┘                                          │
 │                                                             │
 ├─────────────────────────────────────────────────────────────┤
-│  [💬 IA] [+ Paso] [⬡ Alinear] [💬 Comentario] [Guardar] [▶]│
+│  [IA] [+ Paso] [Alinear] [Comentario] [Guardar] [Ejecutar] │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -49,10 +49,10 @@ icon: "diagram-project"
     Punto de inicio del flujo. Manual, Webhook o Cron.
   </Card>
   <Card title="Accion" icon="plug">
-    Integraciones predefinidas (email, HTTP, tablas, etc).
+    Integraciones predefinidas (email, HTTP, databases, etc).
   </Card>
   <Card title="HTTP Request" icon="globe">
-    Peticiones HTTP estilo Postman, con import desde cURL.
+    Peticiones HTTP con import desde cURL.
   </Card>
   <Card title="Codigo Python" icon="code">
     Sandbox Python con asistente IA integrado.
@@ -69,21 +69,15 @@ icon: "diagram-project"
 
 ## Trigger — el punto de inicio
 
-Solo puede existir **un trigger** por flujo. No se puede eliminar (icono 🔒). Define como se dispara el flujo:
+Solo puede existir **un trigger** por flujo. No se puede eliminar (icono de candado). Define como se dispara el flujo:
 
 ### Trigger Manual (Run Once)
 
-Sin configuracion adicional. Se dispara con el boton **▶ Ejecutar** en la toolbar. Util para flujos one-shot o testing.
+Sin configuracion adicional. Se dispara con el boton **Ejecutar** en la toolbar. Util para flujos one-shot o testing.
 
 ### Trigger Webhook
 
-Genera una URL que puedes registrar en sistemas externos:
-
-```
-https://api.puente.app/workflows/abc123/webhook
-```
-
-Cualquier `POST` a esa URL dispara el flujo. El body de la peticion queda disponible como `{{trigger_data}}` en los nodos siguientes.
+Genera una URL que puedes registrar en sistemas externos. Cualquier `POST` a esa URL dispara el flujo. El body de la peticion queda disponible como `{{trigger_data}}` en los nodos siguientes.
 
 <Warning>
   El workflow debe estar **guardado** antes de que la URL del webhook sea funcional.
@@ -102,7 +96,7 @@ Para activar el cron, el flujo debe estar guardado. Al hacer click en **Activar*
 
 ## Nodos de Accion
 
-Cada nodo de Accion ejecuta una integracion predefinida (enviar email, escribir en una tabla, peticion HTTP, etc.). Al editar (✏️) se abre un panel con:
+Cada nodo de Accion ejecuta una integracion predefinida (enviar email, escribir en una database, peticion HTTP, etc.). Al hacer click en el icono de lapiz para editar se abre un panel con:
 
 | Tipo de campo | Como se muestra |
 |---|---|
@@ -111,7 +105,7 @@ Cada nodo de Accion ejecuta una integracion predefinida (enviar email, escribir 
 | `dropdown` | Select con opciones |
 | `boolean` | Toggle |
 | `json` | Textarea monospace |
-| `credential` | Input password con boton 👁 |
+| `credential` | Input password con boton para mostrar/ocultar |
 
 Click en **Guardar** para guardar sin ejecutar, o **Ejecutar** para correr ese nodo aislado.
 
@@ -209,7 +203,7 @@ Click en **`{ } Variables`** en cualquier campo y se abre el picker con todos lo
     Handle de salida = parte inferior del nodo. Handle de entrada = parte superior.
   </Step>
   <Step title="Arrastra de salida a entrada">
-    Pasa el cursor sobre el handle de salida → click → arrastra hacia el handle de entrada del siguiente nodo.
+    Pasa el cursor sobre el handle de salida, haz click y arrastra hacia el handle de entrada del siguiente nodo.
   </Step>
   <Step title="Suelta">
     La conexion se crea con estilo `smoothstep`.
@@ -226,7 +220,7 @@ Click en **`{ } Variables`** en cualquier campo y se abre el picker con todos lo
 
 ### Eliminar una conexion
 
-Click en la linea → presiona `Delete` o `Backspace`.
+Click en la linea y presiona `Delete` o `Backspace`.
 
 ---
 
@@ -260,13 +254,13 @@ Cada guardado crea una **nueva version** del mismo flujo (v2, v3, etc.). La vers
 
 ## Ejecutar el flujo
 
-Click en **▶ Ejecutar** en la toolbar inferior.
+Click en **Ejecutar** en la toolbar inferior.
 
 ### Que ocurre
 
 1. El canvas se bloquea con overlay "Ejecutando…"
 2. El backend ejecuta los nodos en orden topologico
-3. Cada nodo pasa por: `pending → running → completed` o `failed`
+3. Cada nodo pasa por los estados `pending`, `running`, `completed` o `failed`
 4. Al finalizar se muestran los resultados
 
 ### Comportamiento ante errores
@@ -280,7 +274,7 @@ Cada nodo tiene un setting `on_error`:
 
 ### Ejecutar nodos individualmente
 
-Desde el panel de cualquier nodo (✏️ → **Ejecutar**), puedes correr ese nodo aislado. Util para testing iterativo. El resultado queda disponible como variable para los nodos siguientes en la sesion.
+Desde el panel de cualquier nodo (click en el icono de lapiz para editar y luego **Ejecutar**), puedes correr ese nodo aislado. Util para testing iterativo. El resultado queda disponible como variable para los nodos siguientes en la sesion.
 
 ---
 
@@ -303,7 +297,7 @@ Accede desde el boton **Historial** en la toolbar. Lista todas las ejecuciones d
 
 ## Asistente IA (ChatPanel)
 
-Click en **💬 IA** en la toolbar. Desliza un panel desde la derecha donde puedes:
+Click en **IA** en la toolbar. Desliza un panel desde la derecha donde puedes:
 
 - **Generar un flujo completo** describiendolo en lenguaje natural
 - **Modificar nodos existentes** ("agrega un paso que envie un email")
@@ -317,7 +311,7 @@ Click en **💬 IA** en la toolbar. Desliza un panel desde la derecha donde pued
 
 ## Bookmarks
 
-Marca cualquier nodo como **favorito** (⭐) para reutilizarlo en otros flujos. Accede al panel de bookmarks desde la toolbar y arrastra cualquier nodo guardado al canvas.
+Marca cualquier nodo como **favorito** para reutilizarlo en otros flujos. Accede al panel de bookmarks desde la toolbar y arrastra cualquier nodo guardado al canvas.
 
 ---
 
@@ -325,8 +319,8 @@ Marca cualquier nodo como **favorito** (⭐) para reutilizarlo en otros flujos. 
 
 | Accion | Como |
 |---|---|
-| **Exportar** | Toolbar inferior → **Exportar** → descarga JSON con la definicion del flujo |
-| **Importar** | Toolbar inferior → **Importar** → sube el JSON o pega el contenido |
+| **Exportar** | Toolbar inferior, click en **Exportar**, descarga JSON con la definicion del flujo |
+| **Importar** | Toolbar inferior, click en **Importar**, sube el JSON o pega el contenido |
 
 Util para compartir flujos entre workspaces o respaldar versiones especificas.
 
@@ -358,7 +352,7 @@ Util para compartir flujos entre workspaces o respaldar versiones especificas.
   <Accordion title="Los workflows tienen rate limits?">
     Si, por plan. Escribe a soporte para tu plan especifico. Triggers de tipo cron tienen frecuencia minima de 1 minuto.
   </Accordion>
-  <Accordion title="Como conecto un workflow a una tabla?">
-    Trigger: usa el subtipo **Fila modificada** o **Fila agregada** sobre la tabla que quieras observar. Accion: usa los nodos `Insertar fila`, `Actualizar fila` o `Leer filas` desde cualquier paso.
+  <Accordion title="Como conecto un workflow a una database?">
+    Trigger: usa el subtipo **Fila modificada** o **Fila agregada** sobre la database que quieras observar. Accion: usa los nodos `Insertar fila`, `Actualizar fila` o `Leer filas` desde cualquier paso.
   </Accordion>
 </AccordionGroup>
