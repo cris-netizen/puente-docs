@@ -1,16 +1,16 @@
 ---
-title: "Menu"
+title: "Workspace"
 description: "El panel central de navegacion del workspace: proyectos, tasks y componentes en un solo lugar."
-icon: "bars"
+icon: "network"
 ---
 
-**Puente Menu** es el panel desde donde organizas y navegas todo el workspace. Cada componente que creas (Apps, Databases, Workflows, Agents) vive dentro de un proyecto, y cada proyecto tiene sus propias tasks.
+**Puente Workspace** es el panel desde donde organizas y navegas todo. Cada componente que creas (Apps, Databases, Workflows, Agents) vive dentro de un proyecto, y cada proyecto tiene sus propias tasks.
 
 ## Vision general
 
 El menu opera en dos niveles:
 
-```
+```text
 HOME (lista de proyectos)
   - click en un proyecto
 DETALLE DEL PROYECTO
@@ -27,22 +27,22 @@ Al abrir el workspace llegas al Home con la lista de proyectos activos del equip
 ### Controles principales
 
 | Control | Que hace |
-|---|---|
-| **Buscador** | Filtra proyectos por nombre o descripcion en tiempo real |
-| **Vista Tabla / Tarjetas** | Alterna entre lista compacta y grid visual con estadisticas |
+| --- | --- |
+| **Buscador** | Filtra proyectos por nombre o descripción en tiempo real |
+| **Vista Tabla / Tarjetas** | Alterna entre lista compacta y grid visual con estadísticas |
 | **Ordenar** | En vista tabla, haz click en las cabeceras para ordenar |
-| **Nuevo Proyecto** | Boton en la esquina superior derecha |
+| **Nuevo Proyecto** | Botón en la esquina superior derecha |
 
 ### Que muestra cada tarjeta
 
-- Nombre y descripcion del proyecto
-- Fecha de creacion
+- Nombre y descripción del proyecto
+- Fecha de creación
 - Contadores por tipo de componente (Apps, Workflows, Databases, Agents)
 - Menu de opciones (tres puntos) para editar o eliminar
 
 ---
 
-## Gestion de proyectos
+## Gestión de proyectos
 
 ### Crear un proyecto
 
@@ -84,6 +84,7 @@ Al hacer click en un proyecto entras a su vista de detalle, dividida en dos secc
   <Card title="Tasks" icon="list-check">
     Kanban o lista de tasks asignadas al proyecto.
   </Card>
+
   <Card title="Componentes" icon="cubes">
     Tabla con todas las Apps, Workflows, Databases y Agents del proyecto.
   </Card>
@@ -129,7 +130,7 @@ Dentro del detalle de un proyecto, la seccion de componentes lista todas las App
 ### Filtros rapidos
 
 | Filtro | Que muestra |
-|---|---|
+| --- | --- |
 | **Todos** | Todos los componentes del proyecto |
 | **Apps** | Solo interfaces visuales |
 | **Workflows** | Solo automatizaciones |
@@ -145,7 +146,7 @@ Dentro del detalle de un proyecto, la seccion de componentes lista todas las App
 Al hacer hover sobre una fila aparece el boton de opciones (tres puntos):
 
 | Accion | Disponible en | Descripcion |
-|---|---|---|
+| --- | --- | --- |
 | **Editar** | Solo Apps | Abre el editor de la App |
 | **Mover** | Todos | Cambia el componente a otro proyecto |
 | **Eliminar** | Todos | Elimina permanentemente (irreversible) |
@@ -182,6 +183,7 @@ Click en cualquier fila o en el boton de abrir te lleva directo al editor del co
   <Card title="App Builder" icon="window" href="/componentes/app-builder">
     Construye tu primera aplicacion web con IA.
   </Card>
+
   <Card title="Databases" icon="table" href="/componentes/databases">
     Crea Databases y conectalas a tus Apps.
   </Card>

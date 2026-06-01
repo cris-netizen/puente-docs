@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 description: "Crea agentes IA conversacionales con prompt personalizado y publicalos como widget embebible en cualquier sitio web."
-icon: "robot"
+icon: "user-star"
 ---
 
 **Agents** te permite crear agentes de IA conversacionales con un prompt personalizado, probarlos en tiempo real y publicarlos como un widget de chat embebible en cualquier sitio web.
@@ -10,7 +10,7 @@ icon: "robot"
 
 La pantalla esta dividida en dos columnas redimensionables:
 
-```
+```text
 +----------------------+--------------------------------------+
 |                      |                                      |
 |   Chat de Prueba     |   Configuracion del Agente           |
@@ -33,7 +33,7 @@ La pantalla esta dividida en dos columnas redimensionables:
 
 <Steps>
   <Step title="Abre Agents">
-    Desde el panel de Componentes de un proyecto → **+ Nuevo** → **Agent**.
+    Desde el panel de Componentes de un proyecto → **\+ Nuevo** → **Agent**.
   </Step>
   <Step title="Nombra el agente">
     En el campo de la parte superior. Es obligatorio para guardar.
@@ -60,7 +60,7 @@ La pantalla esta dividida en dos columnas redimensionables:
 Divide el prompt en **6 campos estructurados** para evitar prompts monoliticos dificiles de mantener:
 
 | Campo | Para que sirve | Ejemplo |
-|---|---|---|
+| --- | --- | --- |
 | **Rol del Agente** | Quien es el agente, perfil y estilo | "Eres un asistente de ventas experto en SaaS" |
 | **Tarea u Objetivo** | Que debe lograr en cada interaccion | "Tu tarea es calificar leads y agendar demos" |
 | **Contexto y Entorno** | Info de fondo: empresa, producto, audiencia | "Trabajas para Puente OS, plataforma de automatizacion" |
@@ -85,7 +85,7 @@ Textarea libre donde escribes el prompt completo. Util cuando ya tienes un promp
 ### Transiciones entre modos
 
 | Direccion | Que pasa |
-|---|---|
+| --- | --- |
 | **Inteligente → Manual** | Los 6 campos se compilan en un prompt con etiquetas `[ROLE]`, `[TASK]`, etc. y se cargan en el textarea |
 | **Manual → Inteligente** | El sistema intenta parsear las etiquetas `[TAG]` y distribuirlas. Si no hay etiquetas, todo va al campo **Contexto** |
 
@@ -159,7 +159,7 @@ Se abre un modal con dos paneles: **Configuracion** (izquierda) y **Preview** (d
   <Accordion title="Estilo">
     - **Posicion del Widget** — derecha o izquierda
     - **Distancia desde el fondo** — en CSS (ej. `20px`)
-    - **Colores** — primario, secundario, fondo, fuente (selector visual + hex)
+    - **Colores** — primario, secundario, fondo, fuente (selector visual \+ hex)
   </Accordion>
 
   <Accordion title="Markdown">
@@ -172,7 +172,7 @@ Se abre un modal con dos paneles: **Configuracion** (izquierda) y **Preview** (d
     - **URL** — abre un enlace externo
     - **Chat** — envia un mensaje predefinido al agente
 
-    Agrega con **+ Agregar Boton**, elimina con el boton de eliminar.
+    Agrega con **\+ Agregar Boton**, elimina con el boton de eliminar.
   </Accordion>
 </AccordionGroup>
 
@@ -224,7 +224,7 @@ Si el agente ya existe, abrirlo carga automaticamente la configuracion desde el 
 ## Estados del boton Guardar
 
 | Estado | Texto | Color |
-|---|---|---|
+| --- | --- | --- |
 | Normal | "Crear agente" / "Guardar cambios" | Negro |
 | Guardando | "Guardando…" | Gris oscuro |
 | Exito | "Guardado" | Verde (2.5 seg) |
@@ -239,12 +239,15 @@ Si ocurre un error, se muestra el mensaje en rojo junto al boton.
   <Card title="Soporte automatizado" icon="headset">
     Embebe el widget en tu sitio para responder preguntas frecuentes 24/7.
   </Card>
+
   <Card title="Calificador de leads" icon="filter">
     Configura el agente para hacer preguntas que califiquen leads antes de agendar.
   </Card>
+
   <Card title="Asistente interno" icon="building">
     Publica el widget en herramientas internas para que el equipo consulte procesos.
   </Card>
+
   <Card title="Onboarding de usuarios" icon="graduation-cap">
     Guia paso a paso a los usuarios nuevos en tu producto.
   </Card>
@@ -258,15 +261,19 @@ Si ocurre un error, se muestra el mensaje en rojo junto al boton.
   <Accordion title="Que modelos puedo usar?">
     El selector incluye los modelos disponibles segun tu plan (Llama, GPT, Gemini). Escribe a soporte si necesitas un modelo especifico.
   </Accordion>
+
   <Accordion title="Puedo conectar el agente a una Database del workspace?">
     En esta version el agente responde solo con el contexto del prompt. Para que use datos en vivo, configura un workflow que llame al agente con el contexto correcto y embebe el chat conectado a ese workflow.
   </Accordion>
+
   <Accordion title="Cuanto tiempo se guarda el historial de chat?">
     El historial se mantiene durante la sesion del navegador del usuario. No se persiste entre sesiones a menos que configures el storage manualmente.
   </Accordion>
+
   <Accordion title="Funciona el widget en mobile?">
     Si. El widget es responsive por default. En pantallas pequeñas se abre en pantalla completa.
   </Accordion>
+
   <Accordion title="Puedo customizar mas el widget?">
     Todos los textos, colores y mensajes son configurables desde el modal. Para customizaciones mas profundas (CSS custom, eventos JS), escribe a soporte.
   </Accordion>

@@ -34,7 +34,7 @@
           {
             "group": "Componentes",
             "pages": [
-              "componentes/menu",
+              "componentes/workspace",
               "componentes/app-builder",
               "componentes/databases",
               "componentes/workflows",
@@ -42,7 +42,7 @@
             ]
           },
           {
-            "group": "Puente Studio (dev)",
+            "group": "Puente Studio",
             "pages": [
               "studio/overview",
               "studio/setup",

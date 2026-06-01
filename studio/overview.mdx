@@ -1,5 +1,5 @@
 ---
-title: "Que es Puente Studio"
+title: "Qué es"
 description: "Dev kit para crear y gestionar apps de Puente OS desde tu maquina local o con coding agents."
 icon: "terminal"
 ---
@@ -16,6 +16,7 @@ Te da control completo sobre los **artefactos** (apps web React/TypeScript hoste
     - Estas explorando ideas o haciendo un MVP rapido
     - No necesitas integrar con tu workflow de dev local
   </Card>
+
   <Card title="Usa Puente Studio cuando..." icon="terminal">
     - Quieres versionar el codigo en Git de tu equipo
     - Editas la app desde tu IDE con LSP, linter, etc.
@@ -33,7 +34,7 @@ Te da control completo sobre los **artefactos** (apps web React/TypeScript hoste
 ## Que incluye Studio
 
 | Pieza | Para que sirve |
-|---|---|
+| --- | --- |
 | **CLI scripts (Node.js)** | Bajar y subir artefactos entre tu disco local y Puente |
 | **API REST `/studio/...`** | Endpoints privados para crear/leer/actualizar artefactos y tablas |
 | **API REST `/public/...`** | Endpoints publicos que usa cada app publicada para hablar con sus tablas |
@@ -48,6 +49,7 @@ Te da control completo sobre los **artefactos** (apps web React/TypeScript hoste
     Es una app web hosteada en Puente OS. Puede ser una app React/TypeScript multi-archivo (recomendado) o un HTML simple (legacy).
 
     Cada artefacto tiene:
+
     - Un **`id`** numerico para operar via API privada
     - Un **`public_id`** (UUID) para acceso publico
     - Una **`api_key`** propia (`puente_artifact_xxx`) generada al crearlo
@@ -89,7 +91,7 @@ Te da control completo sobre los **artefactos** (apps web React/TypeScript hoste
 Hay dos conjuntos de endpoints, separados por que tipo de credencial usan:
 
 | Contexto | Endpoints | Autenticacion |
-|---|---|---|
+| --- | --- | --- |
 | **Gestion** (tu o tu coding agent) | `/studio/...` | `X-API-Key: {STUDIO_KEY}` |
 | **App publicada** (frontend del usuario) | `/public/artefacto/{id}/...` | `X-API-Key: puente_artifact_xxx` |
 
@@ -106,11 +108,10 @@ Hay dos conjuntos de endpoints, separados por que tipo de credencial usan:
     Desde app.puente.xyz → Configuracion → API Keys.
   </Step>
   <Step title="Setup local">
-    Clona [puente_studio_repo](https://github.com/octaviofv/puente_studio_repo) y crea tu `.env`. Ver [Setup](/studio/setup).
+    Clona [puente\_studio\_repo](https://github.com/octaviofv/puente_studio_repo) y crea tu `.env`. Ver [Setup](/studio/setup).
   </Step>
   <Step title="Editar desde tu editor o coding agent">
-    Baja un artefacto, lo editas con LSP, lo subes. O dejas que un coding agent haga todo el flujo.
-    Ver [Coding agents](/studio/coding-agents).
+    Baja un artefacto, lo editas con LSP, lo subes. O dejas que un coding agent haga todo el flujo. Ver [Coding agents](/studio/coding-agents).
   </Step>
   <Step title="(Opcional) Conectar tablas">
     Crea tablas, concede acceso al artefacto y consume los datos desde el frontend.
@@ -121,9 +122,9 @@ Hay dos conjuntos de endpoints, separados por que tipo de credencial usan:
 
 ## Stack del artefacto
 
-Las apps de Puente OS son **React + TypeScript multi-archivo**, sin dependencias externas mas alla de lo que el runtime de Puente provee.
+Las apps de Puente OS son **React \+ TypeScript multi-archivo**, sin dependencias externas mas alla de lo que el runtime de Puente provee.
 
-```
+```text
 index.tsx                    Punto de entrada
 App.tsx                      Componente raiz
 data.ts                      Tipos + datos
@@ -147,9 +148,11 @@ components/
   <Card title="Setup local" icon="download" href="/studio/setup">
     Clonar el repo, configurar tu `.env` y correr los scripts.
   </Card>
+
   <Card title="Coding agents" icon="robot" href="/studio/coding-agents">
     Usar el skill con Claude Code, Cursor y otros agentes.
   </Card>
+
   <Card title="API Reference" icon="code" href="/studio/api-reference">
     Referencia completa de endpoints REST.
   </Card>

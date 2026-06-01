@@ -1,25 +1,25 @@
 ---
 title: "App Builder"
 description: "Construye aplicaciones web describiendolas en lenguaje natural. La IA genera el codigo, lo compila y muestra una preview funcional al instante."
-icon: "window"
+icon: "app-window"
 ---
 
-**App Builder** es el constructor de aplicaciones web de Puente OS. Describes lo que quieres en lenguaje natural, el sistema genera React + TypeScript, lo compila en tu navegador y te muestra una preview funcional. Despues puedes iterar via chat, editar codigo directamente o usar el modo Inspect para editar elementos haciendo click.
+**App Builder** es el constructor de aplicaciones web de Puente OS. Describes lo que quieres en lenguaje natural, el sistema genera React \+ TypeScript, lo compila en tu navegador y te muestra una preview funcional. Despues puedes iterar via chat, editar codigo directamente o usar el modo Inspect para editar elementos haciendo click.
 
 ## Crear tu primera app
 
 <Steps>
   <Step title="Abre App Builder">
-    Desde el panel de Componentes de un proyecto, click en **+ Nuevo** y luego en **App**.
+    Desde el panel de Componentes de un proyecto, click en **\+ Nuevo** y luego en **App**.
   </Step>
   <Step title="Describe lo que quieres">
     Escribe en el textarea de la pantalla de inicio. Algunos ejemplos:
 
-    ```
+    ```text
     Un CRM simple con lista de clientes, oportunidades y dashboard con metricas
-
+    
     App de gestion de inventario con tabla de productos, filtros y formulario
-
+    
     Tablero Kanban para gestionar tasks con columnas To Do, In Progress y Done
     ```
 
@@ -37,12 +37,12 @@ icon: "window"
 Si no quieres empezar desde cero, click en **Template** y elige uno:
 
 | Template | Para que sirve |
-|---|---|
+| --- | --- |
 | **CRM** | Gestion de clientes, oportunidades, pipeline |
 | **Helpdesk** | Sistema de tickets de soporte con estados |
 | **App Base** | Estructura base lista para iterar |
 | **HTML Interactive** | Template HTML/CSS/JS puro (sin React) |
-| **Pomodoro** | Timer + lista de tasks |
+| **Pomodoro** | Timer \+ lista de tasks |
 | **QA Components** | Showcase de todos los componentes disponibles |
 
 ---
@@ -71,7 +71,7 @@ La tabla de productos no se actualiza al agregar uno nuevo
 </CodeGroup>
 
 <Tip>
-  Si el cambio afecta a un componente especifico, mencionalo por nombre: *"En `ClientesView`, agrega un campo de notas"*. Asi la IA hace cambios mas precisos.
+  Si el cambio afecta a un componente especifico, mencionalo por nombre: _"En `ClientesView`, agrega un campo de notas"_. Asi la IA hace cambios mas precisos.
 </Tip>
 
 ---
@@ -79,10 +79,10 @@ La tabla de productos no se actualiza al agregar uno nuevo
 ## Los 4 tabs del editor
 
 | Tab | Para que sirve |
-|---|---|
+| --- | --- |
 | **Preview** | Tu app en pantalla completa |
-| **Chat** | Editor de chat + preview lateral |
-| **Code** | Explorador de archivos + editor + preview |
+| **Chat** | Editor de chat \+ preview lateral |
+| **Code** | Explorador de archivos \+ editor \+ preview |
 | **Datos** | Conexion con Databases dinamicas |
 
 ### Tab Code
@@ -103,11 +103,11 @@ Editor de codigo con:
 Si tu app tiene `data.ts`, puedes editar los datos de forma visual sin tocar codigo:
 
 | Accion | Como |
-|---|---|
+| --- | --- |
 | **Editar celda** | Click en la celda para editar inline |
-| **Agregar fila** | Boton "+ Fila" al final de la tabla |
+| **Agregar fila** | Boton "\+ Fila" al final de la tabla |
 | **Eliminar fila** | Icono de papelera en la fila |
-| **Agregar columna** | Boton "+ Columna" |
+| **Agregar columna** | Boton "\+ Columna" |
 
 Cada cambio regenera `data.ts` y recompila automaticamente.
 
@@ -131,7 +131,7 @@ Personaliza colores sin escribir codigo. Accede desde **Code** y luego **Theme**
 Cada variable (background, primary, secondary, etc.) tiene sliders **Hue / Saturation / Lightness** para ajuste preciso.
 
 <Tip>
-  Tambien funciona via chat: *"Cambia el tema a verde oscuro con tipografia moderna"*.
+  Tambien funciona via chat: _"Cambia el tema a verde oscuro con tipografia moderna"_.
 </Tip>
 
 ---
@@ -203,7 +203,7 @@ App Builder puede leer y escribir Databases del workspace en lugar de usar datos
 Si la compilacion falla, aparece la pestaña **Bugs** con los errores. Click en **Auto-fix** y la IA intenta corregirlos. Si no logra resolverlos, puedes:
 
 1. Abrir el archivo problematico y editar manualmente
-2. Pedir al chat: *"Corrige el error en el componente X"*
+2. Pedir al chat: _"Corrige el error en el componente X"_
 3. Reescribir el componente desde cero via prompt
 
 ---
@@ -211,7 +211,7 @@ Si la compilacion falla, aparece la pestaña **Bugs** con los errores. Click en 
 ## Atajos utiles
 
 | Atajo | Accion |
-|---|---|
+| --- | --- |
 | `Enter` (en chat) | Enviar prompt |
 | `Shift + Enter` | Salto de linea en chat |
 | `Cmd/Ctrl + S` (en code) | Guardar y recompilar |
@@ -223,15 +223,18 @@ Si la compilacion falla, aparece la pestaña **Bugs** con los errores. Click en 
 
 <AccordionGroup>
   <Accordion title="Que stack genera el App Builder?">
-    React + TypeScript. Sin dependencias externas mas alla de las del proyecto base. Compila en el browser.
+    React \+ TypeScript. Sin dependencias externas mas alla de las del proyecto base. Compila en el browser.
   </Accordion>
+
   <Accordion title="Puedo exportar el codigo?">
     Si. En el tab **Code**, click en **Copiar JSON** para obtener todos los archivos. Tambien puedes descargar como ZIP.
   </Accordion>
+
   <Accordion title="Que pasa si modifico el codigo y luego uso el chat?">
     La IA ve los cambios y los respeta. Pero si tu codigo tiene errores, intenta corregirlos al aplicar la siguiente modificacion.
   </Accordion>
+
   <Accordion title="Hay limite de iteraciones por app?">
-    No hay limite por app. El limite depende del plan de tu workspace — escribe a soporte@puente.app si tienes dudas.
+    No hay limite por app. El limite depende del plan de tu workspace — escribe a [soporte@puente.app](mailto:soporte@puente.app) si tienes dudas.
   </Accordion>
 </AccordionGroup>
