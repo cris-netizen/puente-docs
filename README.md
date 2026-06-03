@@ -73,7 +73,7 @@ Levanta servidor en `localhost:3000` con hot reload.
   - `https://status.puente.app` (estado del servicio)
   - `https://puente.app/pricing`, `/changelog`
   - LinkedIn + X handles en footer
-- [ ] Confirmar email `soporte@puente.app`
+- [ ] Confirmar email `octavio@puente.xyz`
 
 ## Fuente del contenido
 
