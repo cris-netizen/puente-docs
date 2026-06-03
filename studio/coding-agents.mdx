@@ -273,28 +273,6 @@ El skill instruye al agente a:
 
 ---
 
-## Limitaciones honestas
-
-<AccordionGroup>
-  <Accordion title="No es MCP nativo">
-    El skill se carga como contexto/system prompt. El agente arma curls — no tiene tools nativos `puente.create_app(...)`. Funciona bien pero requiere que el agente sepa hacer HTTP requests. Casi todos los agentes modernos saben.
-  </Accordion>
-
-  <Accordion title="No hay autocompletado de IDs">
-    El agente tiene que listar primero (`GET /studio/artefactos`) para encontrar IDs. No hay un "Files panel" tipo VSCode mostrando todos tus artefactos.
-  </Accordion>
-
-  <Accordion title="Sin live preview">
-    Los cambios se ven publicando — abriendo `https://app.puente.xyz/public/{public_id}/`. Para iterar con preview en vivo, usa [App Builder](/componentes/app-builder) en el workspace.
-  </Accordion>
-
-  <Accordion title="Sin diff/undo automático">
-    Es responsabilidad tuya (o de Git) versionar los cambios. Recomendamos commitear el contenido de `APP/files/` después de cada cambio.
-  </Accordion>
-</AccordionGroup>
-
----
-
 ## Siguiente paso
 
 <Card title="Referencia completa de API" icon="code" href="/studio/api-reference">

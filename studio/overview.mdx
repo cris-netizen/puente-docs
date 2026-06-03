@@ -37,7 +37,6 @@ Te da control completo sobre los **artefactos** (apps web React/TypeScript hoste
 | --- | --- |
 | **CLI scripts (Node.js)** | Bajar y subir artefactos entre tu disco local y Puente |
 | **API REST `/studio/...`** | Endpoints privados para crear/leer/actualizar artefactos y tablas |
-| **API REST `/public/...`** | Endpoints públicos que usa cada app publicada para hablar con sus tablas |
 | **Skill markdown** | Documentación estructurada que cargas como system prompt en coding agents |
 
 ---
@@ -51,7 +50,7 @@ Te da control completo sobre los **artefactos** (apps web React/TypeScript hoste
     Cada artefacto tiene:
 
     - Un **`id`** numérico para operar vía API privada
-    - Un **`public_id`** (UUID) para acceso público
+    - Un **`public_id`** (UUID) que lo identifica de forma única
     - Una **`api_key`** propia (`puente_artifact_xxx`) generada al crearlo
   </Accordion>
 
@@ -61,14 +60,14 @@ Te da control completo sobre los **artefactos** (apps web React/TypeScript hoste
     Da acceso a todos los artefactos y tablas del equipo asociado. Solo se usa en **endpoints privados** (`/studio/...`).
 
     <Warning>
-      Nunca embebas la `STUDIO_KEY` en el código de una app publicada. Es credencial de administración.
+      Nunca embebas la `STUDIO_KEY` en el código del artefacto. Es credencial de administración.
     </Warning>
   </Accordion>
 
   <Accordion title="API Key de artefacto">
-    Credencial **por artefacto** (`puente_artifact_xxx`) que se genera automáticamente al crearlo. La app publicada la usa para hablar con sus tablas desde el frontend.
+    Credencial **por artefacto** (`puente_artifact_xxx`) que se genera automáticamente al crearlo. El frontend del artefacto la usa para leer/escribir sus tablas.
 
-    Es la única credencial que es seguro embeber en el bundle de la app publicada.
+    Es la única credencial que es seguro embeber en el bundle del artefacto.
   </Accordion>
 
   <Accordion title="Tabla / Columnas">
@@ -78,26 +77,9 @@ Te da control completo sobre los **artefactos** (apps web React/TypeScript hoste
   </Accordion>
 
   <Accordion title="public_id">
-    UUID que identifica un artefacto de forma pública. La URL final de la app es `https://app.puente.xyz/public/{public_id}/`.
-
-    Lo obtienes con `GET /studio/artefactos/{id}/meta`.
+    UUID que identifica un artefacto. Lo obtienes con `GET /studio/artefactos/{id}/meta`.
   </Accordion>
 </AccordionGroup>
-
----
-
-## Dos mundos: privado vs público
-
-Hay dos conjuntos de endpoints, separados por qué tipo de credencial usan:
-
-| Contexto | Endpoints | Autenticación |
-| --- | --- | --- |
-| **Gestión** (tú o tu coding agent) | `/studio/...` | `X-API-Key: {STUDIO_KEY}` |
-| **App publicada** (frontend del usuario) | `/public/artefacto/{id}/...` | `X-API-Key: puente_artifact_xxx` |
-
-<Tip>
-  Regla simple: si está corriendo en el browser del usuario, usa `puente_artifact_xxx`. Si está corriendo en tu terminal o en un script CI, usa `puente_studio_xxx`.
-</Tip>
 
 ---
 
