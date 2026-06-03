@@ -1,0 +1,155 @@
+---
+title: "Integraciones"
+description: "Puente OS se conecta con las herramientas que tu equipo ya usa: ERPs, eCommerce, pagos, mensajeria, CRM. Listado por categoria con foco LATAM."
+icon: "plug"
+---
+
+Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el trabajo manual entre ellas**. Cualquier sistema con API REST se conecta via nodo HTTP de [Workflows](/componentes/workflows). Para casos comunes ofrecemos nodos nativos con autenticacion y formularios pre-configurados.
+
+<Note>
+  **Como leer los badges:**
+  - `nodo nativo` — integracion lista para usar, sin escribir codigo
+  - `via HTTP` — conexion via REST con tu API key, configurable con nodo HTTP en Workflows
+  - `via Python` — para logica custom que requiere libreria especifica, usando el nodo Codigo Python
+</Note>
+
+## eCommerce y Marketplaces
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **Shopify** | via HTTP | Sincronizar productos, ordenes, inventario |
+| **VTEX** | via HTTP | Catalog management, OMS, order tracking |
+| **Tiendanube** | via HTTP | Productos, ordenes, cupones |
+| **WooCommerce** | via HTTP | Stock, pedidos, customer data |
+| **Mercado Libre** | via HTTP | Publicaciones, ordenes, mensajeria con compradores |
+| **MercadoShops** | via HTTP | Multi-store sync |
+| **PrestaShop** | via HTTP | Productos, ordenes |
+| **Magento** | via HTTP | Catalogo, pedidos B2B |
+
+## ERPs y sistemas administrativos LATAM
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **SAP** (S/4HANA, Business One) | via HTTP | Conciliacion, ordenes de compra, inventario |
+| **Defontana** | via HTTP | Facturacion, contabilidad, inventario (Chile) |
+| **Bsale** | via HTTP | Boletas, facturas electronicas, stock (Chile) |
+| **Siigo** | via HTTP | Facturacion electronica, contabilidad (Colombia/Chile) |
+| **Manager** | via HTTP | ERP Chile mid-market |
+| **Softland** | via HTTP | ERP Chile (Inversiones) |
+| **CONTPAQi** | via HTTP | Contabilidad y facturacion (Mexico) |
+| **Aspel** | via HTTP | ERP mid-market (Mexico) |
+| **Microsoft Dynamics 365** | via HTTP | Finance, Operations, Supply Chain |
+| **Oracle NetSuite** | via HTTP | ERP enterprise multi-pais |
+
+## Pagos y facturacion electronica
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **Stripe** | via HTTP | Cobros recurrentes, payouts, disputas |
+| **Mercado Pago** | via HTTP | Cobros LATAM, conciliacion, marketplace splits |
+| **Kushki** | via HTTP | Pagos LATAM (Chile, Peru, Colombia, Ecuador, Mexico) |
+| **Khipu** | via HTTP | Transferencias bancarias Chile |
+| **Transbank** | via HTTP | Webpay, Onepay (Chile) |
+| **Niubiz** | via HTTP | Pagos Peru |
+| **PayU** | via HTTP | Pagos LATAM |
+| **Conekta** | via HTTP | Pagos Mexico |
+| **Sii** (Chile) | via HTTP | Emision DTE, facturas electronicas |
+| **DIAN** (Colombia) | via HTTP | Facturacion electronica |
+| **SAT** (Mexico) | via HTTP | CFDI, facturacion |
+
+## Mensajeria y comunicaciones
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **WhatsApp Business API** | via HTTP | Notificaciones de pedido, soporte, recordatorios |
+| **Twilio** | via HTTP | SMS, voice, verificacion |
+| **MessageBird** | via HTTP | SMS LATAM, WhatsApp |
+| **Email (SMTP)** | nodo nativo | Notificaciones, confirmaciones |
+| **Resend / SendGrid / Mailgun** | via HTTP | Email transaccional |
+| **Slack** | via HTTP | Notificaciones internas, aprobaciones |
+| **Microsoft Teams** | via HTTP | Notificaciones, mensajes |
+| **Discord** | via HTTP | Notificaciones, comunidades |
+
+## CRM y ventas
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **HubSpot** | via HTTP | Contactos, deals, sequences |
+| **Salesforce** | via HTTP | Leads, accounts, opportunities |
+| **Pipedrive** | via HTTP | Pipeline, deals, activities |
+| **Close** | via HTTP | Sales engagement |
+| **Attio** | via HTTP | CRM moderno B2B |
+| **Zoho CRM** | via HTTP | Mid-market LATAM |
+
+## Logistica y couriers LATAM
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **Blue Express** | via HTTP | Cotizacion, despachos, tracking (Chile) |
+| **Chilexpress** | via HTTP | Cotizacion, etiquetas (Chile) |
+| **Starken** | via HTTP | Tracking, ordenes de retiro (Chile) |
+| **Correos de Chile** | via HTTP | Servicios postales |
+| **Estafeta** | via HTTP | Logistica Mexico |
+| **99 Minutos** | via HTTP | Same-day Mexico |
+| **Shippify** | via HTTP | Last-mile multi-pais |
+| **Cargamos** | via HTTP | Logistica B2B Mexico |
+
+## Bases de datos y data warehouses
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **PostgreSQL** | via HTTP | Conexion via API gateway |
+| **MySQL** | via HTTP | Lecturas/escrituras programaticas |
+| **MongoDB Atlas** | via HTTP | NoSQL |
+| **Google Sheets** | via HTTP | Sync ligero con sheets internas |
+| **Airtable** | via HTTP | Sync con bases existentes |
+| **Notion** | via HTTP | Knowledge base, dashboards internos |
+| **BigQuery** | via HTTP | Lectura analitica via REST API |
+| **Snowflake** | via HTTP | Queries via REST endpoint |
+
+## Modelos de IA
+
+| Provider | Tipo | Uso comun |
+|---|---|---|
+| **OpenAI** | via HTTP | GPT-4, embeddings, function calling |
+| **Anthropic** | via HTTP | Claude (Opus, Sonnet, Haiku) |
+| **Google** | via HTTP | Gemini |
+| **Mistral** | via HTTP | Modelos open-source via API |
+| **Modelos open-source locales** | via Python | Llama, Mistral self-hosted via nodo Codigo |
+
+## Servicios cloud
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **Google Cloud Storage** | via HTTP | Upload de archivos, generacion de URLs firmadas |
+| **AWS S3** | via HTTP | Storage, asset delivery |
+| **Cloudinary** | via HTTP | Imagenes, transformaciones |
+| **Google Drive** | via HTTP | Sync de archivos compartidos |
+
+## Productividad y operaciones
+
+| Plataforma | Tipo | Uso comun |
+|---|---|---|
+| **Google Calendar** | via HTTP | Citas, reservas, agenda |
+| **Google Workspace** | via HTTP | Gmail, Drive, Sheets |
+| **Microsoft 365** | via HTTP | Outlook, Excel Online, SharePoint |
+| **Calendly** | via HTTP | Bookings, sync |
+| **Linear** | via HTTP | Tracking de issues internas |
+| **Jira** | via HTTP | Project management |
+
+---
+
+## No encuentras tu integracion?
+
+Cualquier sistema que tenga **API REST** se conecta con Puente OS — basta configurar el nodo HTTP en Workflows con tu endpoint y autenticacion.
+
+Si tu sistema tiene una API **inusual** (SOAP, file-based, FTP, propietaria), podemos discutir conector custom. Escribenos a [soporte@puente.app](mailto:soporte@puente.app) con el caso.
+
+<CardGroup cols={2}>
+  <Card title="Como conecto via HTTP" icon="globe" href="/componentes/workflows">
+    Documentacion del nodo HTTP en Workflows: auth, params, body, importar desde cURL.
+  </Card>
+  <Card title="Casos de uso reales" icon="briefcase" href="/casos-de-uso">
+    Ejemplos por vertical: retail, eCommerce, logistica.
+  </Card>
+</CardGroup>

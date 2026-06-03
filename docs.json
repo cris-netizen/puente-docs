@@ -51,6 +51,21 @@
             ]
           },
           {
+            "group": "Recursos",
+            "pages": [
+              "integraciones",
+              "casos-de-uso",
+              "comparativas"
+            ]
+          },
+          {
+            "group": "Enterprise",
+            "pages": [
+              "seguridad",
+              "enterprise"
+            ]
+          },
+          {
             "group": "Preguntas frecuentes",
             "pages": [
               "faq"

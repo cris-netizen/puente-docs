@@ -1,0 +1,194 @@
+---
+title: "Enterprise"
+description: "Capabilities enterprise actuales, roadmap publico con fechas comprometidas, y como evaluar Puente OS para tu organizacion."
+icon: "building"
+---
+
+Esta pagina es para equipos de IT, Seguridad y Compras que estan evaluando Puente OS para una organizacion mid-market o grande. Aqui declaramos **que tenemos hoy** y **que viene cuando**, con fechas comprometidas.
+
+<Note>
+  Si tu evaluacion incluye un security questionnaire formal, escribenos a [soporte@puente.app](mailto:soporte@puente.app) — te enviamos el documento completo con detalle por dominio.
+</Note>
+
+---
+
+## Disponible hoy
+
+### Arquitectura
+
+- Multi-tenancy estricto a nivel Workspace (data del cliente A nunca accesible desde cliente B)
+- Hosting en Google Cloud Platform (GCP) region `southamerica-west1` (Santiago)
+- High availability automatico dentro de region
+- Encriptacion AES-256 en reposo, TLS 1.3 en transito (defaults GCP)
+
+### Autenticacion
+
+- Login con email/password
+- OAuth con Google y Microsoft
+- MFA via OAuth provider del usuario
+
+### Gestion de usuarios
+
+- Roles a nivel Workspace y Team
+- Invitacion y desactivacion de miembros
+- Workspace-level access control
+
+### Operacional
+
+- Backups automaticos diarios (retencion 30 dias)
+- Point-in-time recovery hasta 7 dias
+- Page de status publica: [status.puente.app](https://status.puente.app)
+- Soporte por email: respuesta < 24h habiles
+
+### Privacidad
+
+- Tu data nunca se usa para entrenar modelos de IA
+- Model-agnostic — eliges que provider de IA usar (OpenAI, Anthropic, Google, etc.)
+- Borrado completo bajo solicitud en 30 dias
+- Export completo de datos en cualquier momento (CSV + JSON + ZIP)
+
+Ver detalles tecnicos en [Seguridad](/seguridad).
+
+---
+
+## Roadmap publico
+
+Las fechas abajo son **commitments** no aspiraciones. Las publicamos para que tu equipo de IT pueda planificar.
+
+<Note>
+  Las fechas indicadas son de disponibilidad en plan Enterprise. Si tu evaluacion requiere alguna capability antes de su fecha, escribenos — podemos discutir piloto adelantado bajo condiciones.
+</Note>
+
+### Q3 2026 — Enterprise readiness minimo
+
+Foco: pasar el checklist de IT del comprador mid-market LATAM.
+
+| Capability | Estado |
+|---|---|
+| **SSO via SAML 2.0** | En desarrollo |
+| **SSO con Okta** (config nativa) | En desarrollo |
+| **SSO con Microsoft Entra ID / Azure AD** | En desarrollo |
+| **RBAC granular** (permisos a nivel Project/Build/Database) | En desarrollo |
+| **Audit logs consultables** (quien hizo que, cuando, sobre que recurso) | En desarrollo |
+| **Filtros y export de audit logs** (CSV, JSON) | En desarrollo |
+| **Secrets management** (vault para credenciales de Workflow) | En desarrollo |
+| **Documentacion enterprise** (security whitepaper, DPA template) | Disponible bajo solicitud, publicacion Q3 |
+
+### Q4 2026 — Diferenciacion tecnica
+
+Foco: ser opcion defendible en deals donde el cliente evalua 2-3 herramientas.
+
+| Capability | Estado |
+|---|---|
+| **Multi-environment** (dev/staging/prod con promocion entre ambientes) | En diseño |
+| **Branches y draft mode para Apps** | En diseño |
+| **MCP Server nativo** (reemplaza skill markdown actual, mantiene compatibilidad) | En diseño |
+| **Checkpoints de generaciones de IA** (rollback a generacion previa del Agent) | En diseño |
+| **Export de logs a sistema externo** (SIEM, Datadog, Splunk via webhook) | En diseño |
+| **Inicio de proceso SOC 2 Type 1** (auditor seleccionado, evidencia 6 meses) | Planificado |
+| **Pagina publica de arquitectura tecnica** | En redaccion |
+
+### Q1 2027 — Expansion y escala
+
+Foco: vender a empresas US y a accounts grandes LATAM con requisitos avanzados.
+
+| Capability | Estado |
+|---|---|
+| **SOC 2 Type 2 completado** | En proceso (tras 6 meses de evidencia) |
+| **Hybrid deployment** (data en VPC del cliente, control plane en Puente) | En diseño |
+| **SCIM 2.0** (provisioning automatico de usuarios via Okta/Entra) | En diseño |
+| **Embed SDK** (apps Puente embebidas en sitios externos con SSO bidireccional) | En diseño |
+| **Knowledge System** (contexto persistente para Agents IA a nivel Project) | En diseño |
+| **Custom data residency** (deployment en region especifica bajo Enterprise) | En diseño |
+| **Terraform provider** (si 2+ clientes lo piden) | Evaluando demanda |
+
+### Futuro (2027+)
+
+| Capability | Estado |
+|---|---|
+| **ISO 27001** | Evaluando timeline post-SOC 2 |
+| **Self-hosted completo** (Cloud-Prem con K8s/ECS) | Evaluando — solo si hay deals que lo justifiquen |
+| **HIPAA compliance** | No planificado — fuera de ICP |
+| **Open source del core** | No planificado |
+
+---
+
+## Como compramos enterprise?
+
+### Pricing
+
+El plan **Enterprise** se cobra por:
+
+- **Workspace** (base mensual)
+- **Members activos** (tier-based)
+- **Builds productivos** (Apps + Agents + Workflows + Databases activos)
+
+Plus capabilities especificas (custom region, dedicated support, SLA upgrade) bajo cotizacion.
+
+Para una propuesta especifica, agenda con nuestro equipo: [soporte@puente.app](mailto:soporte@puente.app).
+
+### Proceso de evaluacion
+
+Tipico (4-8 semanas):
+
+<Steps>
+  <Step title="Discovery call (1 hora)">
+    Entendemos tu organizacion, tus procesos prioritarios, tus integraciones criticas, tus requisitos de IT.
+  </Step>
+  <Step title="Strategic Discovery (1 semana, paga)">
+    Mapeo profundo de procesos a automatizar + backlog de Builds priorizado + Strategic Map del cliente.
+  </Step>
+  <Step title="Due diligence IT/Seguridad (1-2 semanas)">
+    Tu equipo de IT/Seguridad revisa nuestro security questionnaire, DPA, arquitectura. Respondemos lo que necesiten.
+  </Step>
+  <Step title="Piloto (4-6 semanas)">
+    Onboarding (Strategic Discovery → Initiatives Definition → Projects Mapping → Builds Scoping) + primeros 2-4 Builds productivos.
+  </Step>
+  <Step title="Build Cycle mensual">
+    Cadencia continua post-onboarding: cada Cycle entrega N Builds promovidos a Live.
+  </Step>
+</Steps>
+
+### Soporte enterprise
+
+- Email dedicado: SLA < 4 horas habiles
+- Slack compartido con tu equipo (opcional)
+- Customer Success Manager asignado
+- Build Cycle review mensual
+- Roadmap input prioritario (tu pides → entra al roadmap publico)
+
+---
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="Que pasa si necesito SSO SAML antes de Q3 2026?">
+    Hoy soportamos OAuth con Google y Microsoft, lo que cubre la mayoria de organizaciones que usan Workspace o 365. Si tu organizacion requiere SAML estricto antes de Q3 2026, escribenos — podemos discutir piloto temprano con configuracion manual.
+  </Accordion>
+  <Accordion title="Tienen certificacion SOC 2 vigente hoy?">
+    No. SOC 2 Type 1 esta en proceso para Q4 2026, Type 2 para Q1 2027. Si tu organizacion exige certificacion vigente para firmar, considera empezar con Strategic Discovery y piloto no productivo mientras corremos la certificacion en paralelo.
+  </Accordion>
+  <Accordion title="Pueden hostear en otra region distinta a Santiago?">
+    Hoy `southamerica-west1` es la unica region productiva. Para clientes con requisito de US/EU, hosting en region especifica esta en roadmap Q1 2027 bajo plan Enterprise.
+  </Accordion>
+  <Accordion title="Puedo tener un DPA (Data Processing Agreement) custom?">
+    Si. Tenemos plantilla base + soporte para clausulas custom en plan Enterprise. Solicita via [soporte@puente.app](mailto:soporte@puente.app).
+  </Accordion>
+  <Accordion title="Que SLA ofrecen?">
+    Hoy soportamos best-effort con respuesta < 24h habiles. SLA formal (99.9% uptime, < 4h respuesta) viene con plan Enterprise — verifica condiciones especificas con nuestro equipo comercial.
+  </Accordion>
+  <Accordion title="Puente OS es publico/abierto?">
+    No es open source. El core es propietario. Algunos componentes (skill markdown de Studio, ejemplos de Workflows) si los publicamos como referencia en repos publicos.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<CardGroup cols={2}>
+  <Card title="Hablemos con tu equipo" icon="envelope" href="mailto:soporte@puente.app?subject=Enterprise%20evaluation">
+    soporte@puente.app — respondemos en < 24h habiles.
+  </Card>
+  <Card title="Detalles de seguridad" icon="shield-check" href="/seguridad">
+    Encriptacion, backups, compliance, privacidad.
+  </Card>
+</CardGroup>

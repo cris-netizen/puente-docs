@@ -25,10 +25,15 @@ docs-puente/
 │   ├── setup.mdx               # Setup local del CLI
 │   ├── coding-agents.mdx       # Uso con Claude Code, Cursor, ChatGPT
 │   └── api-reference.mdx       # Referencia completa de endpoints REST
+├── integraciones.mdx           # 50+ plataformas LATAM por categoria
+├── casos-de-uso.mdx            # Procesos reales por vertical (retail, eCom, logistica)
+├── comparativas.mdx            # vs Defontana Apps, Bsale Apps, Retool, no-code
+├── seguridad.mdx               # Encriptacion, hosting GCP, backups, privacidad
+├── enterprise.mdx              # Roadmap publico SSO/RBAC/SOC 2 con fechas
 └── faq.mdx                     # Preguntas frecuentes (sincronizadas con sitio web)
 ```
 
-13 paginas en total + config.
+18 paginas en total + config.
 
 ## Nomenclatura canonica (Puente OS Blueprint)
 
