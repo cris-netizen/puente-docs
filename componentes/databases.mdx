@@ -4,6 +4,10 @@ description: "Datos persistentes con schema, asistente IA, tipos de columna avan
 icon: "table"
 ---
 
+<Frame>
+  ![Screenshot 2026 06 03 At 3 46 27 PM](/images/Screenshot-2026-06-03-at-3.46.27-PM.png)
+</Frame>
+
 **Databases** es el Build type para datos persistentes en Puente OS. Cada Database tiene un schema tipado (columnas con tipo), se conecta automáticamente a Apps y Workflows del workspace, y se edita visualmente desde el módulo **Tables**.
 
 <Note>
@@ -14,10 +18,16 @@ icon: "table"
 
 <Steps>
   <Step title="Abre el editor Tables">
-    Desde el panel de Componentes de un Project → **+ Nuevo** → **Database**.
+    Desde el panel de Componentes de un Project → **\+ Nuevo** → **Database**.
+  </Step>
+  <Step title="Define el schema">
+    Click en el boton **`+`** del encabezado para agregar la primera columna. Dale nombre, elige el tipo y confirma. La tabla se crea en el backend con esa primera columna.
   </Step>
   <Step title="Define el schema">
     Click en el botón **`+`** del encabezado para agregar la primera columna. Dale nombre, elige el tipo y confirma. La tabla se crea en el backend con esa primera columna.
+  </Step>
+  <Step title="Agrega mas columnas">
+    Repite el paso anterior para cada columna que necesites. Tambien puedes importar todo de una via CSV.
   </Step>
   <Step title="Agrega más columnas">
     Repite el paso anterior para cada columna que necesites. También puedes importar todo de una vía CSV.
@@ -25,7 +35,7 @@ icon: "table"
 </Steps>
 
 <Note>
-  El nombre interno (`key`) se genera automáticamente en snake_case. El nombre visible (label) puedes cambiarlo después sin afectar la integración.
+  El nombre interno (`key`) se genera automáticamente en snake\_case. El nombre visible (label) puedes cambiarlo después sin afectar la integración.
 </Note>
 
 ---
@@ -33,7 +43,7 @@ icon: "table"
 ## Tipos de columna
 
 | Tipo | Cómo se muestra | Cómo se edita | Ejemplo |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Texto** | Texto plano | Input inline | `"MacBook Pro"` |
 | **Número** | Alineado a la derecha | Input numérico | `2499.99` |
 | **Fecha** | `DD/MM/YYYY` | Date picker | `2026-02-15` |
@@ -52,10 +62,16 @@ icon: "table"
 
 <Steps>
   <Step title="Click en Import CSV">
+    En la toolbar. Si la Database esta vacia, tambien aparece **"Crear desde CSV"** en el estado vacio.
+  </Step>
+  <Step title="Click en Import CSV">
     En la toolbar. Si la Database está vacía, también aparece **"Crear desde CSV"** en el estado vacío.
   </Step>
   <Step title="Sube el archivo">
     Arrastra el CSV o haz click para seleccionar. Soporta delimitadores `,` y `;`.
+  </Step>
+  <Step title="Revisa las columnas detectadas">
+    El sistema detecta automaticamente el tipo de cada columna. Puedes corregir cualquier tipo antes de confirmar. Se muestra una preview con las primeras 5 filas.
   </Step>
   <Step title="Revisa las columnas detectadas">
     El sistema detecta automáticamente el tipo de cada columna. Puedes corregir cualquier tipo antes de confirmar. Se muestra una preview con las primeras 5 filas.
@@ -72,7 +88,7 @@ icon: "table"
 ### Detección automática de tipos
 
 | Tipo detectado | Patrón |
-|---|---|
+| --- | --- |
 | `boolean` | `true`/`false`/`si`/`no`/`1`/`0` |
 | `number` | Todos los valores numéricos |
 | `date` | `YYYY-MM-DD`, `DD/MM/YYYY` |
@@ -84,7 +100,7 @@ icon: "table"
 
 ### Agregar fila
 
-Click en **+ New Row** en la toolbar. Se abre un modal con todos los campos. Completa y confirma.
+Click en **\+ New Row** en la toolbar. Se abre un modal con todos los campos. Completa y confirma.
 
 ### Editar celda
 
@@ -93,7 +109,7 @@ Click directo en cualquier celda. La celda entra en modo edición según el tipo
 ### Eliminar filas
 
 | Caso | Cómo |
-|---|---|
+| --- | --- |
 | **Una fila** | Click en el icono de papelera al final de la fila, luego confirma |
 | **Varias filas** | Selecciona con checkboxes → click en **Eliminar seleccionadas** → confirma |
 
@@ -134,7 +150,7 @@ Campo **Search…** en la toolbar. Opera sobre todas las columnas visibles simul
 Click en **Filter** → agrega condiciones con `+`. Para cada condición elige columna y operador:
 
 | Operador | Tipos | Descripción |
-|---|---|---|
+| --- | --- | --- |
 | `contains` | texto | El valor contiene el texto |
 | `not_contains` | texto | El valor NO contiene el texto |
 | `is` | todos | Igual exacto |
@@ -168,7 +184,7 @@ Click en **IA** en la barra superior derecha. El panel ocupa 320px a la derecha.
 
 Pregúntale cosas como:
 
-```
+```text
 ¿Cuántas filas tienen el precio mayor a 1000?
 ¿Qué productos están activos?
 Muéstrame un resumen de los datos
@@ -193,7 +209,7 @@ Click en **Export** en la toolbar. Se descarga un CSV con:
 ## Paginación vs Scroll infinito
 
 |  | **Paginación** | **Scroll infinito** |
-|---|---|---|
+| --- | --- | --- |
 | Navegación | Botones Anterior / Siguiente / página directa | Scroll carga más filas automáticamente |
 | Carga inicial | Filas según `pageSize` (default 10) | 3,000 filas |
 | Carga adicional | Al llegar a la última página | Al scrollear al final, carga 3,000 más |
@@ -201,7 +217,7 @@ Click en **Export** en la toolbar. Se descarga un CSV con:
 ### Configuración de paginación
 
 | Prop | Default | Descripción |
-|---|---|---|
+| --- | --- | --- |
 | `pageSize` | `10` | Filas por página |
 | `pageSizeOptions` | `[10, 25, 50, 100]` | Opciones del selector |
 
@@ -215,6 +231,7 @@ Las Databases son **first-class citizens** del workspace. Cualquier App o Workfl
   <Card title="Conectar a una App" icon="window" href="/componentes/app-builder#conectar-databases">
     Desde el tab Datos del App Builder, selecciona tu Database y mapea columnas. La App deja de usar datos mock.
   </Card>
+
   <Card title="Trigger de Workflow" icon="diagram-project" href="/componentes/workflows">
     Configura un Workflow para que se dispare cuando una fila cambie, se agregue o se elimine.
   </Card>
@@ -228,12 +245,15 @@ Las Databases son **first-class citizens** del workspace. Cualquier App o Workfl
   <Accordion title="¿Hay límite de filas por Database?">
     No hay límite duro. La importación CSV está capada en 10,000 filas por archivo. Para datasets de millones de filas, escribe a soporte para discutir opciones.
   </Accordion>
+
   <Accordion title="¿Puedo restaurar una fila eliminada?">
     No. La eliminación es irreversible. Si necesitas auditoría, considera agregar una columna `estado` con un valor `archivado` en vez de eliminar.
   </Accordion>
+
   <Accordion title="¿Qué pasa si cambio el tipo de una columna que ya tiene datos?">
     El sistema intenta convertir los valores existentes. Si un valor no se puede convertir, queda como `null` y se te notifica antes de confirmar.
   </Accordion>
+
   <Accordion title="¿Las Databases tienen historial de cambios?">
     No en el editor visual. Si necesitas auditoría, configura un Workflow con trigger en `rowAdd`/`cellChange` que guarde el cambio en otra Database de historial.
   </Accordion>

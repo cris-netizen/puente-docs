@@ -4,6 +4,10 @@ description: "Construye aplicaciones web describiéndolas en lenguaje natural. L
 icon: "app-window"
 ---
 
+<Frame>
+  ![Screenshot 2026 06 03 At 3 44 39 PM](/images/Screenshot-2026-06-03-at-3.44.39-PM.png)
+</Frame>
+
 **App Builder** es el constructor de aplicaciones web de Puente OS. Describes lo que quieres en lenguaje natural, el sistema genera React \+ TypeScript, lo compila en tu navegador y te muestra una preview funcional. Después puedes iterar vía chat, editar código directamente o usar el modo Inspect para editar elementos haciendo click.
 
 ## Crear tu primera app
@@ -11,6 +15,21 @@ icon: "app-window"
 <Steps>
   <Step title="Abre App Builder">
     Desde el panel de Componentes de un proyecto, click en **\+ Nuevo** y luego en **App**.
+  </Step>
+  <Step title="Describe lo que quieres">
+    Escribe en el textarea de la pantalla de inicio. Algunos ejemplos:
+
+    ```text
+    Un CRM simple con lista de clientes, oportunidades y dashboard con metricas
+    
+    App de gestion de inventario con tabla de productos, filtros y formulario
+    
+    Tablero Kanban para gestionar tasks con columnas To Do, In Progress y Done
+    ```
+
+    <Tip>
+      Click en **Mejorar** y la IA reformulara tu prompt agregandole detalle.
+    </Tip>
   </Step>
   <Step title="Describe lo que quieres">
     Escribe en el textarea de la pantalla de inicio. Algunos ejemplos:
@@ -26,6 +45,9 @@ icon: "app-window"
     <Tip>
       Click en **Mejorar** y la IA reformulará tu prompt agregándole detalle.
     </Tip>
+  </Step>
+  <Step title="Envia y espera la preview">
+    Presiona el boton de enviar o `Enter`. El sistema genera nombre, archivos de codigo, compila y muestra preview en 15-45 segundos.
   </Step>
   <Step title="Envía y espera la preview">
     Presiona el botón de enviar o `Enter`. El sistema genera nombre, archivos de código, compila y muestra preview en 15-45 segundos.
@@ -151,6 +173,9 @@ Disponible cuando estás en el tab **Code**.
     Se identifica el componente React y se muestran sus props editables en el panel izquierdo.
   </Step>
   <Step title="Aplica los cambios">
+    Click en **Apply Changes** — el codigo se actualiza y el preview se recompila.
+  </Step>
+  <Step title="Aplica los cambios">
     Click en **Apply Changes** — el código se actualiza y el preview se recompila.
   </Step>
 </Steps>
@@ -162,6 +187,9 @@ Disponible cuando estás en el tab **Code**.
 App Builder puede leer y escribir Databases del workspace en lugar de usar datos mock.
 
 <Steps>
+  <Step title="Ve al tab Datos">
+    En el menu superior del editor.
+  </Step>
   <Step title="Ve al tab Datos">
     En el menú superior del editor.
   </Step>
@@ -186,7 +214,13 @@ App Builder puede leer y escribir Databases del workspace en lugar de usar datos
 
 <Steps>
   <Step title="Click en Compartir">
+    Boton en la esquina superior derecha.
+  </Step>
+  <Step title="Click en Compartir">
     Botón en la esquina superior derecha.
+  </Step>
+  <Step title="Configura el acceso">
+    Elige entre: workspace (solo miembros), publico (cualquiera con el link), o por dominio.
   </Step>
   <Step title="Configura el acceso">
     Elige entre: workspace (solo miembros), público (cualquiera con el link), o por dominio.

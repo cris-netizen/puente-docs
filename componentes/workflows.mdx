@@ -4,31 +4,11 @@ description: "Constructor visual de automatizaciones con triggers, código Pytho
 icon: "workflow"
 ---
 
+<Frame>
+  ![Screenshot 2026 06 03 At 3 49 33 PM](/images/Screenshot-2026-06-03-at-3.49.33-PM.png)
+</Frame>
+
 **Workflows** es el constructor visual de automatizaciones de Puente OS. Diseñas el flujo arrastrando nodos en un canvas, los conectas con líneas, configuras cada paso con formularios dinámicos o código Python, y los ejecutas con un trigger manual, webhook o cron.
-
-## Anatomía del canvas
-
-```text
-┌─────────────────────────────────────────────────────────────┐
-│  Volver   Nombre del escenario              [Activo]        │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│   ┌──────────────┐                                          │
-│   │   Trigger    │   Nodo de inicio (siempre arriba)        │
-│   └──────┬───────┘                                          │
-│          │                                                  │
-│   ┌──────┴───────┐                                          │
-│   │    Acción    │                                          │
-│   └──────┬───────┘                                          │
-│          │                                                  │
-│   ┌──────┴───────┐                                          │
-│   │  </> Código  │                                          │
-│   └──────────────┘                                          │
-│                                                             │
-├─────────────────────────────────────────────────────────────┤
-│  [IA] [+ Paso] [Alinear] [Comentario] [Guardar] [Ejecutar] │
-└─────────────────────────────────────────────────────────────┘
-```
 
 ### Navegación
 
@@ -209,6 +189,9 @@ Click en **`{ } Variables`** en cualquier campo y se abre el picker con todos lo
   </Step>
   <Step title="Arrastra de salida a entrada">
     Pasa el cursor sobre el handle de salida, haz click y arrastra hacia el handle de entrada del siguiente nodo.
+  </Step>
+  <Step title="Suelta">
+    La conexion se crea con estilo `smoothstep`.
   </Step>
   <Step title="Suelta">
     La conexión se crea con estilo `smoothstep`.
