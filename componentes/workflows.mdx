@@ -1,12 +1,12 @@
 ---
 title: "Workflows"
-description: "Constructor visual de automatizaciones con triggers, codigo Python, agentes IA y peticiones HTTP integrado al workspace."
+description: "Constructor visual de automatizaciones con triggers, código Python, agentes IA y peticiones HTTP integrado al workspace."
 icon: "workflow"
 ---
 
-**Workflows** es el constructor visual de automatizaciones de Puente OS. Diseñas el flujo arrastrando nodos en un canvas, los conectas con lineas, configuras cada paso con formularios dinamicos o codigo Python, y los ejecutas con un trigger manual, webhook o cron.
+**Workflows** es el constructor visual de automatizaciones de Puente OS. Diseñas el flujo arrastrando nodos en un canvas, los conectas con líneas, configuras cada paso con formularios dinámicos o código Python, y los ejecutas con un trigger manual, webhook o cron.
 
-## Anatomia del canvas
+## Anatomía del canvas
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -18,11 +18,11 @@ icon: "workflow"
 │   └──────┬───────┘                                          │
 │          │                                                  │
 │   ┌──────┴───────┐                                          │
-│   │    Accion    │                                          │
+│   │    Acción    │                                          │
 │   └──────┬───────┘                                          │
 │          │                                                  │
 │   ┌──────┴───────┐                                          │
-│   │  </> Codigo  │                                          │
+│   │  </> Código  │                                          │
 │   └──────────────┘                                          │
 │                                                             │
 ├─────────────────────────────────────────────────────────────┤
@@ -30,13 +30,13 @@ icon: "workflow"
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Navegacion
+### Navegación
 
-| Accion | Como |
+| Acción | Cómo |
 | --- | --- |
 | Mover el canvas | Click y arrastra el fondo |
 | Hacer zoom | Rueda del mouse sobre el canvas |
-| Centrar vista | Boton de controls (esquina inferior izquierda) |
+| Centrar vista | Botón de controls (esquina inferior izquierda) |
 | Mover un nodo | Click y arrastra el nodo |
 | Seleccionar nodo | Click en el nodo |
 
@@ -49,7 +49,7 @@ icon: "workflow"
     Punto de inicio del flujo. Manual, Webhook o Cron.
   </Card>
 
-  <Card title="Accion" icon="plug">
+  <Card title="Acción" icon="plug">
     Integraciones predefinidas (email, HTTP, databases, etc).
   </Card>
 
@@ -57,7 +57,7 @@ icon: "workflow"
     Peticiones HTTP con import desde cURL.
   </Card>
 
-  <Card title="Codigo Python" icon="code">
+  <Card title="Código Python" icon="code">
     Sandbox Python con asistente IA integrado.
   </Card>
 
@@ -66,7 +66,7 @@ icon: "workflow"
   </Card>
 
   <Card title="Comentario" icon="note">
-    Anotacion visual para documentar el flujo.
+    Anotación visual para documentar el flujo.
   </Card>
 </CardGroup>
 
@@ -74,15 +74,15 @@ icon: "workflow"
 
 ## Trigger — el punto de inicio
 
-Solo puede existir **un trigger** por flujo. No se puede eliminar (icono de candado). Define como se dispara el flujo:
+Solo puede existir **un trigger** por flujo. No se puede eliminar (icono de candado). Define cómo se dispara el flujo:
 
 ### Trigger Manual (Run Once)
 
-Sin configuracion adicional. Se dispara con el boton **Ejecutar** en la toolbar. Util para flujos one-shot o testing.
+Sin configuración adicional. Se dispara con el botón **Ejecutar** en la toolbar. Útil para flujos one-shot o testing.
 
 ### Trigger Webhook
 
-Genera una URL que puedes registrar en sistemas externos. Cualquier `POST` a esa URL dispara el flujo. El body de la peticion queda disponible como `{{trigger_data}}` en los nodos siguientes.
+Genera una URL que puedes registrar en sistemas externos. Cualquier `POST` a esa URL dispara el flujo. El body de la petición queda disponible como `{{trigger_data}}` en los nodos siguientes.
 
 <Warning>
   El workflow debe estar **guardado** antes de que la URL del webhook sea funcional.
@@ -90,33 +90,33 @@ Genera una URL que puedes registrar en sistemas externos. Cualquier `POST` a esa
 
 ### Trigger Schedule (Cron)
 
-| Campo | Descripcion |
+| Campo | Descripción |
 | --- | --- |
-| **Expresion Cron** | Define cuando se ejecuta (`0 9 * * 1-5` = lunes a viernes a las 9:00 AM) |
+| **Expresión Cron** | Define cuándo se ejecuta (`0 9 * * 1-5` = lunes a viernes a las 9:00 AM) |
 | **Timezone** | Zona horaria (ej. `America/Santiago`, `America/Mexico_City`) |
 
-Para activar el cron, el flujo debe estar guardado. Al hacer click en **Activar** se registra automaticamente en el backend.
+Para activar el cron, el flujo debe estar guardado. Al hacer click en **Activar** se registra automáticamente en el backend.
 
 ---
 
-## Nodos de Accion
+## Nodos de Acción
 
-Cada nodo de Accion ejecuta una integracion predefinida (enviar email, escribir en una database, peticion HTTP, etc.). Al hacer click en el icono de lapiz para editar se abre un panel con:
+Cada nodo de Acción ejecuta una integración predefinida (enviar email, escribir en una database, petición HTTP, etc.). Al hacer click en el icono de lápiz para editar se abre un panel con:
 
-| Tipo de campo | Como se muestra |
+| Tipo de campo | Cómo se muestra |
 | --- | --- |
 | `string` | Textarea con Variable Picker |
-| `number` | Input numerico |
+| `number` | Input numérico |
 | `dropdown` | Select con opciones |
 | `boolean` | Toggle |
 | `json` | Textarea monospace |
-| `credential` | Input password con boton para mostrar/ocultar |
+| `credential` | Input password con botón para mostrar/ocultar |
 
 Click en **Guardar** para guardar sin ejecutar, o **Ejecutar** para correr ese nodo aislado.
 
 ---
 
-## Nodo de Codigo (Python)
+## Nodo de Código (Python)
 
 Sandbox Python con syntax highlighting. Ejecuta el script de forma segura.
 
@@ -138,7 +138,7 @@ else:
 
 ### Asistente IA en el nodo
 
-El editor incluye un asistente IA que puede generar o modificar codigo segun lo que describas. Util para no escribir Python desde cero.
+El editor incluye un asistente IA que puede generar o modificar código según lo que describas. Útil para no escribir Python desde cero.
 
 ---
 
@@ -150,18 +150,18 @@ Ejecuta un prompt contra un modelo de lenguaje. Dos modos:
   <Tab title="Smart Mode">
     Formulario estructurado con campos:
 
-    - **Rol** — quien es el agente
-    - **Tarea** — que debe hacer
+    - **Rol** — quién es el agente
+    - **Tarea** — qué debe hacer
     - **Contexto** — datos necesarios
-    - **Restricciones** — que NO hacer
+    - **Restricciones** — qué NO hacer
     - **Output** — formato esperado
 
-    Util para prompts complejos donde quieres separacion clara.
+    Útil para prompts complejos donde quieres separación clara.
   </Tab>
   <Tab title="Manual Mode">
     Textarea libre. Escribes el prompt completo como quieras.
 
-    Util para iterar rapido o cuando ya tienes el prompt afinado.
+    Útil para iterar rápido o cuando ya tienes el prompt afinado.
   </Tab>
 </Tabs>
 
@@ -177,7 +177,7 @@ Todos los campos de texto soportan referencias a outputs de nodos anteriores.
 {{nombre_del_nodo_N.campo.subcampo}}
 ```
 
-Donde `nombre_del_nodo_N` es el **context key**: `label` \+ `_` \+ numero de secuencia.
+Donde `nombre_del_nodo_N` es el **context key**: `label` \+ `_` \+ número de secuencia.
 
 | Nodo | Label | Nº secuencia | Context Key |
 | --- | --- | --- | --- |
@@ -197,7 +197,7 @@ Destinatario: {{fetch_datos_1.email}}
 
 ### Variable Picker
 
-Click en **`{ } Variables`** en cualquier campo y se abre el picker con todos los outputs disponibles de nodos upstream. Selecciona uno y se inserta automaticamente.
+Click en **`{ } Variables`** en cualquier campo y se abre el picker con todos los outputs disponibles de nodos upstream. Selecciona uno y se inserta automáticamente.
 
 ---
 
@@ -211,7 +211,7 @@ Click en **`{ } Variables`** en cualquier campo y se abre el picker con todos lo
     Pasa el cursor sobre el handle de salida, haz click y arrastra hacia el handle de entrada del siguiente nodo.
   </Step>
   <Step title="Suelta">
-    La conexion se crea con estilo `smoothstep`.
+    La conexión se crea con estilo `smoothstep`.
   </Step>
 </Steps>
 
@@ -220,12 +220,12 @@ Click en **`{ } Variables`** en cualquier campo y se abre el picker con todos lo
 | Color | Significado |
 | --- | --- |
 | Borde oscuro | Estado normal |
-| Verde | Conexion valida (mientras arrastras) |
-| Rojo | Conexion invalida |
+| Verde | Conexión válida (mientras arrastras) |
+| Rojo | Conexión inválida |
 
-### Eliminar una conexion
+### Eliminar una conexión
 
-Click en la linea y presiona `Delete` o `Backspace`.
+Click en la línea y presiona `Delete` o `Backspace`.
 
 ---
 
@@ -233,26 +233,26 @@ Click en la linea y presiona `Delete` o `Backspace`.
 
 ### Primer guardado
 
-Al guardar por primera vez (boton **Guardar** o `Cmd/Ctrl + S`):
+Al guardar por primera vez (botón **Guardar** o `Cmd/Ctrl + S`):
 
 1. Se crea el flujo en el backend
-2. Se asigna un `scenario_id` (version 1)
+2. Se asigna un `scenario_id` (versión 1)
 3. Aparece la pill superior con el nombre editable
 
 ### Guardados posteriores
 
-Cada guardado crea una **nueva version** del mismo flujo (v2, v3, etc.). La version mas reciente es la activa por defecto.
+Cada guardado crea una **nueva versión** del mismo flujo (v2, v3, etc.). La versión más reciente es la activa por defecto.
 
 ### Estado activo/inactivo
 
-| Estado | Descripcion |
+| Estado | Descripción |
 | --- | --- |
-| `draft` | Borrador — en construccion |
-| `active` | Habilitado para ejecucion desde sistemas externos |
+| `draft` | Borrador — en construcción |
+| `active` | Habilitado para ejecución desde sistemas externos |
 | `inactive` | Deshabilitado temporalmente |
 
 <Note>
-  Para triggers de tipo **Schedule**, activar el flujo registra el cron automaticamente. Antes de activar, asegurate de tener el flujo guardado.
+  Para triggers de tipo **Schedule**, activar el flujo registra el cron automáticamente. Antes de activar, asegúrate de tener el flujo guardado.
 </Note>
 
 ---
@@ -261,10 +261,10 @@ Cada guardado crea una **nueva version** del mismo flujo (v2, v3, etc.). La vers
 
 Click en **Ejecutar** en la toolbar inferior.
 
-### Que ocurre
+### Qué ocurre
 
 1. El canvas se bloquea con overlay "Ejecutando…"
-2. El backend ejecuta los nodos en orden topologico
+2. El backend ejecuta los nodos en orden topológico
 3. Cada nodo pasa por los estados `pending`, `running`, `completed` o `failed`
 4. Al finalizar se muestran los resultados
 
@@ -279,7 +279,7 @@ Cada nodo tiene un setting `on_error`:
 
 ### Ejecutar nodos individualmente
 
-Desde el panel de cualquier nodo (click en el icono de lapiz para editar y luego **Ejecutar**), puedes correr ese nodo aislado. Util para testing iterativo. El resultado queda disponible como variable para los nodos siguientes en la sesion.
+Desde el panel de cualquier nodo (click en el icono de lápiz para editar y luego **Ejecutar**), puedes correr ese nodo aislado. Útil para testing iterativo. El resultado queda disponible como variable para los nodos siguientes en la sesión.
 
 ---
 
@@ -287,16 +287,16 @@ Desde el panel de cualquier nodo (click en el icono de lapiz para editar y luego
 
 ### Resultados
 
-Aparece automaticamente al ejecutar un nodo. Muestra:
+Aparece automáticamente al ejecutar un nodo. Muestra:
 
-- **Resultado** — Output en JSON con arbol interactivo
+- **Resultado** — Output en JSON con árbol interactivo
 - **Logs** — stdout y stderr
-- **Error** — mensaje de error si fallo
-- **Historial** — ejecuciones anteriores del nodo en la sesion
+- **Error** — mensaje de error si falló
+- **Historial** — ejecuciones anteriores del nodo en la sesión
 
 ### Historial completo
 
-Accede desde el boton **Historial** en la toolbar. Lista todas las ejecuciones del flujo en el backend, ordenadas de mas reciente a mas antigua.
+Accede desde el botón **Historial** en la toolbar. Lista todas las ejecuciones del flujo en el backend, ordenadas de más reciente a más antigua.
 
 ---
 
@@ -304,12 +304,12 @@ Accede desde el boton **Historial** en la toolbar. Lista todas las ejecuciones d
 
 Click en **IA** en la toolbar. Desliza un panel desde la derecha donde puedes:
 
-- **Generar un flujo completo** describiendolo en lenguaje natural
-- **Modificar nodos existentes** ("agrega un paso que envie un email")
-- **Debuggear** ("por que esta fallando el nodo 2?")
+- **Generar un flujo completo** describiéndolo en lenguaje natural
+- **Modificar nodos existentes** ("agrega un paso que envíe un email")
+- **Debuggear** ("¿por qué está fallando el nodo 2?")
 
 <Tip>
-  El asistente tiene contexto del flujo actual y de las integraciones disponibles. Mientras mas claro sea tu prompt, mejor el resultado.
+  El asistente tiene contexto del flujo actual y de las integraciones disponibles. Mientras más claro sea tu prompt, mejor el resultado.
 </Tip>
 
 ---
@@ -322,21 +322,21 @@ Marca cualquier nodo como **favorito** para reutilizarlo en otros flujos. Accede
 
 ## Importar y exportar escenarios
 
-| Accion | Como |
+| Acción | Cómo |
 | --- | --- |
-| **Exportar** | Toolbar inferior, click en **Exportar**, descarga JSON con la definicion del flujo |
+| **Exportar** | Toolbar inferior, click en **Exportar**, descarga JSON con la definición del flujo |
 | **Importar** | Toolbar inferior, click en **Importar**, sube el JSON o pega el contenido |
 
-Util para compartir flujos entre workspaces o respaldar versiones especificas.
+Útil para compartir flujos entre workspaces o respaldar versiones específicas.
 
 ---
 
-## Atajos utiles
+## Atajos útiles
 
-| Atajo | Accion |
+| Atajo | Acción |
 | --- | --- |
 | `Cmd/Ctrl + S` | Guardar |
-| `Delete` / `Backspace` | Eliminar nodo o conexion seleccionada |
+| `Delete` / `Backspace` | Eliminar nodo o conexión seleccionada |
 | `Cmd/Ctrl + Z` | Deshacer |
 | `Cmd/Ctrl + Shift + Z` | Rehacer |
 
@@ -345,23 +345,23 @@ Util para compartir flujos entre workspaces o respaldar versiones especificas.
 ## Preguntas frecuentes
 
 <AccordionGroup>
-  <Accordion title="Cuanto tiempo puede correr un flujo?">
-    Timeout default: 5 minutos por nodo. Para flujos largos, divide en multiples workflows encadenados via webhook.
+  <Accordion title="¿Cuánto tiempo puede correr un flujo?">
+    Timeout default: 5 minutos por nodo. Para flujos largos, divide en múltiples workflows encadenados vía webhook.
   </Accordion>
 
-  <Accordion title="Que pasa si el flujo falla a mitad?">
+  <Accordion title="¿Qué pasa si el flujo falla a mitad?">
     Depende del `on_error` de cada nodo. Por default (`Stop`), los nodos siguientes quedan en `pending` y el flujo se marca como `failed`. Puedes ver el error exacto en el panel de Resultados.
   </Accordion>
 
-  <Accordion title="Puedo programar reintentos automaticos?">
-    Si. En la configuracion de cada nodo de Accion puedes activar reintentos con backoff exponencial (max 3 intentos por default).
+  <Accordion title="¿Puedo programar reintentos automáticos?">
+    Sí. En la configuración de cada nodo de Acción puedes activar reintentos con backoff exponencial (max 3 intentos por default).
   </Accordion>
 
-  <Accordion title="Los workflows tienen rate limits?">
-    Si, por plan. Escribe a soporte para tu plan especifico. Triggers de tipo cron tienen frecuencia minima de 1 minuto.
+  <Accordion title="¿Los workflows tienen rate limits?">
+    Sí, por plan. Escribe a soporte para tu plan específico. Triggers de tipo cron tienen frecuencia mínima de 1 minuto.
   </Accordion>
 
-  <Accordion title="Como conecto un workflow a una database?">
-    Trigger: usa el subtipo **Fila modificada** o **Fila agregada** sobre la database que quieras observar. Accion: usa los nodos `Insertar fila`, `Actualizar fila` o `Leer filas` desde cualquier paso.
+  <Accordion title="¿Cómo conecto un workflow a una database?">
+    Trigger: usa el subtipo **Fila modificada** o **Fila agregada** sobre la database que quieras observar. Acción: usa los nodos `Insertar fila`, `Actualizar fila` o `Leer filas` desde cualquier paso.
   </Accordion>
 </AccordionGroup>

@@ -1,6 +1,6 @@
 # docs-puente
 
-Documentacion publica de Puente OS lista para deploy en **Mintlify**.
+Documentación pública de Puente OS lista para deploy en **Mintlify**.
 
 Destino sugerido: `docs.puente.app`
 
@@ -8,41 +8,41 @@ Destino sugerido: `docs.puente.app`
 
 ```
 docs-puente/
-├── mint.json                   # Config de navegacion, branding y theme
-├── introduction.mdx            # Landing — que es Puente OS + componentes
-├── quickstart.mdx              # Guia de 5 minutos: tabla + app + workflow
+├── mint.json                   # Config de navegación, branding y theme
+├── introduction.mdx            # Landing — qué es Puente OS + componentes
+├── quickstart.mdx              # Guía de 5 minutos: tabla + app + workflow
 ├── essentials/
 │   ├── conceptos.mdx           # Modelo mental: workspace, projects, builds
-│   └── glosario.mdx            # Diccionario de todos los terminos
+│   └── glosario.mdx            # Diccionario de todos los términos
 ├── componentes/
-│   ├── menu.mdx                # Panel central de navegacion
+│   ├── menu.mdx                # Panel central de navegación
 │   ├── app-builder.mdx         # Constructor de apps con IA
 │   ├── databases.mdx           # Build type Database (UI: Tables)
 │   ├── workflows.mdx           # Constructor de automatizaciones
 │   └── agents.mdx              # Agents IA + widget embebible
 ├── studio/
-│   ├── overview.mdx            # Que es Puente Studio
+│   ├── overview.mdx            # Qué es Puente Studio
 │   ├── setup.mdx               # Setup local del CLI
 │   ├── coding-agents.mdx       # Uso con Claude Code, Cursor, ChatGPT
 │   └── api-reference.mdx       # Referencia completa de endpoints REST
-├── integraciones.mdx           # 50+ plataformas LATAM por categoria
-├── casos-de-uso.mdx            # Procesos reales por vertical (retail, eCom, logistica)
-├── seguridad.mdx               # Encriptacion, hosting GCP, backups, privacidad
-├── enterprise.mdx              # Roadmap publico SSO/RBAC/SOC 2 con fechas
+├── integraciones.mdx           # 50+ plataformas LATAM por categoría
+├── casos-de-uso.mdx            # Procesos reales por vertical (retail, eCom, logística)
+├── seguridad.mdx               # Encriptación, hosting GCP, backups, privacidad
+├── enterprise.mdx              # Roadmap público SSO/RBAC/SOC 2 con fechas
 └── faq.mdx                     # Preguntas frecuentes (sincronizadas con sitio web)
 ```
 
-17 paginas en total + config.
+17 páginas en total + config.
 
-## Nomenclatura canonica (Puente OS Blueprint)
+## Nomenclatura canónica (Puente OS Blueprint)
 
 Toda la doc respeta el glosario del Blueprint:
 
-- **Capa de gestion:** Workspace, Team, Project, **Task** (no "Issue"), Cycle, Initiative, View
-- **Capa de construccion (Builds):** **App**, **Agent**, **Workflow**, **Database** (no "Table" como Build type)
-- El modulo visual donde el operador edita una Database se llama "Tables" (`puente-table` en codigo) — convive con el Build type "Database" sin contradiccion.
+- **Capa de gestión:** Workspace, Team, Project, **Task** (no "Issue"), Cycle, Initiative, View
+- **Capa de construcción (Builds):** **App**, **Agent**, **Workflow**, **Database** (no "Table" como Build type)
+- El módulo visual donde el operador edita una Database se llama "Tables" (`puente-table` en código) — convive con el Build type "Database" sin contradicción.
 
-## Como deployar (Mintlify)
+## Cómo deployar (Mintlify)
 
 1. **Crear cuenta en Mintlify** — https://mintlify.com
 2. **Conectar este folder a un repo de GitHub** (ej. `puenteos/docs`)
@@ -52,7 +52,7 @@ Toda la doc respeta el glosario del Blueprint:
 
 Cada push a `main` redespliega.
 
-## Como editar localmente
+## Cómo editar localmente
 
 ```bash
 npm i -g mintlify
@@ -66,7 +66,7 @@ Levanta servidor en `localhost:3000` con hot reload.
 
 - [ ] Logo SVG light/dark en `/logo/`
 - [ ] Favicon en `/favicon.svg`
-- [ ] Imagenes hero light/dark en `/images/`
+- [ ] Imágenes hero light/dark en `/images/`
 - [ ] Confirmar URLs externas:
   - `https://app.puente.app` (CTA topbar)
   - `https://status.puente.app` (estado del servicio)
@@ -76,7 +76,7 @@ Levanta servidor en `localhost:3000` con hot reload.
 
 ## Fuente del contenido
 
-Las paginas de `componentes/` se basan en las guias originales escritas por Octavio en https://github.com/octaviofv/puente_info, archivadas en `~/Puente-OS-Brain/Puente OS - Componentes/`.
+Las páginas de `componentes/` se basan en las guías originales escritas por Octavio en https://github.com/octaviofv/puente_info, archivadas en `~/Puente-OS-Brain/Puente OS - Componentes/`.
 
 Si Octavio actualiza el repo fuente:
 

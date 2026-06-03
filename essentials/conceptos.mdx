@@ -3,44 +3,44 @@ title: "Conceptos"
 description: "Puente OS: Workspace, Teams, Projects, Tasks y Builds."
 ---
 
-Antes de profundizar en cada componente, conviene entender como esta organizado todo. Puente OS combina **dos capas integradas** en una sola plataforma:
+Antes de profundizar en cada componente, conviene entender cómo está organizado todo. Puente OS combina **dos capas integradas** en una sola plataforma:
 
 <CardGroup cols={2}>
-  <Card title="Capa de gestion" icon="list-check">
+  <Card title="Capa de gestión" icon="list-check">
     Workspace, Teams, Projects, Tasks, Cycles e Initiatives.
   </Card>
 
-  <Card title="Capa de construccion" icon="hammer">
+  <Card title="Capa de construcción" icon="hammer">
     Apps, Databases, Workflows y Agents dentro de cada Project.
   </Card>
 </CardGroup>
 
 Mismo workspace, mismos equipos, sin cambio de herramienta entre planificar y construir.
 
-## Jerarquia completa
+## Jerarquía completa
 
 ```text
-WORKSPACE (la organizacion completa)
+WORKSPACE (la organización completa)
 ├── TEAMS (Ops, Finance, HR, RevOps — equipos del cliente)
 │   ├── PROJECTS (iniciativas operativas concretas)
-│   │   ├── TASKS (gestion operativa, Kanban)
+│   │   ├── TASKS (gestión operativa, Kanban)
 │   │   │   └── SUB-TASKS
 │   │   ├── DOCS (specs, contexto, decisiones)
-│   │   └── BUILDS (los 4 modulos):
+│   │   └── BUILDS (los 4 módulos):
 │   │       ├── APPS         (interfaces)
 │   │       ├── AGENTS       (agentes IA)
 │   │       ├── WORKFLOWS    (automatizaciones)
 │   │       └── DATABASES    (datos persistentes)
 │   
 │   
-└── INITIATIVES (objetivos estrategicos cross-team)
+└── INITIATIVES (objetivos estratégicos cross-team)
 ```
 
 ---
 
 ## Workspace
 
-El **Workspace** es el contenedor principal: representa a toda tu organizacion. Cada empresa tiene **un solo workspace** donde viven todos sus equipos, proyectos y artefactos.
+El **Workspace** es el contenedor principal: representa a toda tu organización. Cada empresa tiene **un solo workspace** donde viven todos sus equipos, proyectos y artefactos.
 
 <Note>
   Los datos de un workspace son privados y nunca son legibles desde otro workspace. Multi-tenancy estricto.
@@ -50,7 +50,7 @@ El **Workspace** es el contenedor principal: representa a toda tu organizacion. 
 
 ## Teams
 
-Un **Team** es un sub-grupo dentro del workspace — tipicamente representa un departamento (Operaciones, Finanzas, RevOps) o un squad.
+Un **Team** es un sub-grupo dentro del workspace — típicamente representa un departamento (Operaciones, Finanzas, RevOps) o un squad.
 
 Cada Team tiene:
 
@@ -59,46 +59,46 @@ Cada Team tiene:
 - Sus propios miembros y permisos
 
 <Tip>
-  Si tu organizacion es pequeña, basta con un Team. Crear varios Teams tiene sentido cuando distintos grupos trabajan con cadencias o procesos diferentes.
+  Si tu organización es pequeña, basta con un Team. Crear varios Teams tiene sentido cuando distintos grupos trabajan con cadencias o procesos diferentes.
 </Tip>
 
 ---
 
 ## Projects
 
-Un **Project** es una iniciativa operativa concreta — el contenedor donde **gestion** (tasks) y **construccion** (apps, databases, workflows, agents) conviven.
+Un **Project** es una iniciativa operativa concreta — el contenedor donde **gestión** (tasks) y **construcción** (apps, databases, workflows, agents) conviven.
 
 Ejemplos:
 
-- "Conciliacion bancaria mensual"
+- "Conciliación bancaria mensual"
 - "Onboarding de nuevos clientes"
 - "Forecast de inventario Q3"
 
 Dentro de un Project encuentras:
 
-| Item | Para que sirve |
+| Item | Para qué sirve |
 | --- | --- |
-| **Tasks** | Unidades atomicas de trabajo operativo (Kanban o lista) |
+| **Tasks** | Unidades atómicas de trabajo operativo (Kanban o lista) |
 | **Docs** | Specs, decisiones, contexto |
-| **Builds** | Los 4 modulos de construccion (Apps, Databases, Workflows, Agents) |
+| **Builds** | Los 4 módulos de construcción (Apps, Databases, Workflows, Agents) |
 
 ---
 
-## Builds — los 4 modulos de construccion
+## Builds — los 4 módulos de construcción
 
 Cada Project puede contener cualquier cantidad de **Builds**. Son los artefactos que realmente entregan valor.
 
 <CardGroup cols={2}>
   <Card title="Apps" icon="window" href="/componentes/app-builder">
-    Interfaces web construidas con IA. La capa donde tus usuarios interactuan.
+    Interfaces web construidas con IA. La capa donde tus usuarios interactúan.
   </Card>
 
   <Card title="Databases" icon="table" href="/componentes/databases">
-    Datos persistentes con schema, validacion e historial.
+    Datos persistentes con schema, validación e historial.
   </Card>
 
   <Card title="Workflows" icon="diagram-project" href="/componentes/workflows">
-    Automatizaciones con triggers, condiciones, codigo Python y agentes.
+    Automatizaciones con triggers, condiciones, código Python y agentes.
   </Card>
 
   <Card title="Agents" icon="robot" href="/componentes/agents">
@@ -107,36 +107,36 @@ Cada Project puede contener cualquier cantidad de **Builds**. Son los artefactos
 </CardGroup>
 
 <Tip>
-  Los 4 modulos se conectan entre si. Una **App** puede leer y escribir una **Database**. Un **Workflow** puede dispararse cuando cambia una fila. Un **Agent** puede usar Databases como contexto y Workflows como herramientas.
+  Los 4 módulos se conectan entre sí. Una **App** puede leer y escribir una **Database**. Un **Workflow** puede dispararse cuando cambia una fila. Un **Agent** puede usar Databases como contexto y Workflows como herramientas.
 </Tip>
 
 ---
 
 ## Tasks
 
-Las **Tasks** son unidades atomicas de trabajo operativo. Cada Task tiene:
+Las **Tasks** son unidades atómicas de trabajo operativo. Cada Task tiene:
 
 - **Estado** (Backlog, Todo, In Progress, Done, Cancelled)
 - **Prioridad** (Urgent, High, Medium, Low)
-- **Asignado** y **Fecha limite**
+- **Asignado** y **Fecha límite**
 - Comentarios, sub-tasks y referencias a Builds
 
 Las Tasks viven dentro de un Project. Se visualizan en **Kanban** (tarjetas) o **Lista** (tabla).
 
 <Note>
-  El vocabulario es **Task** y no "Issue": en Puente OS el lente es el del operador, no el del bug tracker. La mecanica es la misma, el nombre encarna la opinion.
+  El vocabulario es **Task** y no "Issue": en Puente OS el lente es el del operador, no el del bug tracker. La mecánica es la misma, el nombre encarna la opinión.
 </Note>
 
 ---
 
 ## Cycles
 
-Un **Cycle** es un periodo de tiempo recurrente (1-8 semanas) donde el equipo enfoca su trabajo. Es opcional pero recomendado para equipos que quieran ritmo predecible.
+Un **Cycle** es un período de tiempo recurrente (1-8 semanas) donde el equipo enfoca su trabajo. Es opcional pero recomendado para equipos que quieran ritmo predecible.
 
 Cada Cycle se mide por:
 
 - **Tasks completadas** vs planificadas
-- **Carry-over** (lo que no alcanzo)
+- **Carry-over** (lo que no alcanzó)
 - **Velocity** (tasks/cycle)
 
 <Note>
@@ -147,25 +147,25 @@ Cada Cycle se mide por:
 
 ## Initiatives
 
-Las **Initiatives** son objetivos estrategicos que **cruzan teams**. Una Initiative agrupa multiples Projects de distintos teams que apuntan al mismo norte.
+Las **Initiatives** son objetivos estratégicos que **cruzan teams**. Una Initiative agrupa múltiples Projects de distintos teams que apuntan al mismo norte.
 
 Ejemplo: "Subir NPS de 40 a 65" puede involucrar Projects de Ops, Producto y Soporte.
 
 ---
 
-## Como se relaciona todo
+## Cómo se relaciona todo
 
 <Steps>
   <Step title="Estrategia">
     El liderazgo define **Initiatives** — el norte.
   </Step>
   <Step title="Equipos">
-    Cada **Team** crea **Projects** que aportan a una o mas Initiatives.
+    Cada **Team** crea **Projects** que aportan a una o más Initiatives.
   </Step>
   <Step title="Trabajo operativo">
     Dentro de cada Project, los miembros crean **Tasks** y las mueven por estados.
   </Step>
-  <Step title="Construccion">
+  <Step title="Construcción">
     Cuando una Task requiere software, se construye un **Build** (App, Database, Workflow o Agent) en el mismo Project.
   </Step>
   <Step title="Ritmo">
@@ -181,10 +181,10 @@ Ahora que tienes el modelo mental:
 
 <CardGroup cols={2}>
   <Card title="Glosario" icon="book" href="/essentials/glosario">
-    Diccionario rapido de todos los terminos.
+    Diccionario rápido de todos los términos.
   </Card>
 
   <Card title="Empieza por Workspace" icon="bars" href="/componentes/workspace">
-    La navegacion central del workspace.
+    La navegación central del workspace.
   </Card>
 </CardGroup>

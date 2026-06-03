@@ -1,13 +1,13 @@
 ---
 title: "Databases"
-description: "Datos persistentes con schema, asistente IA, tipos de columna avanzados e importacion CSV. Editadas desde el modulo Tables del workspace."
+description: "Datos persistentes con schema, asistente IA, tipos de columna avanzados e importación CSV. Editadas desde el módulo Tables del workspace."
 icon: "table"
 ---
 
-**Databases** es el Build type para datos persistentes en Puente OS. Cada Database tiene un schema tipado (columnas con tipo), se conecta automaticamente a Apps y Workflows del workspace, y se edita visualmente desde el modulo **Tables**.
+**Databases** es el Build type para datos persistentes en Puente OS. Cada Database tiene un schema tipado (columnas con tipo), se conecta automáticamente a Apps y Workflows del workspace, y se edita visualmente desde el módulo **Tables**.
 
 <Note>
-  **Vocabulario:** "Database" es el Build type canonico (App / Agent / Workflow / Database). El editor visual donde la operas se llama **Tables** — son la misma cosa vista desde dos angulos: el artefacto y la interfaz.
+  **Vocabulario:** "Database" es el Build type canónico (App / Agent / Workflow / Database). El editor visual donde la operas se llama **Tables** — son la misma cosa vista desde dos ángulos: el artefacto y la interfaz.
 </Note>
 
 ## Crear una Database
@@ -17,34 +17,34 @@ icon: "table"
     Desde el panel de Componentes de un Project → **+ Nuevo** → **Database**.
   </Step>
   <Step title="Define el schema">
-    Click en el boton **`+`** del encabezado para agregar la primera columna. Dale nombre, elige el tipo y confirma. La tabla se crea en el backend con esa primera columna.
+    Click en el botón **`+`** del encabezado para agregar la primera columna. Dale nombre, elige el tipo y confirma. La tabla se crea en el backend con esa primera columna.
   </Step>
-  <Step title="Agrega mas columnas">
-    Repite el paso anterior para cada columna que necesites. Tambien puedes importar todo de una via CSV.
+  <Step title="Agrega más columnas">
+    Repite el paso anterior para cada columna que necesites. También puedes importar todo de una vía CSV.
   </Step>
 </Steps>
 
 <Note>
-  El nombre interno (`key`) se genera automaticamente en snake_case. El nombre visible (label) puedes cambiarlo despues sin afectar la integracion.
+  El nombre interno (`key`) se genera automáticamente en snake_case. El nombre visible (label) puedes cambiarlo después sin afectar la integración.
 </Note>
 
 ---
 
 ## Tipos de columna
 
-| Tipo | Como se muestra | Como se edita | Ejemplo |
+| Tipo | Cómo se muestra | Cómo se edita | Ejemplo |
 |---|---|---|---|
 | **Texto** | Texto plano | Input inline | `"MacBook Pro"` |
-| **Numero** | Alineado a la derecha | Input numerico | `2499.99` |
+| **Número** | Alineado a la derecha | Input numérico | `2499.99` |
 | **Fecha** | `DD/MM/YYYY` | Date picker | `2026-02-15` |
 | **Checkbox** | Checkbox centrado | Toggle directo | `true` / `false` |
-| **Select** | Badge de color | Dropdown con opciones | `"Electronica"` |
+| **Select** | Badge de color | Dropdown con opciones | `"Electrónica"` |
 
 ### Sobre tipo `select`
 
 - Las opciones se definen al crear o editar la columna
 - Solo se aceptan valores dentro de las opciones definidas
-- El backend valida automaticamente al insertar o actualizar filas
+- El backend valida automáticamente al insertar o actualizar filas
 
 ---
 
@@ -52,13 +52,13 @@ icon: "table"
 
 <Steps>
   <Step title="Click en Import CSV">
-    En la toolbar. Si la Database esta vacia, tambien aparece **"Crear desde CSV"** en el estado vacio.
+    En la toolbar. Si la Database está vacía, también aparece **"Crear desde CSV"** en el estado vacío.
   </Step>
   <Step title="Sube el archivo">
     Arrastra el CSV o haz click para seleccionar. Soporta delimitadores `,` y `;`.
   </Step>
   <Step title="Revisa las columnas detectadas">
-    El sistema detecta automaticamente el tipo de cada columna. Puedes corregir cualquier tipo antes de confirmar. Se muestra una preview con las primeras 5 filas.
+    El sistema detecta automáticamente el tipo de cada columna. Puedes corregir cualquier tipo antes de confirmar. Se muestra una preview con las primeras 5 filas.
   </Step>
   <Step title="Confirma">
     Se crea la Database y se cargan todas las filas en bulk.
@@ -66,17 +66,17 @@ icon: "table"
 </Steps>
 
 <Warning>
-  Limite: **maximo 10,000 filas por importacion**. Para datasets mas grandes, divide en multiples archivos.
+  Límite: **máximo 10,000 filas por importación**. Para datasets más grandes, divide en múltiples archivos.
 </Warning>
 
-### Deteccion automatica de tipos
+### Detección automática de tipos
 
-| Tipo detectado | Patron |
+| Tipo detectado | Patrón |
 |---|---|
 | `boolean` | `true`/`false`/`si`/`no`/`1`/`0` |
-| `number` | Todos los valores numericos |
+| `number` | Todos los valores numéricos |
 | `date` | `YYYY-MM-DD`, `DD/MM/YYYY` |
-| `text` | Fallback (todo lo demas) |
+| `text` | Fallback (todo lo demás) |
 
 ---
 
@@ -88,17 +88,17 @@ Click en **+ New Row** en la toolbar. Se abre un modal con todos los campos. Com
 
 ### Editar celda
 
-Click directo en cualquier celda. La celda entra en modo edicion segun el tipo (input, dropdown, toggle, date picker). Confirma con `Enter` o haciendo click fuera.
+Click directo en cualquier celda. La celda entra en modo edición según el tipo (input, dropdown, toggle, date picker). Confirma con `Enter` o haciendo click fuera.
 
 ### Eliminar filas
 
-| Caso | Como |
+| Caso | Cómo |
 |---|---|
 | **Una fila** | Click en el icono de papelera al final de la fila, luego confirma |
 | **Varias filas** | Selecciona con checkboxes → click en **Eliminar seleccionadas** → confirma |
 
 <Warning>
-  La eliminacion de filas es **irreversible**. No hay papelera de reciclaje.
+  La eliminación de filas es **irreversible**. No hay papelera de reciclaje.
 </Warning>
 
 ---
@@ -115,7 +115,7 @@ Arrastra el borde derecho del encabezado de cualquier columna.
 
 ### Reordenar
 
-Arrastra el encabezado a la posicion deseada.
+Arrastra el encabezado a la posición deseada.
 
 ### Ocultar/mostrar
 
@@ -123,29 +123,29 @@ Click en **Columns** en la toolbar y activa/desactiva cada columna. Las ocultas 
 
 ---
 
-## Busqueda, filtros y orden
+## Búsqueda, filtros y orden
 
-### Busqueda global
+### Búsqueda global
 
-Campo **Search…** en la toolbar. Opera sobre todas las columnas visibles simultaneamente. Instantanea, sin llamadas al backend.
+Campo **Search…** en la toolbar. Opera sobre todas las columnas visibles simultáneamente. Instantánea, sin llamadas al backend.
 
 ### Filtros avanzados
 
-Click en **Filter** → agrega condiciones con `+`. Para cada condicion elige columna y operador:
+Click en **Filter** → agrega condiciones con `+`. Para cada condición elige columna y operador:
 
-| Operador | Tipos | Descripcion |
+| Operador | Tipos | Descripción |
 |---|---|---|
 | `contains` | texto | El valor contiene el texto |
 | `not_contains` | texto | El valor NO contiene el texto |
 | `is` | todos | Igual exacto |
 | `is_not` | todos | Distinto |
-| `is_empty` | todos | Vacio o nulo |
-| `is_not_empty` | todos | No vacio |
-| `gt` / `gte` | numero, fecha | Mayor (o igual) que |
-| `lt` / `lte` | numero, fecha | Menor (o igual) que |
+| `is_empty` | todos | Vacío o nulo |
+| `is_not_empty` | todos | No vacío |
+| `gt` / `gte` | número, fecha | Mayor (o igual) que |
+| `lt` / `lte` | número, fecha | Menor (o igual) que |
 
 <Tip>
-  Multiples condiciones se combinan con **AND** logico.
+  Múltiples condiciones se combinan con **AND** lógico.
 </Tip>
 
 ### Ordenamiento
@@ -157,22 +157,22 @@ Click en el encabezado de cualquier columna. Cicla entre **ascendente → descen
 ## Asistente IA
 
 <Card icon="robot">
-  El asistente IA tiene acceso al schema y a una muestra de hasta 20 filas reales. Puedes preguntarle sobre tus datos sin escribir SQL ni formulas.
+  El asistente IA tiene acceso al schema y a una muestra de hasta 20 filas reales. Puedes preguntarle sobre tus datos sin escribir SQL ni fórmulas.
 </Card>
 
-### Como abrirlo
+### Cómo abrirlo
 
 Click en **IA** en la barra superior derecha. El panel ocupa 320px a la derecha.
 
-### Que puede hacer
+### Qué puede hacer
 
-Preguntale cosas como:
+Pregúntale cosas como:
 
 ```
-¿Cuantas filas tienen el precio mayor a 1000?
-¿Que productos estan activos?
-Muestrame un resumen de los datos
-¿Que columnas tiene esta Database y de que tipo son?
+¿Cuántas filas tienen el precio mayor a 1000?
+¿Qué productos están activos?
+Muéstrame un resumen de los datos
+¿Qué columnas tiene esta Database y de qué tipo son?
 ```
 
 ### Reset del chat
@@ -190,19 +190,19 @@ Click en **Export** en la toolbar. Se descarga un CSV con:
 
 ---
 
-## Paginacion vs Scroll infinito
+## Paginación vs Scroll infinito
 
-|  | **Paginacion** | **Scroll infinito** |
+|  | **Paginación** | **Scroll infinito** |
 |---|---|---|
-| Navegacion | Botones Anterior / Siguiente / pagina directa | Scroll carga mas filas automaticamente |
-| Carga inicial | Filas segun `pageSize` (default 10) | 3,000 filas |
-| Carga adicional | Al llegar a la ultima pagina | Al scrollear al final, carga 3,000 mas |
+| Navegación | Botones Anterior / Siguiente / página directa | Scroll carga más filas automáticamente |
+| Carga inicial | Filas según `pageSize` (default 10) | 3,000 filas |
+| Carga adicional | Al llegar a la última página | Al scrollear al final, carga 3,000 más |
 
-### Configuracion de paginacion
+### Configuración de paginación
 
-| Prop | Default | Descripcion |
+| Prop | Default | Descripción |
 |---|---|---|
-| `pageSize` | `10` | Filas por pagina |
+| `pageSize` | `10` | Filas por página |
 | `pageSizeOptions` | `[10, 25, 50, 100]` | Opciones del selector |
 
 ---
@@ -225,16 +225,16 @@ Las Databases son **first-class citizens** del workspace. Cualquier App o Workfl
 ## Preguntas frecuentes
 
 <AccordionGroup>
-  <Accordion title="Hay limite de filas por Database?">
-    No hay limite duro. La importacion CSV esta capada en 10,000 filas por archivo. Para datasets de millones de filas, escribe a soporte para discutir opciones.
+  <Accordion title="¿Hay límite de filas por Database?">
+    No hay límite duro. La importación CSV está capada en 10,000 filas por archivo. Para datasets de millones de filas, escribe a soporte para discutir opciones.
   </Accordion>
-  <Accordion title="Puedo restaurar una fila eliminada?">
-    No. La eliminacion es irreversible. Si necesitas auditoria, considera agregar una columna `estado` con un valor `archivado` en vez de eliminar.
+  <Accordion title="¿Puedo restaurar una fila eliminada?">
+    No. La eliminación es irreversible. Si necesitas auditoría, considera agregar una columna `estado` con un valor `archivado` en vez de eliminar.
   </Accordion>
-  <Accordion title="Que pasa si cambio el tipo de una columna que ya tiene datos?">
+  <Accordion title="¿Qué pasa si cambio el tipo de una columna que ya tiene datos?">
     El sistema intenta convertir los valores existentes. Si un valor no se puede convertir, queda como `null` y se te notifica antes de confirmar.
   </Accordion>
-  <Accordion title="Las Databases tienen historial de cambios?">
-    No en el editor visual. Si necesitas auditoria, configura un Workflow con trigger en `rowAdd`/`cellChange` que guarde el cambio en otra Database de historial.
+  <Accordion title="¿Las Databases tienen historial de cambios?">
+    No en el editor visual. Si necesitas auditoría, configura un Workflow con trigger en `rowAdd`/`cellChange` que guarde el cambio en otra Database de historial.
   </Accordion>
 </AccordionGroup>

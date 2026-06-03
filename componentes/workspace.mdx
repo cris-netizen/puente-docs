@@ -1,14 +1,14 @@
 ---
 title: "Workspace"
-description: "El panel central de navegacion del workspace: proyectos, tasks y componentes en un solo lugar."
+description: "El panel central de navegación del workspace: proyectos, tasks y componentes en un solo lugar."
 icon: "network"
 ---
 
 **Puente Workspace** es el panel desde donde organizas y navegas todo. Cada componente que creas (Apps, Databases, Workflows, Agents) vive dentro de un proyecto, y cada proyecto tiene sus propias tasks.
 
-## Vision general
+## Visión general
 
-El menu opera en dos niveles:
+El menú opera en dos niveles:
 
 ```text
 HOME (lista de proyectos)
@@ -22,23 +22,23 @@ DETALLE DEL PROYECTO
 
 ## Vista Home
 
-Al abrir el workspace llegas al Home con la lista de proyectos activos del equipo. Siempre aparece primero el proyecto especial **"Todos"** (ALL), que agrupa todos los componentes del workspace sin importar a que proyecto pertenecen.
+Al abrir el workspace llegas al Home con la lista de proyectos activos del equipo. Siempre aparece primero el proyecto especial **"Todos"** (ALL), que agrupa todos los componentes del workspace sin importar a qué proyecto pertenecen.
 
 ### Controles principales
 
-| Control | Que hace |
+| Control | Qué hace |
 | --- | --- |
 | **Buscador** | Filtra proyectos por nombre o descripción en tiempo real |
 | **Vista Tabla / Tarjetas** | Alterna entre lista compacta y grid visual con estadísticas |
 | **Ordenar** | En vista tabla, haz click en las cabeceras para ordenar |
 | **Nuevo Proyecto** | Botón en la esquina superior derecha |
 
-### Que muestra cada tarjeta
+### Qué muestra cada tarjeta
 
 - Nombre y descripción del proyecto
 - Fecha de creación
 - Contadores por tipo de componente (Apps, Workflows, Databases, Agents)
-- Menu de opciones (tres puntos) para editar o eliminar
+- Menú de opciones (tres puntos) para editar o eliminar
 
 ---
 
@@ -48,10 +48,10 @@ Al abrir el workspace llegas al Home con la lista de proyectos activos del equip
 
 <Steps>
   <Step title="Click en Nuevo Proyecto">
-    Boton en la esquina superior derecha del Home.
+    Botón en la esquina superior derecha del Home.
   </Step>
-  <Step title="Completa nombre y descripcion">
-    El nombre es requerido. La descripcion es opcional pero recomendada.
+  <Step title="Completa nombre y descripción">
+    El nombre es requerido. La descripción es opcional pero recomendada.
   </Step>
   <Step title="Confirma">
     El proyecto aparece inmediatamente en la lista.
@@ -60,7 +60,7 @@ Al abrir el workspace llegas al Home con la lista de proyectos activos del equip
 
 ### Editar un proyecto
 
-Pasa el cursor sobre el proyecto, click en el menu de opciones (tres puntos) y elige **Editar**. Modifica nombre o descripcion y confirma.
+Pasa el cursor sobre el proyecto, click en el menú de opciones (tres puntos) y elige **Editar**. Modifica nombre o descripción y confirma.
 
 <Note>
   Solo se pueden editar proyectos reales. El proyecto **"Todos"** no es editable.
@@ -68,10 +68,10 @@ Pasa el cursor sobre el proyecto, click en el menu de opciones (tres puntos) y e
 
 ### Eliminar un proyecto
 
-Menu de opciones (tres puntos), elige **Eliminar** (en rojo) y confirma.
+Menú de opciones (tres puntos), elige **Eliminar** (en rojo) y confirma.
 
 <Warning>
-  Al eliminar un proyecto, los **componentes** asignados regresan automaticamente al proyecto "Todos". Pero las **tasks** se eliminan de forma permanente junto con el proyecto.
+  Al eliminar un proyecto, los **componentes** asignados regresan automáticamente al proyecto "Todos". Pero las **tasks** se eliminan de forma permanente junto con el proyecto.
 </Warning>
 
 ---
@@ -101,7 +101,7 @@ Las tasks se gestionan dentro de cada proyecto.
 Los estados disponibles son: **Backlog**, **Todo**, **In Progress**, **Done**, **Cancelled**. Puedes ver las tasks como:
 
 - **Kanban** — tarjetas agrupadas por estado, arrastrables entre columnas
-- **Lista** — tabla con todas las columnas (titulo, asignado, prioridad, fecha)
+- **Lista** — tabla con todas las columnas (título, asignado, prioridad, fecha)
 
 ### Crear una task
 
@@ -109,8 +109,8 @@ Los estados disponibles son: **Backlog**, **Todo**, **In Progress**, **Done**, *
   <Step title="Click en + Nueva task">
     Disponible en cada columna del Kanban o en el header de la lista.
   </Step>
-  <Step title="Define titulo y campos">
-    Titulo (requerido), descripcion, prioridad, asignado, fecha limite.
+  <Step title="Define título y campos">
+    Título (requerido), descripción, prioridad, asignado, fecha límite.
   </Step>
   <Step title="Confirma">
     La task aparece inmediatamente en el estado seleccionado.
@@ -118,18 +118,18 @@ Los estados disponibles son: **Backlog**, **Todo**, **In Progress**, **Done**, *
 </Steps>
 
 <Tip>
-  Las tasks tambien pueden referenciar Builds (Apps, Workflows, etc.) para enlazar task de gestion con artefacto de software.
+  Las tasks también pueden referenciar Builds (Apps, Workflows, etc.) para enlazar task de gestión con artefacto de software.
 </Tip>
 
 ---
 
 ## Componentes
 
-Dentro del detalle de un proyecto, la seccion de componentes lista todas las Apps, Workflows, Databases y Agents asignados.
+Dentro del detalle de un proyecto, la sección de componentes lista todas las Apps, Workflows, Databases y Agents asignados.
 
-### Filtros rapidos
+### Filtros rápidos
 
-| Filtro | Que muestra |
+| Filtro | Qué muestra |
 | --- | --- |
 | **Todos** | Todos los componentes del proyecto |
 | **Apps** | Solo interfaces visuales |
@@ -143,9 +143,9 @@ Dentro del detalle de un proyecto, la seccion de componentes lista todas las App
 
 ### Acciones por componente
 
-Al hacer hover sobre una fila aparece el boton de opciones (tres puntos):
+Al hacer hover sobre una fila aparece el botón de opciones (tres puntos):
 
-| Accion | Disponible en | Descripcion |
+| Acción | Disponible en | Descripción |
 | --- | --- | --- |
 | **Editar** | Solo Apps | Abre el editor de la App |
 | **Mover** | Todos | Cambia el componente a otro proyecto |
@@ -153,27 +153,27 @@ Al hacer hover sobre una fila aparece el boton de opciones (tres puntos):
 
 ### Abrir un componente
 
-Click en cualquier fila o en el boton de abrir te lleva directo al editor del componente (App Builder, Workflow editor, Database editor o Agent editor).
+Click en cualquier fila o en el botón de abrir te lleva directo al editor del componente (App Builder, Workflow editor, Database editor o Agent editor).
 
 ---
 
 ## El proyecto "Todos"
 
-<Card title="Que es" icon="globe">
+<Card title="Qué es" icon="globe">
   El proyecto **"Todos"** (ALL) es un proyecto virtual que existe en todos los workspaces. Agrupa todos los componentes del workspace independientemente de si tienen proyecto asignado.
 </Card>
 
-### Cuando es util
+### Cuándo es útil
 
-- Encontrar un componente rapido sin saber en que proyecto esta
-- Mover componentes huerfanos a un proyecto real
+- Encontrar un componente rápido sin saber en qué proyecto está
+- Mover componentes huérfanos a un proyecto real
 - Vista general del workspace completo
 
 ### Limitaciones
 
 - No puedes crear tasks en "Todos"
 - No puedes editarlo ni eliminarlo
-- Componentes nuevos que se crean sin proyecto van automaticamente aqui
+- Componentes nuevos que se crean sin proyecto van automáticamente aquí
 
 ---
 
@@ -181,10 +181,10 @@ Click en cualquier fila o en el boton de abrir te lleva directo al editor del co
 
 <CardGroup cols={2}>
   <Card title="App Builder" icon="window" href="/componentes/app-builder">
-    Construye tu primera aplicacion web con IA.
+    Construye tu primera aplicación web con IA.
   </Card>
 
   <Card title="Databases" icon="table" href="/componentes/databases">
-    Crea Databases y conectalas a tus Apps.
+    Crea Databases y conéctalas a tus Apps.
   </Card>
 </CardGroup>

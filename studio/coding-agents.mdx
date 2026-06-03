@@ -1,30 +1,30 @@
 ---
 title: "Coding Agents"
-description: "Como usar Puente Studio con Claude Code, Cursor, ChatGPT y otros coding agents."
+description: "Cómo usar Puente Studio con Claude Code, Cursor, ChatGPT y otros coding agents."
 icon: "message-square-code"
 ---
 
-Puente Studio incluye un **skill** ([`skill_puente_studio.md`](https://github.com/octaviofv/puente_studio_repo/blob/main/skill_puente_studio.md)) — un markdown estructurado que enseña a cualquier coding agent **como crear y editar apps de Puente OS** via API REST.
+Puente Studio incluye un **skill** ([`skill_puente_studio.md`](https://github.com/octaviofv/puente_studio_repo/blob/main/skill_puente_studio.md)) — un markdown estructurado que enseña a cualquier coding agent **cómo crear y editar apps de Puente OS** vía API REST.
 
 El flujo es siempre el mismo: cargas el skill como contexto, le das al agente tu `BASE_URL` y `STUDIO_KEY`, y le pides lo que quieras hacer. El agente arma las llamadas HTTP por ti.
 
 <Note>
-  Esto NO es Model Context Protocol (MCP). Es un patron mas simple: skill markdown \+ un agente que sabe leerlo. Funciona en cualquier agente que pueda hacer llamadas HTTP (la mayoria) sin instalar nada extra.
+  Esto NO es Model Context Protocol (MCP). Es un patrón más simple: skill markdown \+ un agente que sabe leerlo. Funciona en cualquier agente que pueda hacer llamadas HTTP (la mayoría) sin instalar nada extra.
 </Note>
 
 ---
 
-## Que puede hacer el agente
+## Qué puede hacer el agente
 
 Una vez cargado el skill, le puedes pedir cosas como:
 
 ```text
 Crea una app de inventario con tabla de productos y un dashboard de stock bajo
 
-Baja la app con id 545, agrega un boton para exportar a CSV, sube los cambios
+Baja la app con id 545, agrega un botón para exportar a CSV, sube los cambios
 
 Crea una tabla de clientes con columnas nombre, email, plan (select: free/pro/enterprise)
-y conectala a la app 545 con permisos read+write
+y conéctala a la app 545 con permisos read+write
 
 Regenera la API key del artefacto 545 — me filtraron una credencial
 ```
@@ -54,10 +54,10 @@ El agente sigue las **reglas de comportamiento** del skill (preserva `app_conten
         ```
       </Step>
       <Step title="Carga el skill">
-        En el primer mensaje de la sesion:
+        En el primer mensaje de la sesión:
 
         ```text
-        Lee skill_puente_studio.md y se mi agente Puente Dev.
+        Lee skill_puente_studio.md y sé mi agente Puente Dev.
         Voy a darte tareas para crear y editar apps en Puente OS.
         ```
 
@@ -77,32 +77,32 @@ El agente sigue las **reglas de comportamiento** del skill (preserva `app_conten
     </Tip>
   </Tab>
   <Tab title="Cursor">
-    [Cursor](https://cursor.com) es un fork de VSCode con AI nativa. El skill se carga via `.cursorrules` o como referencia desde el composer.
+    [Cursor](https://cursor.com) es un fork de VSCode con AI nativa. El skill se carga vía `.cursorrules` o como referencia desde el composer.
 
     <Steps>
-      <Step title="Clona el repo y abrelo en Cursor">
+      <Step title="Clona el repo y ábrelo en Cursor">
         ```bash
         git clone https://github.com/octaviofv/puente_studio_repo.git
         cursor puente_studio_repo
         ```
       </Step>
       <Step title="Crea un .cursorrules">
-        En la raiz del repo crea `.cursorrules` con:
+        En la raíz del repo crea `.cursorrules` con:
 
         ```text
         Cuando trabajes con apps de Puente OS, sigue ESTRICTAMENTE las
         instrucciones del archivo skill_puente_studio.md de este repo.
         
         Lee el .env para obtener BASE_URL y STUDIO_KEY antes de cualquier
-        operacion. Nunca expongas la STUDIO_KEY en outputs ni codigo de app.
+        operación. Nunca expongas la STUDIO_KEY en outputs ni código de app.
         ```
       </Step>
       <Step title="Abre el composer (Cmd+I)">
-        Pidele algo como:
+        Pídele algo como:
 
         ```text
         Crea una app de tickets de soporte con vista Kanban.
-        Despues crea una tabla de tickets y conectala a la app.
+        Después crea una tabla de tickets y conéctala a la app.
         ```
 
         Cursor lee el skill, ejecuta los curls y te muestra IDs y URL final.
@@ -110,7 +110,7 @@ El agente sigue las **reglas de comportamiento** del skill (preserva `app_conten
     </Steps>
   </Tab>
   <Tab title="ChatGPT (custom GPT)">
-    Puedes crear un Custom GPT en ChatGPT con el skill como **instructions** y los endpoints de Puente como **Actions** via OpenAPI.
+    Puedes crear un Custom GPT en ChatGPT con el skill como **instructions** y los endpoints de Puente como **Actions** vía OpenAPI.
 
     <Steps>
       <Step title="Crear un nuevo GPT">
@@ -122,7 +122,7 @@ El agente sigue las **reglas de comportamiento** del skill (preserva `app_conten
         Reemplaza los placeholders `{BASE_URL}` y `{STUDIO_KEY}` con tus valores reales.
 
         <Warning>
-          Si el GPT es publico, NO pegues tu `STUDIO_KEY` real ahi — cualquier usuario la veria. Para un GPT publico, deja un placeholder y haz que el usuario configure su propia key via Actions auth.
+          Si el GPT es público, NO pegues tu `STUDIO_KEY` real ahí — cualquier usuario la vería. Para un GPT público, deja un placeholder y haz que el usuario configure su propia key vía Actions auth.
         </Warning>
       </Step>
       <Step title="Configurar Actions (opcional)">
@@ -138,7 +138,7 @@ El agente sigue las **reglas de comportamiento** del skill (preserva `app_conten
     </Steps>
 
     <Tip>
-      Para uso personal (no publicar), poner la `STUDIO_KEY` directo en las Instructions funciona — solo tu la ves.
+      Para uso personal (no publicar), poner la `STUDIO_KEY` directo en las Instructions funciona — solo tú la ves.
     </Tip>
   </Tab>
   <Tab title="Claude.ai (Projects)">
@@ -149,7 +149,7 @@ El agente sigue las **reglas de comportamiento** del skill (preserva `app_conten
         Claude.ai → New project → ponle nombre **Puente Dev**.
       </Step>
       <Step title="Agregar el skill al knowledge">
-        Sube `skill_puente_studio.md` como archivo del project. Claude lo lee en cada conversacion.
+        Sube `skill_puente_studio.md` como archivo del project. Claude lo lee en cada conversación.
       </Step>
       <Step title="Custom instructions del project">
         ```text
@@ -158,20 +158,20 @@ El agente sigue las **reglas de comportamiento** del skill (preserva `app_conten
         Mi BASE_URL: https://puente-backend-721178029791.southamerica-west1.run.app/
         Mi STUDIO_KEY: puente_studio_xxxxxxxxxxxxxxxxxxxx
         
-        Cuando necesites ejecutar requests, escribelos como curl
-        y yo los corro localmente, despues te paso el output.
+        Cuando necesites ejecutar requests, escríbelos como curl
+        y yo los corro localmente, después te paso el output.
         ```
       </Step>
       <Step title="Conversar">
-        El project preserva el contexto entre sesiones. Cada conversacion arranca con el skill cargado.
+        El project preserva el contexto entre sesiones. Cada conversación arranca con el skill cargado.
       </Step>
     </Steps>
   </Tab>
   <Tab title="Continue, Aider, otros">
-    Cualquier coding agent que pueda leer un markdown y ejecutar comandos sirve. El patron es siempre:
+    Cualquier coding agent que pueda leer un markdown y ejecutar comandos sirve. El patrón es siempre:
 
     1. **Cargar `skill_puente_studio.md`** como contexto inicial o knowledge
-    2. **Hacer accesible `BASE_URL` \+ `STUDIO_KEY`** (via env vars o pegado en el prompt)
+    2. **Hacer accesible `BASE_URL` \+ `STUDIO_KEY`** (vía env vars o pegado en el prompt)
     3. **Pedir tareas en lenguaje natural** — el agente arma los curls
 
     Para [**Continue**](https://continue.dev): agrega el skill como `@File` reference.
@@ -182,9 +182,9 @@ El agente sigue las **reglas de comportamiento** del skill (preserva `app_conten
 
 ---
 
-## Patron general (independiente del agente)
+## Patrón general (independiente del agente)
 
-Si tu agente preferido no esta en la lista, el patron sirve igual:
+Si tu agente preferido no está en la lista, el patrón sirve igual:
 
 <Steps>
   <Step title="Carga el skill">
@@ -194,21 +194,21 @@ Si tu agente preferido no esta en la lista, el patron sirve igual:
     `BASE_URL` y `STUDIO_KEY` accesibles al agente. Si es un agente local, suele leer `.env`. Si es web, va en las instructions o el prompt.
   </Step>
   <Step title="Pide la tarea">
-    Lenguaje natural. El skill enseña al agente como armar cada request.
+    Lenguaje natural. El skill enseña al agente cómo armar cada request.
   </Step>
   <Step title="Revisa antes de ejecutar operaciones destructivas">
-    El skill instruye al agente a **pedirte confirmacion** antes de regenerar keys, hacer PUTs destructivos o crear tablas. Confirma o cancela.
+    El skill instruye al agente a **pedirte confirmación** antes de regenerar keys, hacer PUTs destructivos o crear tablas. Confirma o cancela.
   </Step>
 </Steps>
 
 ---
 
-## Ejemplo de sesion completa
+## Ejemplo de sesión completa
 
-Conversacion real desde Claude Code:
+Conversación real desde Claude Code:
 
 ```text
-[Tu]
+[Tú]
 Crea una app de seguimiento de pedidos con:
 - Vista principal: tabla de pedidos con filtros por estado
 - Detalle: panel lateral al hacer click en un pedido
@@ -233,7 +233,7 @@ TABLA: pedidos
 
 Confirma para crear el artefacto y la tabla.
 
-[Tu] Si, dale.
+[Tú] Sí, dale.
 
 [Agente]
 1. Creando artefacto...
@@ -250,25 +250,25 @@ Confirma para crear el artefacto y la tabla.
    → POST /studio/artefactos/547/tablas-acceso
    → permisos: ["read", "write"]
 
-4. App publica disponible en:
+4. App pública disponible en:
    https://app.puente.xyz/public/9a8b7c6d-.../
 
-Que quieres ajustar?
+¿Qué quieres ajustar?
 ```
 
 ---
 
-## Reglas que el agente sigue automaticamente
+## Reglas que el agente sigue automáticamente
 
 El skill instruye al agente a:
 
-| Regla | Por que |
+| Regla | Por qué |
 | --- | --- |
 | **Verificar credenciales primero** | No ejecutar nada con placeholders literales |
 | **Preservar `app_content` completo en PUTs** | Evitar borrar archivos accidentalmente |
-| **Confirmar operaciones destructivas** | Regenerar key, hacer PUT con codigo nuevo, etc. |
+| **Confirmar operaciones destructivas** | Regenerar key, hacer PUT con código nuevo, etc. |
 | **Reportar IDs y keys al crear** | La `api_key` solo se muestra una vez |
-| **No exponer STUDIO\_KEY en codigo de app** | Es credencial privada de admin |
+| **No exponer STUDIO\_KEY en código de app** | Es credencial privada de admin |
 | **Proponer estructura antes de codificar** | Evitar trabajo perdido |
 
 ---
@@ -288,8 +288,8 @@ El skill instruye al agente a:
     Los cambios se ven publicando — abriendo `https://app.puente.xyz/public/{public_id}/`. Para iterar con preview en vivo, usa [App Builder](/componentes/app-builder) en el workspace.
   </Accordion>
 
-  <Accordion title="Sin diff/undo automatico">
-    Es responsabilidad tuya (o de Git) versionar los cambios. Recomendamos commitear el contenido de `APP/files/` despues de cada cambio.
+  <Accordion title="Sin diff/undo automático">
+    Es responsabilidad tuya (o de Git) versionar los cambios. Recomendamos commitear el contenido de `APP/files/` después de cada cambio.
   </Accordion>
 </AccordionGroup>
 

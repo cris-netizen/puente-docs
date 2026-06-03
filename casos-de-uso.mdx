@@ -1,13 +1,13 @@
 ---
 title: "Casos de uso"
-description: "Ejemplos concretos de procesos que Puente OS automatiza en retail, eCommerce y logistica."
+description: "Ejemplos concretos de procesos que Puente OS automatiza en retail, eCommerce y logística."
 icon: "briefcase"
 ---
 
-Estos son procesos reales que construimos con clientes. Cada uno cruza 2-4 sistemas externos y reemplaza horas de trabajo manual semanal por automatizacion trazable.
+Estos son procesos reales que construimos con clientes. Cada uno cruza 2-4 sistemas externos y reemplaza horas de trabajo manual semanal por automatización trazable.
 
 <Note>
-  Los procesos descritos abajo son representativos de implementaciones reales con clientes de Puente OS. Para casos especificos por cliente con metricas y referencias, escribenos a [octavio@puente.xyz](mailto:octavio@puente.xyz).
+  Los procesos descritos abajo son representativos de implementaciones reales con clientes de Puente OS. Para casos específicos por cliente con métricas y referencias, escríbenos a [octavio@puente.xyz](mailto:octavio@puente.xyz).
 </Note>
 
 ---
@@ -16,46 +16,46 @@ Estos son procesos reales que construimos con clientes. Cada uno cruza 2-4 siste
 
 Cadenas de tiendas, multi-sucursal, multi-canal. Operaciones repartidas entre Ops, Finanzas, Comercial.
 
-### Conciliacion bancaria mensual
+### Conciliación bancaria mensual
 
-**El dolor:** equipo de Finanzas tarda 3-5 dias cada mes cruzando movimientos bancarios contra ventas en ERP. Excel grandes, errores humanos, retraso en cierre contable.
+**El dolor:** equipo de Finanzas tarda 3-5 días cada mes cruzando movimientos bancarios contra ventas en ERP. Excel grandes, errores humanos, retraso en cierre contable.
 
 **El proceso construido:**
-- **Database:** `movimientos_bancarios` (sync diario via Bsale/Defontana) + `ventas_pos` (desde el ERP)
-- **Workflow:** dispara cada lunes a las 6 AM → lee movimientos no conciliados → cruza por monto + fecha + folio → marca matches automaticos
-- **Agent:** Conciliador — analiza los movimientos huerfanos (sin match automatico) y propone match probable basado en patrones historicos
+- **Database:** `movimientos_bancarios` (sync diario vía Bsale/Defontana) + `ventas_pos` (desde el ERP)
+- **Workflow:** dispara cada lunes a las 6 AM → lee movimientos no conciliados → cruza por monto + fecha + folio → marca matches automáticos
+- **Agent:** Conciliador — analiza los movimientos huérfanos (sin match automático) y propone match probable basado en patrones históricos
 - **App:** dashboard donde Finanzas revisa lo que el Agent propone y aprueba/rechaza con 1 click
 
-**Resultado tipico:** 80-90% de movimientos auto-conciliados, 3-5 dias → 4 horas/mes.
+**Resultado típico:** 80-90% de movimientos auto-conciliados, 3-5 días → 4 horas/mes.
 
-### Aprobacion de gastos cross-sucursal
+### Aprobación de gastos cross-sucursal
 
-**El dolor:** gerentes de sucursal envian solicitudes de compra por WhatsApp → controller las copia a Excel → contralor general aprueba por email → finanzas registra en ERP.
+**El dolor:** gerentes de sucursal envían solicitudes de compra por WhatsApp → controller las copia a Excel → contralor general aprueba por email → finanzas registra en ERP.
 
 **El proceso construido:**
-- **App:** formulario web donde el gerente sube solicitud (monto, proveedor, sucursal, justificacion) con foto del presupuesto
-- **Workflow:** valida monto vs presupuesto disponible de la sucursal en `presupuestos_sucursal` → notifica al controller en Slack → genera link de aprobacion para contralor → si aprueba, crea OC en ERP
-- **Agent:** Alertador — escala automaticamente a controller general si el contralor de zona no responde en 24 horas
+- **App:** formulario web donde el gerente sube solicitud (monto, proveedor, sucursal, justificación) con foto del presupuesto
+- **Workflow:** valida monto vs presupuesto disponible de la sucursal en `presupuestos_sucursal` → notifica al controller en Slack → genera link de aprobación para contralor → si aprueba, crea OC en ERP
+- **Agent:** Alertador — escala automáticamente a controller general si el contralor de zona no responde en 24 horas
 
-**Resultado tipico:** ciclo de aprobacion 5 dias → 24 horas, 100% trazable.
+**Resultado típico:** ciclo de aprobación 5 días → 24 horas, 100% trazable.
 
 ### Forecast de demanda por sucursal
 
 **El dolor:** equipo de operaciones reacciona ante quiebres de stock en lugar de anticiparlos.
 
 **El proceso construido:**
-- **Database:** `ventas_diarias_sucursal` (3 años history) + `clima_local` (sync con API meteorologica) + `eventos_locales`
-- **Workflow:** cada noche corre nodo Python con modelo de forecast (rolling 30 dias) → escribe `forecast_proxima_semana` por SKU x sucursal
+- **Database:** `ventas_diarias_sucursal` (3 años history) + `clima_local` (sync con API meteorológica) + `eventos_locales`
+- **Workflow:** cada noche corre nodo Python con modelo de forecast (rolling 30 días) → escribe `forecast_proxima_semana` por SKU x sucursal
 - **App:** dashboard donde Comercial ve sucursales en riesgo de quiebre + propuesta de transferencia entre sucursales
 - **Agent:** Asistente Comercial — responde preguntas en lenguaje natural sobre la data del dashboard
 
-**Resultado tipico:** quiebres de stock reducidos 40-60%.
+**Resultado típico:** quiebres de stock reducidos 40-60%.
 
 ---
 
 ## eCommerce
 
-Operadores con tienda propia + marketplaces, multi-pais, multi-canal de soporte.
+Operadores con tienda propia + marketplaces, multi-país, multi-canal de soporte.
 
 ### Soporte al cliente automatizado (WhatsApp + email)
 
@@ -63,82 +63,82 @@ Operadores con tienda propia + marketplaces, multi-pais, multi-canal de soporte.
 
 **El proceso construido:**
 - **Database:** `tickets_soporte` con historial completo + `pedidos` (sync con eCommerce)
-- **Workflow:** trigger en mensaje entrante WhatsApp → clasifica intent → si es consulta de pedido, busca en `pedidos` y responde automatico; si es queja compleja, deriva a humano con contexto pre-cargado
-- **Agent embebido:** widget en el sitio web que responde 24/7 sobre productos, politicas, stock disponible
+- **Workflow:** trigger en mensaje entrante WhatsApp → clasifica intent → si es consulta de pedido, busca en `pedidos` y responde automático; si es queja compleja, deriva a humano con contexto pre-cargado
+- **Agent embebido:** widget en el sitio web que responde 24/7 sobre productos, políticas, stock disponible
 - **App:** dashboard de SAC con cola priorizada por urgencia + sentiment
 
-**Resultado tipico:** 60-70% de tickets resueltos sin tocar humano, tiempo de respuesta 4 horas → 5 minutos.
+**Resultado típico:** 60-70% de tickets resueltos sin tocar humano, tiempo de respuesta 4 horas → 5 minutos.
 
-### Sincronizacion multi-canal (Shopify + Mercado Libre + tienda fisica)
+### Sincronización multi-canal (Shopify + Mercado Libre + tienda física)
 
-**El dolor:** stock se desincroniza entre canales. Venden el mismo producto en 2 canales simultaneamente. Sobreventa, cancelaciones, mala reputacion.
+**El dolor:** stock se desincroniza entre canales. Venden el mismo producto en 2 canales simultáneamente. Sobreventa, cancelaciones, mala reputación.
 
 **El proceso construido:**
 - **Database:** `inventario_real_consolidado` con stock unificado por SKU
 - **Workflow:** trigger en cada venta (Shopify, Mercado Libre, POS) → descuenta stock en `inventario_real_consolidado` → propaga cambio a los otros canales en menos de 30 segundos
-- **Workflow secundario:** cada noche reconcilia `inventario_real_consolidado` vs stock fisico para detectar mermas
+- **Workflow secundario:** cada noche reconcilia `inventario_real_consolidado` vs stock físico para detectar mermas
 
-**Resultado tipico:** sobreventa eliminada (de varios casos/mes a cero), reputacion en Mercado Libre estable.
+**Resultado típico:** sobreventa eliminada (de varios casos/mes a cero), reputación en Mercado Libre estable.
 
-### Recuperacion de carritos abandonados con IA personalizada
+### Recuperación de carritos abandonados con IA personalizada
 
-**El dolor:** flujo standard de "carrito abandonado" envia el mismo email a todos. Conversion baja.
+**El dolor:** flujo standard de "carrito abandonado" envía el mismo email a todos. Conversión baja.
 
 **El proceso construido:**
 - **Database:** `carritos_abandonados` + `historial_compras_cliente`
-- **Workflow:** trigger cada hora → identifica carritos abandonados >2 horas → para cada uno, nodo Agente IA genera mensaje personalizado considerando historial y productos del carrito → envia via email/WhatsApp segun preferencia
-- **App:** dashboard que muestra conversion por segmento + permite ajustar tonos/ofertas
+- **Workflow:** trigger cada hora → identifica carritos abandonados >2 horas → para cada uno, nodo Agente IA genera mensaje personalizado considerando historial y productos del carrito → envía vía email/WhatsApp según preferencia
+- **App:** dashboard que muestra conversión por segmento + permite ajustar tonos/ofertas
 
-**Resultado tipico:** recovery rate 5-8% → 18-25%.
+**Resultado típico:** recovery rate 5-8% → 18-25%.
 
 ---
 
-## Logistica
+## Logística
 
-Couriers, fulfillment centers, ultima milla. Multi-cliente, multi-pais.
+Couriers, fulfillment centers, última milla. Multi-cliente, multi-país.
 
 ### Tracking unificado para clientes finales
 
-**El dolor:** cliente del courier consulta estado de envio en 4 sistemas distintos (interno, transportista A, transportista B, app movil). Inconsistencias.
+**El dolor:** cliente del courier consulta estado de envío en 4 sistemas distintos (interno, transportista A, transportista B, app móvil). Inconsistencias.
 
 **El proceso construido:**
 - **Database:** `eventos_envio` que agrega data de todos los sistemas trackeados
 - **Workflow:** cada 15 minutos sincroniza con APIs de transportistas → normaliza eventos → escribe en `eventos_envio` con un solo formato
-- **App publica:** pagina de tracking unificada `https://app.puente.xyz/public/{public_id}/` que el cliente comparte con destinatarios
-- **Agent embebido:** widget de soporte que responde "donde esta mi envio" cruzando datos en vivo
+- **App pública:** página de tracking unificada `https://app.puente.xyz/public/{public_id}/` que el cliente comparte con destinatarios
+- **Agent embebido:** widget de soporte que responde "dónde está mi envío" cruzando datos en vivo
 
-**Resultado tipico:** consultas al SAC del courier sobre estado de envio reducidas 70%.
+**Resultado típico:** consultas al SAC del courier sobre estado de envío reducidas 70%.
 
-### Asignacion automatica de despachos a couriers
+### Asignación automática de despachos a couriers
 
 **El dolor:** operador asigna manualmente cada pedido a un courier basado en zona + tarifa + disponibilidad. Pierde tiempo, optimiza mal.
 
 **El proceso construido:**
 - **Database:** `tarifas_couriers` por zona + `historial_performance` (cumplimiento por courier x zona)
-- **Workflow:** trigger en nuevo pedido → consulta `tarifas_couriers` para la zona del destino → cruza con historial de cumplimiento → asigna al courier optimo (mejor balance costo/cumplimiento)
+- **Workflow:** trigger en nuevo pedido → consulta `tarifas_couriers` para la zona del destino → cruza con historial de cumplimiento → asigna al courier óptimo (mejor balance costo/cumplimiento)
 - **App:** dashboard de operaciones con override manual cuando el operador lo necesita
 
-**Resultado tipico:** costo de delivery -8 a -15%, cumplimiento en tiempo +5 a +12%.
+**Resultado típico:** costo de delivery -8 a -15%, cumplimiento en tiempo +5 a +12%.
 
-### Reconciliacion de facturas de couriers
+### Reconciliación de facturas de couriers
 
-**El dolor:** cada mes, el courier envia factura con miles de items que tienen que cuadrar contra los despachos efectivamente realizados. Equipo de Finanzas chequea muestra al azar.
+**El dolor:** cada mes, el courier envía factura con miles de items que tienen que cuadrar contra los despachos efectivamente realizados. Equipo de Finanzas chequea muestra al azar.
 
 **El proceso construido:**
 - **Workflow:** recibe factura del courier (Excel/PDF) → nodo Python parsea filas → cruza cada item contra `despachos_realizados` del mes → reporta discrepancias
 - **Agent:** analiza discrepancias detectadas y clasifica (error tarifario, despacho cancelado, doble cobro, etc.)
-- **App:** dashboard de discrepancias con accion de "disputar" que genera carta automatica
+- **App:** dashboard de discrepancias con acción de "disputar" que genera carta automática
 
-**Resultado tipico:** recuperacion de cobros incorrectos 0.5-2% del gasto total mensual en delivery.
+**Resultado típico:** recuperación de cobros incorrectos 0.5-2% del gasto total mensual en delivery.
 
 ---
 
 ## Patrones comunes
 
-Si miras los 10 casos arriba, notas el mismo patron:
+Si miras los 10 casos arriba, notas el mismo patrón:
 
 1. **Database** centraliza data dispersa entre sistemas externos
-2. **Workflows** orquestan la logica que cruza esos sistemas
+2. **Workflows** orquestan la lógica que cruza esos sistemas
 3. **Agents** asisten al humano con tareas de juicio
 4. **Apps** dan al operador interfaz para revisar/aprobar/intervenir
 
@@ -146,11 +146,11 @@ Esto es el [Puente Method](/essentials/conceptos): operadores planifican (Tasks/
 
 ---
 
-## Quieres explorar tu caso?
+## ¿Quieres explorar tu caso?
 
 <CardGroup cols={2}>
   <Card title="Strategic Discovery" icon="compass" href="mailto:octavio@puente.xyz?subject=Strategic%20Discovery">
-    Sesion de 1 semana, paga, que mapea tus procesos y define el roadmap de Builds.
+    Sesión de 1 semana, paga, que mapea tus procesos y define el roadmap de Builds.
   </Card>
   <Card title="Integraciones soportadas" icon="plug" href="/integraciones">
     Verifica si tus sistemas actuales conectan con Puente OS.

@@ -1,13 +1,13 @@
 ---
 title: "Seguridad"
-description: "Arquitectura de seguridad, encriptacion, hosting, backups y roadmap de compliance de Puente OS."
+description: "Arquitectura de seguridad, encriptación, hosting, backups y roadmap de compliance de Puente OS."
 icon: "shield-check"
 ---
 
-Puente OS opera infraestructura productiva para clientes de retail, eCommerce y logistica en LATAM. La seguridad es responsabilidad compartida: nosotros operamos la plataforma, tu organizacion controla a quien le das acceso y que datos suben a ella. Esta pagina describe que medidas tenemos hoy y que estamos construyendo.
+Puente OS opera infraestructura productiva para clientes de retail, eCommerce y logística en LATAM. La seguridad es responsabilidad compartida: nosotros operamos la plataforma, tu organización controla a quién le das acceso y qué datos suben a ella. Esta página describe qué medidas tenemos hoy y qué estamos construyendo.
 
 <Note>
-  Si tu equipo de IT necesita material formal para due diligence, escribenos a [octavio@puente.xyz](mailto:octavio@puente.xyz) y te enviamos el security questionnaire completo.
+  Si tu equipo de IT necesita material formal para due diligence, escríbenos a [octavio@puente.xyz](mailto:octavio@puente.xyz) y te enviamos el security questionnaire completo.
 </Note>
 
 ## Infraestructura
@@ -15,33 +15,33 @@ Puente OS opera infraestructura productiva para clientes de retail, eCommerce y 
 | Concepto | Detalle |
 |---|---|
 | **Cloud provider** | Google Cloud Platform (GCP) |
-| **Region principal** | `southamerica-west1` (Santiago, Chile) |
+| **Región principal** | `southamerica-west1` (Santiago, Chile) |
 | **Hosting de backend** | Google Cloud Run (containerizado, auto-scaling) |
 | **Base de datos** | Google Cloud SQL gestionado (PostgreSQL) |
 | **Multi-tenancy** | Estricta. Workspace A nunca lee data del Workspace B. |
 
 <Tip>
-  Hostear en `southamerica-west1` reduce latencia para clientes en Chile/Peru/Argentina y mantiene los datos dentro de la region — relevante para empresas con politicas internas de residencia de datos LATAM.
+  Hostear en `southamerica-west1` reduce latencia para clientes en Chile/Perú/Argentina y mantiene los datos dentro de la región — relevante para empresas con políticas internas de residencia de datos LATAM.
 </Tip>
 
-## Encriptacion
+## Encriptación
 
-| Donde | Estandar |
+| Dónde | Estándar |
 |---|---|
 | **En reposo** | AES-256 (default GCP en Cloud SQL y Cloud Storage) |
-| **En transito** | TLS 1.3 |
-| **Credenciales de integracion** | Almacenadas encriptadas en el backend, nunca expuestas en respuestas API |
+| **En tránsito** | TLS 1.3 |
+| **Credenciales de integración** | Almacenadas encriptadas en el backend, nunca expuestas en respuestas API |
 
-## Autenticacion y acceso
+## Autenticación y acceso
 
 | Capability | Estado |
 |---|---|
 | **Login con email/password** | Disponible |
 | **OAuth con Google** | Disponible |
 | **OAuth con Microsoft** | Disponible |
-| **Multi-Factor Authentication (MFA)** | Disponible via Google/Microsoft OAuth |
-| **SSO via SAML** | En roadmap — Q3 2026 |
-| **SCIM (provisioning automatico)** | En roadmap — Q1 2027 |
+| **Multi-Factor Authentication (MFA)** | Disponible vía Google/Microsoft OAuth |
+| **SSO vía SAML** | En roadmap — Q3 2026 |
+| **SCIM (provisioning automático)** | En roadmap — Q1 2027 |
 | **Roles a nivel Workspace/Team** | Disponible |
 | **RBAC granular a nivel Build** | En roadmap — Q3 2026 |
 
@@ -51,60 +51,60 @@ Para detalles del roadmap ver [Enterprise](/enterprise).
 
 | Aspecto | Detalle |
 |---|---|
-| **Backups automaticos de BD** | Diarios, retencion 30 dias (default Cloud SQL) |
-| **Point-in-time recovery** | Hasta 7 dias atras |
-| **Replicacion** | Automatica dentro de region (high availability) |
-| **Restauracion** | Bajo demanda con SLA acordado segun plan |
+| **Backups automáticos de BD** | Diarios, retención 30 días (default Cloud SQL) |
+| **Point-in-time recovery** | Hasta 7 días atrás |
+| **Replicación** | Automática dentro de región (high availability) |
+| **Restauración** | Bajo demanda con SLA acordado según plan |
 
-## Logs y auditoria
+## Logs y auditoría
 
 | Aspecto | Estado |
 |---|---|
-| **Logs de ejecucion de workflows** | Disponibles via panel de Resultados e Historial |
-| **Logs de cambios en Builds (apps, tablas, agents)** | Trackeados en backend, sin UI consultable todavia |
-| **Audit log consultable (quien hizo que, cuando)** | En roadmap — Q3 2026 |
-| **Exportacion de logs a sistema externo (SIEM)** | En roadmap — Q4 2026 |
+| **Logs de ejecución de workflows** | Disponibles vía panel de Resultados e Historial |
+| **Logs de cambios en Builds (apps, tablas, agents)** | Trackeados en backend, sin UI consultable todavía |
+| **Audit log consultable (quién hizo qué, cuándo)** | En roadmap — Q3 2026 |
+| **Exportación de logs a sistema externo (SIEM)** | En roadmap — Q4 2026 |
 
 ## Compliance
 
-| Certificacion | Estado |
+| Certificación | Estado |
 |---|---|
 | **SOC 2 Type 1** | En proceso — Q4 2026 |
 | **SOC 2 Type 2** | En proceso — Q1 2027 (tras 6 meses de evidencia) |
 | **ISO 27001** | En proceso — Q4 2026 |
-| **GDPR / LGPD** | Cumplimos requisitos basicos (data subject rights, data processing agreements bajo solicitud) |
+| **GDPR / LGPD** | Cumplimos requisitos básicos (data subject rights, data processing agreements bajo solicitud) |
 
 <Warning>
-  Hoy NO contamos con certificaciones formales SOC 2 o ISO 27001. Si tu organizacion requiere certificacion vigente para firmar, escribenos para discutir cronograma del piloto.
+  Hoy NO contamos con certificaciones formales SOC 2 o ISO 27001. Si tu organización requiere certificación vigente para firmar, escríbenos para discutir cronograma del piloto.
 </Warning>
 
 ## Privacidad
 
 - **Data de cliente** — vive aislada por Workspace. No usamos data de cliente para entrenar modelos.
-- **Modelos de IA** — model-agnostic. Tu Workspace decide que modelo usa (OpenAI, Anthropic, Google, etc.) y nosotros nunca enviamos data fuera de los providers que tu autorizaste.
-- **Borrado** — bajo solicitud escrita a soporte, eliminamos completamente la data del Workspace en 30 dias.
+- **Modelos de IA** — model-agnostic. Tu Workspace decide qué modelo usa (OpenAI, Anthropic, Google, etc.) y nosotros nunca enviamos data fuera de los providers que tú autorizaste.
+- **Borrado** — bajo solicitud escrita a soporte, eliminamos completamente la data del Workspace en 30 días.
 
 ## Reportar una vulnerabilidad
 
-Si descubres una vulnerabilidad de seguridad, escribenos a [octavio@puente.xyz](mailto:octavio@puente.xyz) con la palabra "SECURITY" en el subject. Respondemos en menos de 24 horas habiles. No tenemos bug bounty publico todavia, pero reconocemos publicamente a quien reporte issues criticos con tu autorizacion.
+Si descubres una vulnerabilidad de seguridad, escríbenos a [octavio@puente.xyz](mailto:octavio@puente.xyz) con la palabra "SECURITY" en el subject. Respondemos en menos de 24 horas hábiles. No tenemos bug bounty público todavía, pero reconocemos públicamente a quien reporte issues críticos con tu autorización.
 
 ## Preguntas frecuentes
 
 <AccordionGroup>
-  <Accordion title="Donde se almacenan mis datos?">
-    Por default, en GCP region `southamerica-west1` (Santiago, Chile). Si tu organizacion requiere otra region (US, EU) para compliance, podemos discutirlo en el plan Enterprise.
+  <Accordion title="¿Dónde se almacenan mis datos?">
+    Por default, en GCP región `southamerica-west1` (Santiago, Chile). Si tu organización requiere otra región (US, EU) para compliance, podemos discutirlo en el plan Enterprise.
   </Accordion>
-  <Accordion title="Puente OS usa mi data para entrenar modelos?">
-    No. Tu data nunca se usa para entrenar modelos de IA. Los modelos que el workspace consume son los que tu autorices (OpenAI, Anthropic, Google) y se llaman via API sin reentrenamiento.
+  <Accordion title="¿Puente OS usa mi data para entrenar modelos?">
+    No. Tu data nunca se usa para entrenar modelos de IA. Los modelos que el workspace consume son los que tú autorices (OpenAI, Anthropic, Google) y se llaman vía API sin reentrenamiento.
   </Accordion>
-  <Accordion title="Que pasa si dejo de ser cliente?">
-    Bajo solicitud escrita, eliminamos toda tu data en 30 dias. Antes, te entregamos export completo en CSV (tablas) + JSON (workflows) + ZIP (apps).
+  <Accordion title="¿Qué pasa si dejo de ser cliente?">
+    Bajo solicitud escrita, eliminamos toda tu data en 30 días. Antes, te entregamos export completo en CSV (tablas) + JSON (workflows) + ZIP (apps).
   </Accordion>
-  <Accordion title="Pueden firmar un Data Processing Agreement (DPA)?">
-    Si. Plantilla disponible bajo solicitud. Soportamos DPAs custom en plan Enterprise.
+  <Accordion title="¿Pueden firmar un Data Processing Agreement (DPA)?">
+    Sí. Plantilla disponible bajo solicitud. Soportamos DPAs custom en plan Enterprise.
   </Accordion>
-  <Accordion title="Self-hosted / on-premises esta disponible?">
-    No hoy. Hybrid deployment (datos en VPC del cliente) esta en roadmap para Q1 2027. Para clientes con requisitos estrictos antes de esa fecha, escribenos.
+  <Accordion title="¿Self-hosted / on-premises está disponible?">
+    No hoy. Hybrid deployment (datos en VPC del cliente) está en roadmap para Q1 2027. Para clientes con requisitos estrictos antes de esa fecha, escríbenos.
   </Accordion>
 </AccordionGroup>
 

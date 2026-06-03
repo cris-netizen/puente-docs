@@ -1,6 +1,6 @@
 ---
 title: "Setup local"
-description: "Instala los scripts de Puente Studio en tu maquina y configura tu credencial."
+description: "Instala los scripts de Puente Studio en tu máquina y configura tu credencial."
 icon: "download"
 ---
 
@@ -8,7 +8,7 @@ icon: "download"
 
 - **Node.js 14+** (sin dependencias externas)
 - Cuenta activa en [app.puente.xyz](https://app.puente.xyz)
-- Una **Platform API Key** (`puente_studio_xxx`) generada desde Configuracion
+- Una **Platform API Key** (`puente_studio_xxx`) generada desde Configuración
 
 ---
 
@@ -16,23 +16,23 @@ icon: "download"
 
 <Steps>
   <Step title="Entra a app.puente.xyz">
-    Inicia sesion con tu cuenta del workspace.
+    Inicia sesión con tu cuenta del workspace.
   </Step>
-  <Step title="Configuracion → API Keys">
-    En el menu lateral o desde tu avatar → Configuracion.
+  <Step title="Configuración → API Keys">
+    En el menú lateral o desde tu avatar → Configuración.
   </Step>
   <Step title="Generar Platform API Key">
     Click en **Nueva API Key** → tipo **Platform** (no Artifact).
 
     El formato es `puente_studio_xxxxxxxxxxxxxxxxxxxx`.
   </Step>
-  <Step title="Copiala y guardala segura">
-    Esta es tu credencial maestra. **No la commitees** en ningun repo. La key solo se muestra una vez.
+  <Step title="Cópiala y guárdala segura">
+    Esta es tu credencial maestra. **No la commitees** en ningún repo. La key solo se muestra una vez.
   </Step>
 </Steps>
 
 <Warning>
-  La `STUDIO_KEY` da acceso completo a todos los artefactos y tablas de tu equipo. Trata esta key como tratarias una password de admin.
+  La `STUDIO_KEY` da acceso completo a todos los artefactos y tablas de tu equipo. Trata esta key como tratarías una password de admin.
 </Warning>
 
 ---
@@ -76,7 +76,7 @@ STUDIO_KEY=puente_studio_xxxxxxxxxxxxxxxxxxxx
 ```
 
 <Tip>
-  El `BASE_URL` del ejemplo es el correcto. No lo cambies salvo que estes en un environment privado.
+  El `BASE_URL` del ejemplo es el correcto. No lo cambies salvo que estés en un environment privado.
 </Tip>
 
 ---
@@ -91,10 +91,10 @@ curl -H "X-API-Key: $(grep STUDIO_KEY .env | cut -d= -f2)" \
 ```
 
 <Check>
-  Si recibes un JSON con un array de artefactos (puede estar vacio si todavia no creaste ninguno), todo esta correcto.
+  Si recibes un JSON con un array de artefactos (puede estar vacío si todavía no creaste ninguno), todo está correcto.
 </Check>
 
-Si recibes `401`, la `STUDIO_KEY` es invalida o esta revocada — genera una nueva.
+Si recibes `401`, la `STUDIO_KEY` es inválida o está revocada — genera una nueva.
 
 ---
 
@@ -132,6 +132,8 @@ Si recibes `401`, la `STUDIO_KEY` es invalida o esta revocada — genera una nue
   El `PUT` **reemplaza todo el `app_content`**. Siempre usa el flujo completo: `GET → editar → PUT con todo`. Nunca subas solo los archivos modificados — los que falten se eliminan.
 </Warning>
 
+
+
 ---
 
 ## Crear una app nueva
@@ -156,19 +158,19 @@ curl -X POST "$BASE_URL/studio/artefactos" \
   }'
 ```
 
-La respuesta incluye `id`, `public_id` y `api_key`. **Guardalas inmediatamente** — la `api_key` no se vuelve a mostrar.
+La respuesta incluye `id`, `public_id` y `api_key`. **Guárdalas inmediatamente** — la `api_key` no se vuelve a mostrar.
 
 ---
 
 ## Configurar git para no commitear el .env
 
-El `.env` esta en `.gitignore` del repo. Igual verifica:
+El `.env` está en `.gitignore` del repo. Igual verifica:
 
 ```bash
 grep .env .gitignore
 ```
 
-Si no aparece, agregalo:
+Si no aparece, agrégalo:
 
 ```bash
 echo ".env" >> .gitignore
@@ -180,19 +182,19 @@ echo ".env" >> .gitignore
 
 <AccordionGroup>
   <Accordion title="`STUDIO_KEY` placeholder en `.env`">
-    Si el archivo todavia tiene `{STUDIO_KEY}` literal en vez de tu key real, ningun script va a funcionar. Pega tu key real sin las llaves.
+    Si el archivo todavía tiene `{STUDIO_KEY}` literal en vez de tu key real, ningún script va a funcionar. Pega tu key real sin las llaves.
   </Accordion>
   <Accordion title="`401 Unauthorized` al listar artefactos">
     Tres causas comunes:
 
-    1. La key esta revocada → regenera una nueva en Configuracion
-    2. Estas usando una `api_key` de artefacto (`puente_artifact_xxx`) en endpoints privados → usa la `STUDIO_KEY`
+    1. La key está revocada → regenera una nueva en Configuración
+    2. Estás usando una `api_key` de artefacto (`puente_artifact_xxx`) en endpoints privados → usa la `STUDIO_KEY`
     3. La key pertenece a otro environment → verifica el `BASE_URL`
   </Accordion>
   <Accordion title="`404 Not Found` al actualizar un artefacto">
     El ID no existe en tu equipo, o pertenece a otro equipo. Verifica con `GET /studio/artefactos` (lista solo los del equipo asociado a tu key).
   </Accordion>
-  <Accordion title="Mi app perdio archivos despues de un PUT">
+  <Accordion title="Mi app perdió archivos después de un PUT">
     Hiciste un `PUT` con `app_content` parcial. El endpoint reemplaza el objeto completo. Si tienes copia local, vuelve a empaquetar todos los archivos y haz otro `PUT`. Si no, baja el artefacto a tu disco antes de futuros cambios.
   </Accordion>
 </AccordionGroup>
