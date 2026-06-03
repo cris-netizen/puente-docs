@@ -8,6 +8,7 @@ Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el tr
 
 <Note>
   **Cómo leer los badges:**
+
   - `nodo nativo` — integración lista para usar, sin escribir código
   - `vía HTTP` — conexión vía REST con tu API key, configurable con nodo HTTP en Workflows
   - `vía Python` — para lógica custom que requiere librería específica, usando el nodo Código Python
@@ -16,7 +17,7 @@ Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el tr
 ## eCommerce y Marketplaces
 
 | Plataforma | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **Shopify** | vía HTTP | Sincronizar productos, órdenes, inventario |
 | **VTEX** | vía HTTP | Catalog management, OMS, order tracking |
 | **Tiendanube** | vía HTTP | Productos, órdenes, cupones |
@@ -28,41 +29,21 @@ Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el tr
 ## ERPs y sistemas administrativos LATAM
 
 | Plataforma | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **SAP** (S/4HANA, Business One) | vía HTTP | Conciliación, órdenes de compra, inventario |
 | **Defontana** | vía HTTP | Facturación, contabilidad, inventario (Chile) |
 | **Bsale** | vía HTTP | Boletas, facturas electrónicas, stock (Chile) |
-| **Siigo** | vía HTTP | Facturación electrónica, contabilidad (Colombia/Chile) |
 | **Manager** | vía HTTP | ERP Chile mid-market |
 | **Softland** | vía HTTP | ERP Chile (Inversiones) |
-| **CONTPAQi** | vía HTTP | Contabilidad y facturación (México) |
-| **Aspel** | vía HTTP | ERP mid-market (México) |
 | **Microsoft Dynamics 365** | vía HTTP | Finance, Operations, Supply Chain |
 | **Oracle NetSuite** | vía HTTP | ERP enterprise multi-país |
-
-## Pagos y facturación electrónica
-
-| Plataforma | Tipo | Uso común |
-|---|---|---|
-| **Stripe** | vía HTTP | Cobros recurrentes, payouts, disputas |
-| **Mercado Pago** | vía HTTP | Cobros LATAM, conciliación, marketplace splits |
-| **Kushki** | vía HTTP | Pagos LATAM (Chile, Perú, Colombia, Ecuador, México) |
-| **Khipu** | vía HTTP | Transferencias bancarias Chile |
-| **Transbank** | vía HTTP | Webpay, Onepay (Chile) |
-| **Niubiz** | vía HTTP | Pagos Perú |
-| **PayU** | vía HTTP | Pagos LATAM |
-| **Conekta** | vía HTTP | Pagos México |
-| **Sii** (Chile) | vía HTTP | Emisión DTE, facturas electrónicas |
-| **DIAN** (Colombia) | vía HTTP | Facturación electrónica |
-| **SAT** (México) | vía HTTP | CFDI, facturación |
 
 ## Mensajería y comunicaciones
 
 | Plataforma | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **WhatsApp Business API** | vía HTTP | Notificaciones de pedido, soporte, recordatorios |
 | **Twilio** | vía HTTP | SMS, voice, verificación |
-| **MessageBird** | vía HTTP | SMS LATAM, WhatsApp |
 | **Email (SMTP)** | nodo nativo | Notificaciones, confirmaciones |
 | **Resend / SendGrid / Mailgun** | vía HTTP | Email transaccional |
 | **Slack** | vía HTTP | Notificaciones internas, aprobaciones |
@@ -72,7 +53,7 @@ Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el tr
 ## CRM y ventas
 
 | Plataforma | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **HubSpot** | vía HTTP | Contactos, deals, sequences |
 | **Salesforce** | vía HTTP | Leads, accounts, opportunities |
 | **Pipedrive** | vía HTTP | Pipeline, deals, activities |
@@ -83,7 +64,7 @@ Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el tr
 ## Logística y couriers LATAM
 
 | Plataforma | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **Fazt** | vía HTTP | Last-mile multi-país |
 | **Rapiboy** | vía HTTP | Last-mile multi-país |
 | **Flapp** | vía HTTP | Last-mile multi-país |
@@ -94,7 +75,7 @@ Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el tr
 ## Bases de datos y data warehouses
 
 | Plataforma | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **PostgreSQL** | vía HTTP | Conexión vía API gateway |
 | **MySQL** | vía HTTP | Lecturas/escrituras programáticas |
 | **MongoDB Atlas** | vía HTTP | NoSQL |
@@ -107,17 +88,18 @@ Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el tr
 ## Modelos de IA
 
 | Provider | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **OpenAI** | vía HTTP | GPT-4, embeddings, function calling |
 | **Anthropic** | vía HTTP | Claude (Opus, Sonnet, Haiku) |
 | **Google** | vía HTTP | Gemini |
 | **Mistral** | vía HTTP | Modelos open-source vía API |
 | **Modelos open-source locales** | vía Python | Llama, Mistral self-hosted vía nodo Código |
+| ElevenLabs | vía HTTP | Agentes de Voz |
 
 ## Servicios cloud
 
 | Plataforma | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **Google Cloud Storage** | vía HTTP | Upload de archivos, generación de URLs firmadas |
 | **AWS S3** | vía HTTP | Storage, asset delivery |
 | **Cloudinary** | vía HTTP | Imágenes, transformaciones |
@@ -126,7 +108,7 @@ Puente OS NO reemplaza las herramientas que tu equipo ya usa — **elimina el tr
 ## Productividad y operaciones
 
 | Plataforma | Tipo | Uso común |
-|---|---|---|
+| --- | --- | --- |
 | **Google Calendar** | vía HTTP | Citas, reservas, agenda |
 | **Google Workspace** | vía HTTP | Gmail, Drive, Sheets |
 | **Microsoft 365** | vía HTTP | Outlook, Excel Online, SharePoint |
@@ -146,6 +128,7 @@ Si tu sistema tiene una API **inusual** (SOAP, file-based, FTP, propietaria), po
   <Card title="Cómo conecto vía HTTP" icon="globe" href="/componentes/workflows">
     Documentación del nodo HTTP en Workflows: auth, params, body, importar desde cURL.
   </Card>
+
   <Card title="Casos de uso reales" icon="briefcase" href="/casos-de-uso">
     Ejemplos por vertical: retail, eCommerce, logística.
   </Card>
