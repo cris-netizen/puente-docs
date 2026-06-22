@@ -21,13 +21,7 @@ icon: "table"
     Desde el panel de Componentes de un Project → **\+ Nuevo** → **Database**.
   </Step>
   <Step title="Define el schema">
-    Click en el boton **`+`** del encabezado para agregar la primera columna. Dale nombre, elige el tipo y confirma. La tabla se crea en el backend con esa primera columna.
-  </Step>
-  <Step title="Define el schema">
-    Click en el botón **`+`** del encabezado para agregar la primera columna. Dale nombre, elige el tipo y confirma. La tabla se crea en el backend con esa primera columna.
-  </Step>
-  <Step title="Agrega mas columnas">
-    Repite el paso anterior para cada columna que necesites. Tambien puedes importar todo de una via CSV.
+    Click en el botón **`+`** del encabezado para agregar la primera columna. Ponle nombre, elige el tipo y confirma. La Database se crea en el backend con esa primera columna.
   </Step>
   <Step title="Agrega más columnas">
     Repite el paso anterior para cada columna que necesites. También puedes importar todo de una vía CSV.
@@ -37,6 +31,10 @@ icon: "table"
 <Note>
   El nombre interno (`key`) se genera automáticamente en snake\_case. El nombre visible (label) puedes cambiarlo después sin afectar la integración.
 </Note>
+
+<Tip>
+  Si abres el editor sin una Database seleccionada, parte en estado vacío: puedes agregar columnas a mano o crear toda la Database desde un CSV. Al agregar la primera columna, se crea en el backend automáticamente.
+</Tip>
 
 ---
 
@@ -62,16 +60,13 @@ icon: "table"
 
 <Steps>
   <Step title="Click en Import CSV">
-    En la toolbar. Si la Database esta vacia, tambien aparece **"Crear desde CSV"** en el estado vacio.
-  </Step>
-  <Step title="Click en Import CSV">
     En la toolbar. Si la Database está vacía, también aparece **"Crear desde CSV"** en el estado vacío.
   </Step>
-  <Step title="Sube el archivo">
-    Arrastra el CSV o haz click para seleccionar. Soporta delimitadores `,` y `;`.
+  <Step title="Nombra la Database">
+    Solo al crear una Database nueva: ingresa nombre y una descripción opcional.
   </Step>
-  <Step title="Revisa las columnas detectadas">
-    El sistema detecta automaticamente el tipo de cada columna. Puedes corregir cualquier tipo antes de confirmar. Se muestra una preview con las primeras 5 filas.
+  <Step title="Sube el archivo">
+    Arrastra el CSV o haz click para seleccionar. Soporta delimitadores `,` y `;`, con o sin comillas. El archivo se procesa en tu navegador, no se sube al backend hasta confirmar.
   </Step>
   <Step title="Revisa las columnas detectadas">
     El sistema detecta automáticamente el tipo de cada columna. Puedes corregir cualquier tipo antes de confirmar. Se muestra una preview con las primeras 5 filas.
@@ -117,6 +112,10 @@ Click directo en cualquier celda. La celda entra en modo edición según el tipo
   La eliminación de filas es **irreversible**. No hay papelera de reciclaje.
 </Warning>
 
+### Selección múltiple
+
+Activa los checkboxes de la columna izquierda para seleccionar varias filas. El checkbox del encabezado selecciona **todas las filas visibles** de una vez. Úsalo para eliminar en lote o accionar sobre el conjunto seleccionado.
+
 ---
 
 ## Trabajar con columnas
@@ -136,6 +135,10 @@ Arrastra el encabezado a la posición deseada.
 ### Ocultar/mostrar
 
 Click en **Columns** en la toolbar y activa/desactiva cada columna. Las ocultas no se eliminan, solo se esconden visualmente.
+
+### Editar nombre o descripción de la Database
+
+Click en el icono de lápiz (**✏️**) en la barra superior, modifica el nombre o la descripción y confirma.
 
 ---
 
@@ -166,7 +169,7 @@ Click en **Filter** → agrega condiciones con `+`. Para cada condición elige c
 
 ### Ordenamiento
 
-Click en el encabezado de cualquier columna. Cicla entre **ascendente → descendente → sin orden**.
+Click en el encabezado de cualquier columna. Cicla entre **ascendente → descendente → sin orden**. También puedes definir un orden por defecto con los props `defaultSortColumn` y `defaultSortDirection`.
 
 ---
 
@@ -178,7 +181,7 @@ Click en el encabezado de cualquier columna. Cicla entre **ascendente → descen
 
 ### Cómo abrirlo
 
-Click en **IA** en la barra superior derecha. El panel ocupa 320px a la derecha.
+Click en **IA** en la barra superior derecha. El panel ocupa 320px a la derecha y la tabla se reacomoda automáticamente (funciona tanto en paginación como en scroll infinito).
 
 ### Qué puede hacer
 
@@ -193,7 +196,7 @@ Muéstrame un resumen de los datos
 
 ### Reset del chat
 
-Click en el icono de reinicio dentro del panel para borrar el historial.
+Click en el icono de reinicio dentro del panel para borrar el historial. La conversación vive solo en memoria mientras tienes la Database abierta.
 
 ---
 
@@ -221,6 +224,28 @@ Click en **Export** en la toolbar. Se descarga un CSV con:
 | `pageSize` | `10` | Filas por página |
 | `pageSizeOptions` | `[10, 25, 50, 100]` | Opciones del selector |
 
+<Note>
+  En modo paginación, deja que el contenedor crezca con el contenido (sin altura fija). En scroll infinito, el componente usa altura fija y scrollea por dentro.
+</Note>
+
+---
+
+## Personalización visual
+
+Los colores y tamaños del editor son configurables desde el panel de la App:
+
+| Prop | Default | Qué controla |
+| --- | --- | --- |
+| `backgroundColor` | `#ffffff` | Fondo del grid |
+| `headerBackgroundColor` | `#f4f4f5` | Fondo del encabezado |
+| `textColor` | `#374151` | Color del texto de las celdas |
+| `borderColor` | `#e5e7eb` | Bordes y separadores |
+| `accentColor` | `#3b82f6` | Selección, focus y botones principales |
+| `rowHoverColor` | `#f9fafb` | Color al pasar el cursor sobre una fila |
+| `fontSize` | `13px` | Tamaño de fuente del contenido |
+| `headerFontSize` | `12px` | Tamaño de fuente de los encabezados |
+| `rowHeight` | `36px` | Altura de cada fila |
+
 ---
 
 ## Conectar con Apps y Workflows
@@ -243,15 +268,19 @@ Las Databases son **first-class citizens** del workspace. Cualquier App o Workfl
 
 <AccordionGroup>
   <Accordion title="¿Hay límite de filas por Database?">
-    No hay límite duro. La importación CSV está capada en 10,000 filas por archivo. Para datasets de millones de filas, escribe a soporte para discutir opciones.
+    No hay límite duro. Con scroll infinito (virtual scroll), el editor maneja 50,000+ filas sin degradación, porque solo renderiza las filas visibles más un buffer. La importación CSV está capada en 10,000 filas por archivo. Para datasets de millones de filas, escribe a soporte para discutir opciones.
   </Accordion>
 
   <Accordion title="¿Puedo restaurar una fila eliminada?">
     No. La eliminación es irreversible. Si necesitas auditoría, considera agregar una columna `estado` con un valor `archivado` en vez de eliminar.
   </Accordion>
 
+  <Accordion title="¿Cómo agrego columnas a una Database que ya tiene datos?">
+    Usa el botón `+` del encabezado. El schema se migra automáticamente y las filas existentes quedan sin valor en la nueva columna (aparecen como `null`).
+  </Accordion>
+
   <Accordion title="¿Qué pasa si cambio el tipo de una columna que ya tiene datos?">
-    El sistema intenta convertir los valores existentes. Si un valor no se puede convertir, queda como `null` y se te notifica antes de confirmar.
+    El sistema intenta convertir los valores existentes al nuevo tipo. Si un valor no se puede convertir, queda como `null`.
   </Accordion>
 
   <Accordion title="¿Las Databases tienen historial de cambios?">

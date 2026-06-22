@@ -32,14 +32,11 @@ La pantalla está dividida en dos columnas redimensionables:
   <Step title="Nombra el agente">
     En el campo de la parte superior. Es obligatorio para guardar.
   </Step>
-  <Step title="Define las instrucciones">
-    Elige modo **Inteligente** o **Manual** (ver siguiente seccion).
+  <Step title="Agrega una descripción (opcional)">
+    Una nota breve sobre para qué sirve el agente.
   </Step>
   <Step title="Define las instrucciones">
     Elige modo **Inteligente** o **Manual** (ver siguiente sección).
-  </Step>
-  <Step title="Selecciona el modelo">
-    Default recomendado para la mayoria de casos.
   </Step>
   <Step title="Selecciona el modelo">
     Default recomendado para la mayoría de casos.
@@ -105,9 +102,6 @@ La columna izquierda incluye un chat que envía mensajes al modelo con el prompt
   <Step title="Escribe tu mensaje">
     En el campo de texto inferior.
   </Step>
-  <Step title="Envia">
-    Presiona `Enter` o el boton de enviar.
-  </Step>
   <Step title="Envía">
     Presiona `Enter` o el botón de enviar.
   </Step>
@@ -121,6 +115,26 @@ La columna izquierda incluye un chat que envía mensajes al modelo con el prompt
 - **Botón de reiniciar** en el header del chat: borra toda la conversación y empieza de cero
 - El historial se incluye en cada petición, manteniendo contexto
 
+<Tip>
+  El chat de prueba usa el prompt **actual** del editor. El widget publicado usa el prompt **guardado**. Guarda antes de publicar para que ambos coincidan.
+</Tip>
+
+---
+
+## Seleccionar el modelo
+
+En la sección **Modelo** de la columna derecha eliges qué modelo de IA usa el agente:
+
+| Modelo | Cuándo usarlo |
+| --- | --- |
+| **Llama 3.3 Nemotron Super 49B** | Alta capacidad, recomendado para tareas complejas |
+| **GPT OSS 120B** | Modelo grande de OpenAI |
+| **Gemini 3 Flash** | Rápido y eficiente para respuestas ágiles |
+
+<Note>
+  Default recomendado para la mayoría de casos. Escribe a soporte si necesitas un modelo específico que no aparece en el selector.
+</Note>
+
 ---
 
 ## Publicar como widget
@@ -131,7 +145,7 @@ Una vez guardado el agente, puedes publicarlo como **widget de chat embebible** 
 
 Click en **Configurar Widget** en el footer de la columna de configuración.
 
-Se abre un modal con dos paneles: **Configuración** (izquierda) y **Preview** (derecha).
+Se abre un modal con dos paneles: **Configuración** (izquierda) y **Preview** (derecha). La preview se actualiza en tiempo real con cada cambio.
 
 ---
 
@@ -139,7 +153,7 @@ Se abre un modal con dos paneles: **Configuración** (izquierda) y **Preview** (
 
 <AccordionGroup>
   <Accordion title="Webhook">
-    URL del agente en el backend. Pre-llenada automáticamente. Formato: `https://backend.../chat/{public_id}`.
+    URL del agente, pre-llenada automáticamente. No necesitas editarla.
   </Accordion>
 
   <Accordion title="Marca">
@@ -184,17 +198,14 @@ Se abre un modal con dos paneles: **Configuración** (izquierda) y **Preview** (
 ### Obtener el código
 
 <Steps>
-  <Step title="Ajusta la configuracion">
-    Hasta que la preview lateral se vea como quieres.
-  </Step>
   <Step title="Ajusta la configuración">
     Hasta que la preview lateral se vea como quieres.
   </Step>
   <Step title="Copia el snippet">
-    Click en **Copiar Codigo**.
-  </Step>
-  <Step title="Copia el snippet">
     Click en **Copiar Código**.
+  </Step>
+  <Step title="Guarda la configuración">
+    Click en **Guardar** para conservar los ajustes del widget.
   </Step>
   <Step title="Pega antes del </body>">
     En tu sitio web. El widget aparece como burbuja flotante.
@@ -226,7 +237,7 @@ window.ChatWidgetConfig = {
 
 ## Editar un agente existente
 
-Si el agente ya existe, abrirlo carga automáticamente la configuración desde el backend. El botón de guardado cambia a **Guardar cambios**. Solo se actualizan los campos modificados.
+Abrir un agente carga automáticamente su configuración. El botón de guardado cambia a **Guardar cambios** y solo se actualizan los campos que modificaste (título, descripción, prompt).
 
 ---
 
@@ -239,6 +250,16 @@ Si el agente ya existe, abrirlo carga automáticamente la configuración desde e
 | Éxito | "Guardado" | Verde (2.5 seg) |
 
 Si ocurre un error, se muestra el mensaje en rojo junto al botón.
+
+<Note>
+  Si la URL de la página incluye `?project=N`, el agente recién creado se asocia automáticamente a ese proyecto.
+</Note>
+
+---
+
+## Créditos
+
+Los **créditos** se consumen al **crear** un agente y cada vez que un usuario interactúa con el **widget publicado**. Las pruebas en el chat interno y las ediciones del agente **no consumen créditos**, así que puedes iterar las instrucciones libremente.
 
 ---
 
@@ -268,11 +289,15 @@ Si ocurre un error, se muestra el mensaje en rojo junto al botón.
 
 <AccordionGroup>
   <Accordion title="¿Qué modelos puedo usar?">
-    El selector incluye los modelos disponibles según tu plan (Llama, GPT, Gemini). Escribe a soporte si necesitas un modelo específico.
+    El selector incluye Llama 3.3 Nemotron Super 49B, GPT OSS 120B y Gemini 3 Flash, según tu plan. Escribe a soporte si necesitas un modelo específico.
   </Accordion>
 
   <Accordion title="¿Puedo conectar el agente a una Database del workspace?">
     En esta versión el agente responde solo con el contexto del prompt. Para que use datos en vivo, configura un workflow que llame al agente con el contexto correcto y embebe el chat conectado a ese workflow.
+  </Accordion>
+
+  <Accordion title="¿El widget usa mi última edición?">
+    El widget publicado usa el prompt **guardado** en el backend, no el del editor. Guarda siempre antes de publicar para que reflejen lo mismo.
   </Accordion>
 
   <Accordion title="¿Cuánto tiempo se guarda el historial de chat?">
