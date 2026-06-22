@@ -415,7 +415,23 @@ Al importar, el sistema rehidrata cada nodo con los metadatos de las integracion
   </Accordion>
 
   <Accordion title="¿Qué pasa si un nodo falla a mitad del flujo?">
-    Depende del `on_error` del nodo. Por default (`Stop`), el flujo se detiene y los nodos siguientes quedan en `pending`. Con `Continue`, el error se registra y el flujo avanza al siguiente nodo. Puedes ver el error exacto en el panel de Resultados.
+    Depende del `on_error` del nodo. Por default (`Stop`), el flujo se detiene, los nodos siguientes quedan en `pending` y el flujo se marca como `failed`. Con `Continue`, el error se registra y el flujo avanza al siguiente nodo. Puedes ver el error exacto en el panel de Resultados.
+  </Accordion>
+
+  <Accordion title="¿Cuánto tiempo puede correr un flujo?">
+    Timeout default: 5 minutos por nodo. Para flujos largos, divide el trabajo en múltiples workflows encadenados vía webhook.
+  </Accordion>
+
+  <Accordion title="¿Puedo programar reintentos automáticos?">
+    Sí. En la configuración de cada nodo de Acción puedes activar reintentos con backoff exponencial (máximo 3 intentos por default).
+  </Accordion>
+
+  <Accordion title="¿Los workflows tienen rate limits?">
+    Sí, varían según tu plan. Escribe a soporte para conocer los límites de tu plan específico. Los triggers de tipo cron tienen una frecuencia mínima de ejecución de 1 minuto.
+  </Accordion>
+
+  <Accordion title="¿Cómo conecto un workflow a una database?">
+    **Como trigger:** usa el subtipo **Fila modificada** o **Fila agregada** sobre la database que quieras observar. **Como acción:** usa los nodos `Insertar fila`, `Actualizar fila` o `Leer filas` desde cualquier paso del flujo.
   </Accordion>
 
   <Accordion title="¿Cuántas versiones del flujo se guardan?">
