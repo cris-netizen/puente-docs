@@ -8,7 +8,7 @@ icon: "network"
 
 ## Visión general
 
-El menú opera en dos niveles:
+El workspace opera en dos niveles:
 
 ```text
 HOME (lista de proyectos)
@@ -30,8 +30,9 @@ Al abrir el workspace llegas al Home con la lista de proyectos activos del equip
 | --- | --- |
 | **Buscador** | Filtra proyectos por nombre o descripción en tiempo real |
 | **Vista Tabla / Tarjetas** | Alterna entre lista compacta y grid visual con estadísticas |
-| **Ordenar** | En vista tabla, haz click en las cabeceras para ordenar |
+| **Ordenar** | En vista tabla, haz click en las cabeceras **Proyecto** o **Fecha** para ordenar ascendente o descendente |
 | **Nuevo Proyecto** | Botón en la esquina superior derecha |
+| **Paginación** | Si hay más de 10 proyectos, aparece navegación por páginas al pie de la lista |
 
 ### Qué muestra cada tarjeta
 
@@ -48,13 +49,7 @@ Al abrir el workspace llegas al Home con la lista de proyectos activos del equip
 
 <Steps>
   <Step title="Click en Nuevo Proyecto">
-    Boton en la esquina superior derecha del Home.
-  </Step>
-  <Step title="Click en Nuevo Proyecto">
     Botón en la esquina superior derecha del Home.
-  </Step>
-  <Step title="Completa nombre y descripcion">
-    El nombre es requerido. La descripcion es opcional pero recomendada.
   </Step>
   <Step title="Completa nombre y descripción">
     El nombre es requerido. La descripción es opcional pero recomendada.
@@ -84,7 +79,7 @@ Menú de opciones (tres puntos), elige **Eliminar** (en rojo) y confirma.
 
 ## Detalle de proyecto
 
-Al hacer click en un proyecto entras a su vista de detalle, dividida en dos secciones:
+Al hacer click en un proyecto entras a su vista de detalle. Un botón de volver (←) en el header te lleva de regreso al Home. La vista se divide en dos secciones:
 
 <CardGroup cols={2}>
   <Card title="Tasks" icon="list-check">
@@ -100,34 +95,54 @@ Al hacer click en un proyecto entras a su vista de detalle, dividida en dos secc
 
 ## Tasks
 
-Las tasks se gestionan dentro de cada proyecto.
+Las tasks se gestionan dentro de cada proyecto. La sección aparece en la parte superior del detalle (solo en proyectos reales, no en "Todos").
 
 ### Estados y vistas
 
-Los estados disponibles son: **Backlog**, **Todo**, **In Progress**, **Done**, **Cancelled**. Puedes ver las tasks como:
+Los estados disponibles son: **Backlog**, **Pendiente**, **En progreso**, **Completado** y **Cancelado**. Puedes ver las tasks como:
 
-- **Kanban** — tarjetas agrupadas por estado, arrastrables entre columnas
-- **Lista** — tabla con todas las columnas (título, asignado, prioridad, fecha)
+- **Kanban** — columnas por estado, con tarjetas arrastrables entre columnas
+- **Lista** — tasks agrupadas por estado, colapsables, con drag & drop entre grupos
+
+Una **barra de progreso** en el encabezado muestra el porcentaje completado y el conteo `X/Total` cuando hay tasks.
 
 ### Crear una task
 
-<Steps>
-  <Step title="Click en + Nueva task">
-    Disponible en cada columna del Kanban o en el header de la lista.
-  </Step>
-  <Step title="Define titulo y campos">
-    Titulo (requerido), descripcion, prioridad, asignado, fecha limite.
-  </Step>
-  <Step title="Define título y campos">
-    Título (requerido), descripción, prioridad, asignado, fecha límite.
-  </Step>
-  <Step title="Confirma">
-    La task aparece inmediatamente en el estado seleccionado.
-  </Step>
-</Steps>
+Tienes tres formas de crear una task:
+
+- Botón **+ Nueva task** en el encabezado de la sección (la crea en Backlog).
+- Botón **+** en el encabezado de un grupo (vista Lista) — la crea con ese estado.
+- Botón **+** en el encabezado de una columna (vista Kanban) — mismo comportamiento.
+
+En el modal puedes configurar:
+
+| Campo | Requerido | Descripción |
+| --- | --- | --- |
+| **Nombre** | Sí | Título de la task |
+| **Descripción** | No | Texto libre de contexto |
+| **Estado** | No | Por defecto: Backlog |
+| **Fecha límite** | No | Fecha de vencimiento |
+| **Componentes** | No | Tipo de componente relacionado: Apps, Workflows, Databases, Agents |
+| **Owner** | No | Miembro del equipo responsable, elegido desde un dropdown con todo el equipo |
+
+### Editar y mover
+
+- **Editar**: click en el botón de editar (lápiz) de la task y modifica los campos en el modal.
+- **Cambiar estado**: arrastra la task a otro grupo (vista Lista) o columna (vista Kanban). El cambio se guarda automáticamente al soltarla.
+- **Eliminar**: click en el botón de eliminar (papelera) y confirma.
+
+<Warning>
+  Eliminar una task es irreversible.
+</Warning>
+
+### Buscar y organizar
+
+- El **buscador** del encabezado filtra tasks por nombre o descripción en ambas vistas. Los grupos o columnas vacíos se ocultan automáticamente.
+- Puedes **colapsar** toda la sección de tasks (click en el título) o grupos individuales por estado (vista Lista).
+- En **Kanban**, cada columna muestra hasta 5 tasks; si hay más aparece un botón **Ver X más** para cargar la siguiente página.
 
 <Tip>
-  Las tasks también pueden referenciar Builds (Apps, Workflows, etc.) para enlazar task de gestión con artefacto de software.
+  Cuando una task tiene owner, aparece un avatar con sus iniciales en la fila (Lista) o tarjeta (Kanban). Pasa el cursor sobre el avatar para ver el nombre completo y el correo del responsable.
 </Tip>
 
 ---
@@ -150,6 +165,26 @@ Dentro del detalle de un proyecto, la sección de componentes lista todas las Ap
   Los filtros solo aparecen si el tipo tiene al menos 1 componente en el proyecto.
 </Note>
 
+### Buscar y ordenar
+
+- El **buscador** (esquina superior derecha) filtra por nombre dentro del tipo seleccionado. Se reinicia al cambiar de filtro.
+- Las cabeceras **Nombre** y **Fecha** de la tabla son clickeables para ordenar ascendente o descendente.
+- Si el proyecto tiene más de 10 componentes, aparece **paginación** al pie de la tabla.
+
+### Agregar un componente
+
+<Steps>
+  <Step title="Click en + Agregar">
+    Botón en la esquina superior derecha de la sección de componentes.
+  </Step>
+  <Step title="Elige el tipo">
+    Selecciona App, Workflow, Database o Agent.
+  </Step>
+  <Step title="Crea el componente">
+    Se abre el flujo de creación correspondiente.
+  </Step>
+</Steps>
+
 ### Acciones por componente
 
 Al hacer hover sobre una fila aparece el botón de opciones (tres puntos):
@@ -157,12 +192,16 @@ Al hacer hover sobre una fila aparece el botón de opciones (tres puntos):
 | Acción | Disponible en | Descripción |
 | --- | --- | --- |
 | **Editar** | Solo Apps | Abre el editor de la App |
-| **Mover** | Todos | Cambia el componente a otro proyecto |
+| **Mover** | Todos | Cambia el componente a otro proyecto (o de vuelta a "Todos") |
 | **Eliminar** | Todos | Elimina permanentemente (irreversible) |
+
+<Note>
+  Un componente solo puede pertenecer a **un proyecto a la vez**. Al moverlo, sale del proyecto actual.
+</Note>
 
 ### Abrir un componente
 
-Click en cualquier fila o en el botón de abrir te lleva directo al editor del componente (App Builder, Workflow editor, Database editor o Agent editor).
+Click en cualquier fila o en el botón de abrir (→) te lleva directo al editor del componente (App Builder, Workflow editor, Database editor o Agent editor).
 
 ---
 

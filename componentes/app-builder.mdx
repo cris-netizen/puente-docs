@@ -8,7 +8,7 @@ icon: "app-window"
   ![Screenshot 2026 06 03 At 3 44 39 PM](/images/Screenshot-2026-06-03-at-3.44.39-PM.png)
 </Frame>
 
-**App Builder** es el constructor de aplicaciones web de Puente OS. Describes lo que quieres en lenguaje natural, el sistema genera React \+ TypeScript, lo compila en tu navegador y te muestra una preview funcional. Después puedes iterar vía chat, editar código directamente o usar el modo Inspect para editar elementos haciendo click.
+**App Builder** es el constructor de aplicaciones web de Puente OS. Describes lo que quieres en lenguaje natural, el sistema genera un plan, construye React \+ TypeScript, lo compila en tu navegador y te muestra una preview funcional. Después puedes iterar vía chat, editar código directamente o usar el modo Inspect para editar elementos haciendo click.
 
 ## Crear tu primera app
 
@@ -20,39 +20,37 @@ icon: "app-window"
     Escribe en el textarea de la pantalla de inicio. Algunos ejemplos:
 
     ```text
-    Un CRM simple con lista de clientes, oportunidades y dashboard con metricas
-    
-    App de gestion de inventario con tabla de productos, filtros y formulario
-    
-    Tablero Kanban para gestionar tasks con columnas To Do, In Progress y Done
-    ```
-
-    <Tip>
-      Click en **Mejorar** y la IA reformulara tu prompt agregandole detalle.
-    </Tip>
-  </Step>
-  <Step title="Describe lo que quieres">
-    Escribe en el textarea de la pantalla de inicio. Algunos ejemplos:
-
-    ```text
     Un CRM simple con lista de clientes, oportunidades y dashboard con métricas
-    
+
     App de gestión de inventario con tabla de productos, filtros y formulario
-    
+
     Tablero Kanban para gestionar tasks con columnas To Do, In Progress y Done
     ```
 
     <Tip>
-      Click en **Mejorar** y la IA reformulará tu prompt agregándole detalle.
+      Click en **Mejorar** y la IA reformulará tu prompt agregándole detalle. También puedes usar **Sorpréndeme** para rellenar el input con un prompt de ejemplo.
     </Tip>
   </Step>
-  <Step title="Envia y espera la preview">
-    Presiona el boton de enviar o `Enter`. El sistema genera nombre, archivos de codigo, compila y muestra preview en 15-45 segundos.
+  <Step title="Revisa y aprueba el plan">
+    Presiona el botón de enviar o `Enter`. Primero, un agente analiza tu idea y genera un **plan de implementación** (objetivo, componentes, esquema de datos y features clave) que aparece en un panel a la derecha. Revísalo, edítalo si hace falta y click en **Aprobar y construir**.
   </Step>
-  <Step title="Envía y espera la preview">
-    Presiona el botón de enviar o `Enter`. El sistema genera nombre, archivos de código, compila y muestra preview en 15-45 segundos.
+  <Step title="Espera la preview">
+    El sistema crea las tablas necesarias, genera el código y compila. Toma entre 30 y 90 segundos según la complejidad. Cuando termina, tu app aparece funcionando en la preview.
   </Step>
 </Steps>
+
+### Panel de Revisión de Plan
+
+Antes de construir, el plan generado se muestra renderizado en Markdown en un panel a la derecha. Desde ahí puedes:
+
+- **Ver** el plan completo (objetivo, componentes, tablas y features).
+- **Editar** el plan libremente con el botón de edición antes de aprobarlo.
+- **Descartar** para cancelar y volver al chat.
+- **Aprobar y construir** para que el sistema construya la app.
+
+<Tip>
+  Editar el plan antes de aprobar es la forma más rápida de corregir el rumbo. Si algo no está bien descrito, ajústalo aquí en lugar de reconstruir después.
+</Tip>
 
 ## Templates pre-construidos
 
@@ -66,6 +64,8 @@ Si no quieres empezar desde cero, click en **Template** y elige uno:
 | **HTML Interactive** | Template HTML/CSS/JS puro (sin React) |
 | **Pomodoro** | Timer \+ lista de tasks |
 | **QA Components** | Showcase de todos los componentes disponibles |
+
+Al seleccionar un template, la app se carga de inmediato en el editor, lista para usar o modificar.
 
 ---
 
@@ -93,8 +93,28 @@ La tabla de productos no se actualiza al agregar uno nuevo
 </CodeGroup>
 
 <Tip>
-  Si el cambio afecta a un componente específico, menciónalo por nombre: _"En `ClientesView`, agrega un campo de notas"_. Así la IA hace cambios más precisos.
+  Si el cambio afecta a un componente específico, menciónalo por nombre: _"En `ClientesView`, agrega un campo de notas"_. Así la IA hace cambios más precisos y quirúrgicos.
 </Tip>
+
+### Modo Build vs Chat
+
+En la barra inferior del chat hay un selector que define cómo interactúa la IA contigo:
+
+| Modo | Qué hace |
+| --- | --- |
+| **Build** 🔨 | La IA modifica el código de tu app. Es el modo por defecto. |
+| **Chat** 💬 | Conversas con un agente sobre tu app **sin** tocar el código. |
+
+- En modo **Build**, la IA analiza el código actual y aplica los cambios que pides; la app se recompila automáticamente.
+- En modo **Chat**, el agente responde preguntas sobre tu app, sus datos y su funcionamiento. Mantiene historial acumulativo de la conversación y puede ofrecer botones de respuesta rápida cuando necesita más contexto. No cambia el código.
+
+<Tip>
+  Usa **Build** para hacer cambios y **Chat** para entender el funcionamiento o explorar opciones antes de pedir una modificación.
+</Tip>
+
+<Note>
+  Cambiar de tab o recargar la página reinicia el historial del modo Chat.
+</Note>
 
 ---
 
@@ -111,7 +131,7 @@ La tabla de productos no se actualiza al agregar uno nuevo
 
 Editor de código con:
 
-- Explorador de archivos a la izquierda
+- Explorador de archivos a la izquierda (crear archivos y carpetas, editar, eliminar)
 - Editor con syntax highlighting al centro
 - Preview siempre visible a la derecha
 - 4 sub-pestañas según el archivo: **Código**, **Datos** (si existe `data.ts`), **Theme** (si existe `theme.ts`), **Bugs** (si hay errores)
@@ -130,6 +150,7 @@ Si tu app tiene `data.ts`, puedes editar los datos de forma visual sin tocar có
 | **Agregar fila** | Botón "\+ Fila" al final de la tabla |
 | **Eliminar fila** | Icono de papelera en la fila |
 | **Agregar columna** | Botón "\+ Columna" |
+| **Eliminar columna** | Click en el encabezado y elige eliminar |
 
 Cada cambio regenera `data.ts` y recompila automáticamente.
 
@@ -173,9 +194,6 @@ Disponible cuando estás en el tab **Code**.
     Se identifica el componente React y se muestran sus props editables en el panel izquierdo.
   </Step>
   <Step title="Aplica los cambios">
-    Click en **Apply Changes** — el codigo se actualiza y el preview se recompila.
-  </Step>
-  <Step title="Aplica los cambios">
     Click en **Apply Changes** — el código se actualiza y el preview se recompila.
   </Step>
 </Steps>
@@ -188,21 +206,22 @@ App Builder puede leer y escribir Databases del workspace en lugar de usar datos
 
 <Steps>
   <Step title="Ve al tab Datos">
-    En el menu superior del editor.
-  </Step>
-  <Step title="Ve al tab Datos">
     En el menú superior del editor.
   </Step>
-  <Step title="Selecciona una Database">
-    Lista de las Databases disponibles del workspace.
+  <Step title="Conecta una Database">
+    Click en **Conectar tabla**. Búscala por nombre o ingresa su UUID manualmente.
   </Step>
-  <Step title="Mapea columnas">
-    El sistema sugiere el mapping entre las columnas de la Database y los campos de tu app. Puedes ajustarlo.
+  <Step title="Elige permisos">
+    Selecciona qué puede hacer la app: **read** (solo lectura), **write** (insertar y actualizar) o **delete** (eliminar filas).
   </Step>
   <Step title="Confirma">
-    La app deja de usar datos de ejemplo y empieza a leer/escribir directo a la Database.
+    La app deja de usar datos de ejemplo y empieza a leer/escribir directo a la Database. Cada app generada ya trae su acceso configurado automáticamente.
   </Step>
 </Steps>
+
+<Tip>
+  Click en el ícono de ojo junto a una tabla conectada para previsualizar sus primeras filas.
+</Tip>
 
 <Card title="Más detalle sobre Databases" icon="table" href="/componentes/databases">
   Crea, importa y mantén tus Databases para conectarlas a las Apps.
@@ -210,35 +229,72 @@ App Builder puede leer y escribir Databases del workspace en lugar de usar datos
 
 ---
 
+## Gestión de versiones
+
+Cada iteración que haces a una app genera automáticamente una nueva versión en su historial. Puedes ver el historial, cargar versiones anteriores y restaurarlas.
+
+En la barra inferior del tab **Chat** verás un badge con la versión activa:
+
+| Badge | Significado |
+| --- | --- |
+| `v3` (gris) | Estás en la versión más reciente |
+| `v1` (amarillo) | Estás editando una versión anterior — no es la más reciente |
+
+Click en el badge para abrir el **panel de historial**, donde cada versión muestra su número y fecha.
+
+### Cargar vs Restaurar
+
+| | **Cargar** | **Restaurar** |
+| --- | --- | --- |
+| **Qué hace** | Trae el contenido de esa versión al editor para previsualizar o iterar | Vuelve definitivamente a esa versión, creando una nueva versión más reciente |
+| **Genera versión nueva** | Solo si iteras después | De inmediato |
+| **Badge** | Amarillo si no es la más reciente | Vuelve a gris (nueva versión más reciente) |
+
+- Al **cargar** una versión, los archivos del editor se reemplazan, la app se recompila y el chat confirma la carga (con aviso si no es la más reciente). Si iteras desde ahí, el builder genera una nueva versión basada en la que cargaste.
+- Al **restaurar**, el contenido de esa versión pasa a ser la versión más reciente del proyecto.
+
+<Note>
+  Ninguna de las dos acciones borra versiones del historial. Cada proyecto guarda hasta 20 versiones; al crear la 21, la más antigua se purga automáticamente.
+</Note>
+
+---
+
 ## Compartir tu app
 
 <Steps>
   <Step title="Click en Compartir">
-    Boton en la esquina superior derecha.
-  </Step>
-  <Step title="Click en Compartir">
     Botón en la esquina superior derecha.
   </Step>
   <Step title="Configura el acceso">
-    Elige entre: workspace (solo miembros), publico (cualquiera con el link), o por dominio.
+    Elige entre: **Desactivado** (solo tú), **Público** (cualquiera con el link) o **Invitados** (solo emails que autorices).
   </Step>
-  <Step title="Configura el acceso">
-    Elige entre: workspace (solo miembros), público (cualquiera con el link), o por dominio.
+  <Step title="Personaliza el slug (opcional)">
+    Ajusta la parte final de la URL pública para que sea más descriptiva. Debe ser único dentro de tu empresa, con solo letras, números y guiones.
   </Step>
   <Step title="Copia el link">
-    La app queda accesible para los usuarios autorizados.
+    La app queda accesible para los usuarios autorizados en una URL del tipo `https://app.puente.xyz/public/tu-slug/`.
   </Step>
 </Steps>
+
+<Note>
+  En modo **Invitados**, escribe el email de cada persona y envíale la invitación. Puedes ver la lista de invitados y revocar acceso cuando quieras.
+</Note>
 
 ---
 
 ## Auto-fix de errores
 
-Si la compilación falla, aparece la pestaña **Bugs** con los errores. Click en **Auto-fix** y la IA intenta corregirlos. Si no logra resolverlos, puedes:
+Si la compilación falla, aparece la pestaña **Bugs** con los errores y el **Auto-fix** entra en acción: envía el error al builder, que corrige únicamente los archivos necesarios y recompila (hasta 3 intentos). Para errores de runtime, usa el botón **Solucionar error** en el preview.
+
+Si después de 3 intentos no logra resolverlo, el sistema vuelve al **Chat** y te muestra el detalle. Puedes:
 
 1. Abrir el archivo problemático y editar manualmente
 2. Pedir al chat: _"Corrige el error en el componente X"_
 3. Reescribir el componente desde cero vía prompt
+
+<Tip>
+  Ve a **Code → Bugs** para ver el detalle técnico del error.
+</Tip>
 
 ---
 
@@ -248,8 +304,13 @@ Si la compilación falla, aparece la pestaña **Bugs** con los errores. Click en
 | --- | --- |
 | `Enter` (en chat) | Enviar prompt |
 | `Shift + Enter` | Salto de línea en chat |
+| `Esc` | Cancelar edición de título o slug |
 | `Cmd/Ctrl + S` (en code) | Guardar y recompilar |
 | `Cmd/Ctrl + B` | Build manual |
+
+<Tip>
+  Arrastra el divisor vertical entre el panel izquierdo (editor/chat) y el preview para ajustar el espacio de cada uno.
+</Tip>
 
 ---
 
@@ -257,18 +318,26 @@ Si la compilación falla, aparece la pestaña **Bugs** con los errores. Click en
 
 <AccordionGroup>
   <Accordion title="¿Qué stack genera el App Builder?">
-    React \+ TypeScript. Sin dependencias externas más allá de las del proyecto base. Compila en el browser.
+    React \+ TypeScript por defecto. Sin dependencias externas más allá de las del proyecto base. Compila en el browser. También puedes crear apps HTML/CSS/JS puras con el template "HTML Interactive".
   </Accordion>
 
   <Accordion title="¿Puedo exportar el código?">
-    Sí. En el tab **Code**, click en **Copiar JSON** para obtener todos los archivos. También puedes descargar como ZIP.
+    Sí. En el tab **Code**, click en **Copiar JSON** para obtener todos los archivos, o selecciona un archivo y copia su contenido directamente.
   </Accordion>
 
   <Accordion title="¿Qué pasa si modifico el código y luego uso el chat?">
     La IA ve los cambios y los respeta. Pero si tu código tiene errores, intenta corregirlos al aplicar la siguiente modificación.
   </Accordion>
 
-  <Accordion title="¿Hay límite de iteraciones por app?">
-    No hay límite por app. El límite depende del plan de tu workspace — escribe a [octavio@puente.xyz](mailto:octavio@puente.xyz) si tienes dudas.
+  <Accordion title="¿Qué pasa si cierro el browser mientras se genera la app?">
+    El proceso se cancela. Si la app ya fue guardada, puedes volver a abrirla desde tu lista de proyectos.
+  </Accordion>
+
+  <Accordion title="¿La app funciona en móvil?">
+    Depende de cómo fue generada. Puedes pedir vía chat: _"Hazla responsive para móvil"_.
+  </Accordion>
+
+  <Accordion title="¿Hay límite de iteraciones o apps?">
+    No hay límite de iteraciones por app. El número de apps depende del plan de tu workspace — escribe a [octavio@puente.xyz](mailto:octavio@puente.xyz) si tienes dudas.
   </Accordion>
 </AccordionGroup>
